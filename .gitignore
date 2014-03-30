@@ -7,3 +7,4 @@
 *.suo
 /WorldCup/bin
 /packages
+*.cache

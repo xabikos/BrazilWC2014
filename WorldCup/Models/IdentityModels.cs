@@ -13,7 +13,7 @@ namespace WorldCup.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
+        public string FirstName1 { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -114,10 +114,8 @@ namespace WorldCup.Models
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
 
-            const string xabikosName = "xabikos";
-            const string xabikosEmail = "c.karypidis@niposoftware.com";
-            const string rutgerName = "rutger";
-            const string rutgerEmail = "r.dejong@niposoftware.com";
+            const string xabikosName = "c.karypidis@niposoftware.com";
+            const string rutgerName = "r.dejong@niposoftware.com";
             const string password = "Admin@123456";
             const string roleName = "Admin";
 
@@ -135,7 +133,7 @@ namespace WorldCup.Models
                 xabikosUser = new ApplicationUser
                 {
                     UserName = xabikosName,
-                    Email = xabikosEmail,
+                    Email = xabikosName,
                     FirstName = "Charalampos",
                     LastName = "Karypidis"
                 };
@@ -156,7 +154,7 @@ namespace WorldCup.Models
                 rutgerUser = new ApplicationUser
                 {
                     UserName = rutgerName,
-                    Email = rutgerEmail,
+                    Email = rutgerName,
                     FirstName = "Rutger",
                     LastName = "de Jong"
                 };

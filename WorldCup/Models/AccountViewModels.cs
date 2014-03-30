@@ -24,8 +24,9 @@ namespace WorldCup.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Username or Email")]
-        public string Username { get; set; }
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -54,15 +54,7 @@ namespace WorldCup.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.Username, model.Password);
-                if (user == null)
-                {
-                    var retrievedUser = await UserManager.FindByEmailAsync(model.Username);
-                    if (retrievedUser != null)
-                    {
-                        user = await UserManager.FindAsync(retrievedUser.UserName, model.Password);
-                    }
-                }
+                var user = await UserManager.FindAsync(model.Email, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using WorldCup.Models;
 
 namespace WorldCup.Controllers
@@ -63,10 +60,8 @@ namespace WorldCup.Controllers
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
+                
+                ModelState.AddModelError("", "Invalid username or password.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -110,10 +105,8 @@ namespace WorldCup.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    AddErrors(result);
-                }
+                
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -135,11 +128,9 @@ namespace WorldCup.Controllers
             {
                 return View("ConfirmUser");
             }
-            else
-            {
-                AddErrors(result);
-                return View();
-            }
+            
+            AddErrors(result);
+            return View();
         }
 
         //
@@ -293,10 +284,8 @@ namespace WorldCup.Controllers
                         await SignInAsync(user, isPersistent: false);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    
+                    AddErrors(result);
                 }
             }
             else
@@ -315,10 +304,8 @@ namespace WorldCup.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    
+                    AddErrors(result);
                 }
             }
 
@@ -522,11 +509,6 @@ namespace WorldCup.Controllers
             return false;
         }
 
-        private void SendEmail(string email, string callbackUrl, string subject, string message)
-        {
-            // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
-        }
-
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
@@ -541,10 +523,8 @@ namespace WorldCup.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            
+            return RedirectToAction("Index", "Home");
         }
 
         private class ChallengeResult : HttpUnauthorizedResult
@@ -566,7 +546,7 @@ namespace WorldCup.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;

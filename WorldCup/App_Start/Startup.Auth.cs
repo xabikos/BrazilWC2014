@@ -2,7 +2,6 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using System;
 using WorldCup.Models;
@@ -19,17 +18,6 @@ namespace WorldCup
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
-
-            // Configure the UserManager
-            //app.UseUserManagerFactory(new IdentityFactoryOptions<ApplicationUserManager>
-            //{
-            //    DataProtectionProvider = app.GetDataProtectionProvider(),
-            //    Provider = new IdentityFactoryProvider<ApplicationUserManager>()
-            //    {
-            //        OnCreate = ApplicationUserManager.Create
-            //    }
-            //});
-            
 
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -61,5 +49,6 @@ namespace WorldCup
 
             app.UseGoogleAuthentication();
         }
+
     }
 }

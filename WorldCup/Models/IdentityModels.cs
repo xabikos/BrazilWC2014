@@ -101,11 +101,11 @@ namespace WorldCup.Models
     {
         protected override void Seed(ApplicationDbContext context)
         {
-            InitializeAdmins(context);
+            InitializeAdmins();
             base.Seed(context);
         }
 
-        private void InitializeAdmins(ApplicationDbContext context)
+        private void InitializeAdmins()
         {
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
@@ -122,37 +122,37 @@ namespace WorldCup.Models
             if (role == null)
             {
                 role = new IdentityRole(roleName);
-                var roleresult = roleManager.Create(role);
+                roleManager.Create(role);
             }
 
             var xabikosUser = userManager.FindByName(xabikosName);
             if (xabikosUser == null)
             {
                 xabikosUser = new ApplicationUser { UserName = xabikosName, Email = xabikosEmail, FirstName = "Charalampos", LastName = "Karypidis"};
-                var result = userManager.Create(xabikosUser, password);
-                result = userManager.SetLockoutEnabled(xabikosUser.Id, false);
+                userManager.Create(xabikosUser, password);
+                userManager.SetLockoutEnabled(xabikosUser.Id, false);
             }
 
             // Add user admin to Role Admin if not already added
             var rolesForUser = userManager.GetRoles(xabikosUser.Id);
             if (!rolesForUser.Contains(role.Name))
             {
-                var result = userManager.AddToRole(xabikosUser.Id, role.Name);
+                userManager.AddToRole(xabikosUser.Id, role.Name);
             }
 
             var rutgerUser = userManager.FindByName(rutgerName);
             if (rutgerUser == null)
             {
                 rutgerUser = new ApplicationUser { UserName = rutgerName, Email = rutgerEmail, FirstName = "Rutger", LastName = "de Jong" };
-                var result = userManager.Create(rutgerUser, password);
-                result = userManager.SetLockoutEnabled(rutgerUser.Id, false);
+                userManager.Create(rutgerUser, password);
+                userManager.SetLockoutEnabled(rutgerUser.Id, false);
             }
 
             // Add user admin to Role Admin if not already added
             rolesForUser = userManager.GetRoles(rutgerUser.Id);
             if (!rolesForUser.Contains(role.Name))
             {
-                var result = userManager.AddToRole(rutgerUser.Id, role.Name);
+                userManager.AddToRole(rutgerUser.Id, role.Name);
             }
 
         }

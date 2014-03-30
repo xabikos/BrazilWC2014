@@ -2,7 +2,7 @@
 
 namespace WorldCup.Controllers
 {
-    public class AdminController : Controller
+    public class AdminUsersController : Controller
     {
         public ActionResult Index()
         {

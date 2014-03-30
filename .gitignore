@@ -5,3 +5,5 @@
 /WorldCup/obj/Debug
 *.user
 *.suo
+/WorldCup/bin
+/packages

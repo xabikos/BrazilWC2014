@@ -32,8 +32,9 @@ namespace WorldCup.Models
             : base(store)
         {
         }
-        
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
+            IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -46,7 +47,7 @@ namespace WorldCup.Models
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequireNonLetterOrDigit = false,
                 RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = true,
@@ -58,7 +59,8 @@ namespace WorldCup.Models
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider =
+                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
@@ -72,7 +74,8 @@ namespace WorldCup.Models
         {
         }
 
-        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options,
+            IOwinContext context)
         {
             var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
 
@@ -84,7 +87,8 @@ namespace WorldCup.Models
     {
         public ApplicationDbContext()
             : base("DefaultConnection")
-        {}
+        {
+        }
 
         static ApplicationDbContext()
         {
@@ -128,7 +132,13 @@ namespace WorldCup.Models
             var xabikosUser = userManager.FindByName(xabikosName);
             if (xabikosUser == null)
             {
-                xabikosUser = new ApplicationUser { UserName = xabikosName, Email = xabikosEmail, FirstName = "Charalampos", LastName = "Karypidis"};
+                xabikosUser = new ApplicationUser
+                {
+                    UserName = xabikosName,
+                    Email = xabikosEmail,
+                    FirstName = "Charalampos",
+                    LastName = "Karypidis"
+                };
                 userManager.Create(xabikosUser, password);
                 userManager.SetLockoutEnabled(xabikosUser.Id, false);
             }
@@ -143,7 +153,13 @@ namespace WorldCup.Models
             var rutgerUser = userManager.FindByName(rutgerName);
             if (rutgerUser == null)
             {
-                rutgerUser = new ApplicationUser { UserName = rutgerName, Email = rutgerEmail, FirstName = "Rutger", LastName = "de Jong" };
+                rutgerUser = new ApplicationUser
+                {
+                    UserName = rutgerName,
+                    Email = rutgerEmail,
+                    FirstName = "Rutger",
+                    LastName = "de Jong"
+                };
                 userManager.Create(rutgerUser, password);
                 userManager.SetLockoutEnabled(rutgerUser.Id, false);
             }

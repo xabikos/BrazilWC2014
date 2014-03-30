@@ -24,7 +24,7 @@ namespace WorldCup.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Username or Email")]
         public string Username { get; set; }
 
         [Required]

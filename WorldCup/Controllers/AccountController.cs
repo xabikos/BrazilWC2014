@@ -15,7 +15,7 @@ using WorldCup.Models;
 namespace WorldCup.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : Controller 
     {
         private ApplicationUserManager _userManager;
 

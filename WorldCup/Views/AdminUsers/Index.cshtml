@@ -17,13 +17,13 @@
             .Sanitized(false)
             .RenderValueAs(u => @<input type="checkbox" checked="@u.EmailConfirmed" value="@u.Id" name="EmailConfirmed" />)
             .Titled("Confirmed").SetWidth(10);
-    }).Sortable()
+    }).SetRowCssClasses(u=>u.Roles.Any() ? "adminRow" : "").Sortable()
 
 <script type="text/javascript">
     $(function () {
         $('input[type=checkbox]').change(function () {
 
-            var action;
+            var action, checkBox = this;
 
             if (this.checked) {
                 action = "Activate";
@@ -39,10 +39,12 @@
                 dataType: 'json',
                 data: json,
                 contentType: 'application/json; charset=utf-8',
-                success: function(data) {
-                    // get the result and do some magic with it
-                    var message = data.Message;
-                    $("#resultMessage").html(message);
+                success: function (data) {
+                    toastr.success(data);
+                },
+                error: function (data) {
+                    toastr.error(data.statusText);
+                    checkBox.checked = !checkBox.checked;
                 }
             });
         });

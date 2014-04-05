@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/gridmvc")
+    @Scripts.Render("~/bundles/toastr")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -34,7 +35,7 @@
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Matches", "Index", "AdminMatches")</li>
                                     <li>@Html.ActionLink("Users", "Index", "AdminUsers")</li>
-                                </ul>    
+                                </ul>
                             </li>
                         }
                     }
@@ -51,5 +52,10 @@
         </footer>
     </div>
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.options.closeButton = true;
+    </script>
 </body>
 </html>

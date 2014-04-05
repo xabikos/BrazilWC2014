@@ -25,9 +25,10 @@ namespace WorldCup
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css", "~/Content/Gridmvc.css"));
+                      "~/Content/site.css", "~/Content/Gridmvc.css", "~/Content/toastr.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.min.js"));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -130,6 +129,7 @@ namespace WorldCup.Models.Identity
         protected override void Seed(ApplicationDbContext context)
         {
             InitializeAdmins();
+            InitializeUsers();
             base.Seed(context);
         }
 
@@ -194,6 +194,53 @@ namespace WorldCup.Models.Identity
             }
 
         }
-    }
 
+        private void InitializeUsers()
+        {
+            var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+            const string password = "Pa$$w0rd12";
+
+            var user = new ApplicationUser
+            {
+                UserName = "h.tuncer@niposoftware.com",
+                Email = "h.tuncer@niposoftware.com",
+                FirstName = "Hakan",
+                LastName = "Tuncer"
+            };
+            userManager.Create(user, password);
+            userManager.SetLockoutEnabled(user.Id, false);
+
+            user = new ApplicationUser
+            {
+                UserName = "p.lieverest@niposoftware.com",
+                Email = "p.lieverest@niposoftware.com",
+                FirstName = "Paul",
+                LastName = "Lieverest"
+            };
+            userManager.Create(user, password);
+            userManager.SetLockoutEnabled(user.Id, false);
+
+            user = new ApplicationUser
+            {
+                UserName = "i.metin@niposoftware.com",
+                Email = "i.metin@niposoftware.com",
+                FirstName = "Irfan",
+                LastName = "Metin"
+            };
+            userManager.Create(user, password);
+            userManager.SetLockoutEnabled(user.Id, false);
+
+            user = new ApplicationUser
+            {
+                UserName = "m.rijsk@niposoftware.com",
+                Email = "m.rijsk@niposoftware.com",
+                FirstName = "Martin",
+                LastName = "Rijsk"
+            };
+            userManager.Create(user, password);
+            userManager.SetLockoutEnabled(user.Id, false);
+        }
+
+    }
 }

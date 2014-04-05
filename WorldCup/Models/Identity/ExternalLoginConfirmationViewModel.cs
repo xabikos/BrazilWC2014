@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorldCup.Models
+namespace WorldCup.Models.Identity
 {
     public class ExternalLoginConfirmationViewModel
     {

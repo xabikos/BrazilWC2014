@@ -1,5 +1,20 @@
-﻿@{
+﻿@using GridMvc.Html
+@{
     ViewBag.Title = "Users Administration";
 }
 
+@model List<WorldCup.Models.ApplicationUser>
+           
 <h2>Users Administration operations</h2>
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(u => u.Id, true);
+    columns.Add(u => u.UserName).Titled("UserName").SetWidth(25);
+    columns.Add(u => u.FirstName).Titled("Name").RenderValueAs(u => u.FirstName + " " + u.LastName).SetWidth(50);
+    columns.Add(u => u.EmailConfirmed)
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(u => Html.CheckBox("EmailConfirmed", u.EmailConfirmed))
+        .Titled("Confirmed").SetWidth(10);
+}).WithPaging(30).Sortable()

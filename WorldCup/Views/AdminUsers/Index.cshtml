@@ -7,7 +7,7 @@
            
 <h2>Users Administration operations</h2>
 
-@Html.Grid(Model).Columns(columns =>
+@Html.Grid(Model).Named("usersGrid").Columns(columns =>
     {
         columns.Add(u => u.Id, true);
         columns.Add(u => u.UserName).Titled("UserName").SetWidth(25);
@@ -15,6 +15,36 @@
         columns.Add(u => u.EmailConfirmed)
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(u => @<input type="checkbox" checked="@u.EmailConfirmed" name="EmailConfirmed" />)
+            .RenderValueAs(u => @<input type="checkbox" checked="@u.EmailConfirmed" value="@u.Id" name="EmailConfirmed" />)
             .Titled("Confirmed").SetWidth(10);
     }).Sortable()
+
+<script type="text/javascript">
+    $(function () {
+        $('input[type=checkbox]').change(function () {
+
+            var action;
+
+            if (this.checked) {
+                action = "Activate";
+            } else {
+                action = "Deactivate";
+            }
+
+            var json =JSON.stringify({ userId : this.value });
+
+            $.ajax({
+                url: '/AdminUsers/'+ action,
+                type: 'POST',
+                dataType: 'json',
+                data: json,
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) {
+                    // get the result and do some magic with it
+                    var message = data.Message;
+                    $("#resultMessage").html(message);
+                }
+            });
+        });
+    });
+</script>

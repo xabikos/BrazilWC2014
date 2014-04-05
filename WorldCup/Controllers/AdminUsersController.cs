@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
@@ -7,7 +9,7 @@ using WorldCup.Models.Identity;
 namespace WorldCup.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class AdminUsersController : Controller
+    public class AdminUsersController : AsyncController
     {
         private ApplicationUserManager _userManager;
         
@@ -25,10 +27,33 @@ namespace WorldCup.Controllers
         }
 
         [HttpPost]
-        public ActionResult Confirm(string userId)
+        public async Task<ActionResult> Activate(string userId)
         {
-            
-            return Json(new { success = true });
+            try
+            {
+                var user = await UserManager.ChangeUserStatus(userId, true);
+                return Json(string.Format("Successfully activate user {0}", user.FirstName + " " + user.LastName),
+                    JsonRequestBehavior.AllowGet);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return new HttpNotFoundResult(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Deactivate(string userId)
+        {
+            try
+            {
+                var user = await UserManager.ChangeUserStatus(userId, false);
+                return Json(string.Format("Successfully deactivate user {0}", user.FirstName + " " + user.LastName),
+                    JsonRequestBehavior.AllowGet);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return new HttpNotFoundResult(ex.Message);
+            }
         }
 
     }

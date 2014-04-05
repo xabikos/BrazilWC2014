@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -69,10 +70,24 @@ namespace WorldCup.Models.Identity
         {
             get
             {
-                var st = Store as UserStore<ApplicationUser>;
-                return st != null ? st.Users : Enumerable.Empty<ApplicationUser>().AsQueryable();
+                var userStore = Store as UserStore<ApplicationUser>;
+                return userStore != null ? userStore.Users : Enumerable.Empty<ApplicationUser>().AsQueryable();
             }
         }
+
+        public async Task<ApplicationUser> ChangeUserStatus(string userId, bool activateUser)
+        {
+            var user = await FindByIdAsync(userId);
+            if (user != null)
+            {
+                user.EmailConfirmed = activateUser;
+                await Store.UpdateAsync(user);
+                return user;
+            }
+            
+            throw new InvalidOperationException("The requested user was not found");
+        }
+        
     }
 
     // Configure the RoleManager used in the application. RoleManager is defined in the ASP.NET Identity core assembly

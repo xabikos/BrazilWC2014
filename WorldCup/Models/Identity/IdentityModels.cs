@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -8,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-namespace WorldCup.Models
+namespace WorldCup.Models.Identity
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -63,6 +64,15 @@ namespace WorldCup.Models
             }
             return manager;
         }
+
+        public IQueryable<ApplicationUser> AllUsers
+        {
+            get
+            {
+                var st = Store as UserStore<ApplicationUser>;
+                return st != null ? st.Users : Enumerable.Empty<ApplicationUser>().AsQueryable();
+            }
+        }
     }
 
     // Configure the RoleManager used in the application. RoleManager is defined in the ASP.NET Identity core assembly
@@ -81,7 +91,7 @@ namespace WorldCup.Models
             return manager;
         }
     }
-
+    
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

@@ -5,6 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
 using WorldCup.Models;
+using WorldCup.Models.Identity;
 
 namespace WorldCup
 {

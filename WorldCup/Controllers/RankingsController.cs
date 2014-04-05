@@ -2,6 +2,7 @@
 
 namespace WorldCup.Controllers
 {
+    [Authorize]
     public class RankingsController : Controller
     {
         public ActionResult Index()

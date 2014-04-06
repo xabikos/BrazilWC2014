@@ -302,6 +302,10 @@
       <Project>{27A13F05-75A2-4F68-9148-04DBA69BFDD3}</Project>
       <Name>StatisticsUpdater</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WorldCup.Common\WorldCup.Common.csproj">
+      <Project>{fdb4ef49-fb1f-4acd-830d-b5fbeed3adcf}</Project>
+      <Name>WorldCup.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

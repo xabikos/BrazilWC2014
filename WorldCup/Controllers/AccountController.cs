@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WorldCup.Models;
+using WorldCup.Common.Entities;
 using WorldCup.Models.Identity;
 
 namespace WorldCup.Controllers

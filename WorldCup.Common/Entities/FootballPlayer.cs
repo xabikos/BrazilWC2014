@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WorldCup.Common.Entities
 {
     public class FootballPlayer
     {
+        public FootballPlayer()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Old { get; set; }
+        public string TeamId { get; set; }
         public FootballTeam Team { get; set; }
 
     }

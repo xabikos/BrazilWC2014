@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
+using WorldCup.Common.Entities;
 using WorldCup.Models;
 using WorldCup.Models.Identity;
 

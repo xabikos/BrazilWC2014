@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using Newtonsoft.Json;
 
 namespace WorldCup.Common.Entities
@@ -17,8 +15,25 @@ namespace WorldCup.Common.Entities
         [JsonProperty(PropertyName = "title")]
         public string Name { get; set; }
         public string Code { get; set; }
-        public Uri FlagUri { get; set; }
+        private string Flag { get; set; }
 
+        [NotMapped]
+        public Uri FlagUri
+        {
+            get { return new Uri(Flag); }
+            set { Flag = value.AbsoluteUri; }
+        }
+
+        /// <summary>
+        /// Internal class just to map the URI
+        /// </summary>
+        public class FootballTeamConfiguration : EntityTypeConfiguration<FootballTeam>
+        {
+            public FootballTeamConfiguration()
+            {
+                Property(ft => ft.Flag);
+            }
+        }
 
     }
 }

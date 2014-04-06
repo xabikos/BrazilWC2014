@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Users Administration";
+}
+
+@model string
+
+<div>
+    @Model
+</div>
+<br/>
+
+@Html.ActionLink("Initialize teams", "InitializeTeams", null, new {@class = "btn btn-primary"})

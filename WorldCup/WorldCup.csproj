@@ -105,10 +105,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -169,8 +165,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -194,7 +191,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminMatchesController.cs" />
     <Compile Include="Controllers\AdminUsersController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AdminInitializationController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\RankingsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +210,38 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Flags\ALG.png" />
+    <Content Include="Content\Flags\ARG.png" />
+    <Content Include="Content\Flags\AUS.png" />
+    <Content Include="Content\Flags\BEL.png" />
+    <Content Include="Content\Flags\BIH.png" />
+    <Content Include="Content\Flags\BRA.png" />
+    <Content Include="Content\Flags\CHI.png" />
+    <Content Include="Content\Flags\CIV.png" />
+    <Content Include="Content\Flags\cmr.png" />
+    <Content Include="Content\Flags\COL.png" />
+    <Content Include="Content\Flags\CRC.png" />
+    <Content Include="Content\Flags\CRO.png" />
+    <Content Include="Content\Flags\ECU.png" />
+    <Content Include="Content\Flags\ENG.png" />
+    <Content Include="Content\Flags\ESP.png" />
+    <Content Include="Content\Flags\FRA.png" />
+    <Content Include="Content\Flags\GER.png" />
+    <Content Include="Content\Flags\GHA.png" />
+    <Content Include="Content\Flags\GRE.png" />
+    <Content Include="Content\Flags\HON.png" />
+    <Content Include="Content\Flags\IRN.png" />
+    <Content Include="Content\Flags\ITA.png" />
+    <Content Include="Content\Flags\JPN.png" />
+    <Content Include="Content\Flags\KOR.png" />
+    <Content Include="Content\Flags\mex.png" />
+    <Content Include="Content\Flags\NED.png" />
+    <Content Include="Content\Flags\NGA.png" />
+    <Content Include="Content\Flags\POR.png" />
+    <Content Include="Content\Flags\RUS.png" />
+    <Content Include="Content\Flags\SUI.png" />
+    <Content Include="Content\Flags\URU.png" />
+    <Content Include="Content\Flags\USA.png" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -287,6 +318,7 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="webjobs.wpp.targets" />
+    <Content Include="Views\AdminInitialization\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

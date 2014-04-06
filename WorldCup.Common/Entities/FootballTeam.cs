@@ -31,6 +31,9 @@ namespace WorldCup.Common.Entities
         {
             public FootballTeamConfiguration()
             {
+                HasKey(ft => ft.Id);
+                Property(ft => ft.Name).IsRequired().HasMaxLength(100);
+                Property(ft => ft.Code).IsRequired().HasMaxLength(3);
                 Property(ft => ft.Flag);
             }
         }

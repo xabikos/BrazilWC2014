@@ -3,6 +3,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using WorldCup.Common.DataAccess;
 using WorldCup.Common.Entities;
 
 namespace WorldCup.Models.Identity
@@ -26,7 +27,9 @@ namespace WorldCup.Models.Identity
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new FootballTeam.FootballTeamConfiguration());
+            modelBuilder.Configurations.Add(new FootballTeamConfiguration());
+            modelBuilder.Configurations.Add(new FootballMatchConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -34,6 +37,7 @@ namespace WorldCup.Models.Identity
 
         public DbSet<FootballTeam> Teams { get; set; }
         public DbSet<FootballPlayer> Players { get; set; }
+        public DbSet<FootballMatch> Matches { get; set; }
 
         #endregion
     }

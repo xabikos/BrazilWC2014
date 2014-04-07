@@ -6,6 +6,7 @@ namespace WorldCup.Common.Entities
 {
     public class Match
     {
+        public int Id { get; set; }
         public virtual Team HomeTeam { get; set; }
         
         [JsonProperty(PropertyName = "team1_key")]

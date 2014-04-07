@@ -19,3 +19,9 @@ textarea {
 .adminRow {
     color: red;
 }
+
+.flagRow {
+    overflow: hidden;
+    display: block;
+    height: 29px;
+}

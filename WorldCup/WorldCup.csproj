@@ -319,6 +319,7 @@
     <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="webjobs.wpp.targets" />
     <Content Include="Views\AdminInitialization\Index.cshtml" />
+    <Content Include="Views\Shared\_FlaggedTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

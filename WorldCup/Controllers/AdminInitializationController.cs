@@ -21,7 +21,7 @@ namespace WorldCup.Controllers
         public async Task<ActionResult> InitializeTeams()
         {
             if (Context.Teams.Any()) 
-                return View("Index", model: "The Teams have been already initialized");
+                return View("Index", model: "The teams have been already initialized");
             
             var url = new Uri("http://footballdb.herokuapp.com/api/v1/event/world.2014/teams");
 
@@ -35,5 +35,29 @@ namespace WorldCup.Controllers
 
             return View("Index", model:"You successfully initialized all teams");    
         }
+
+        public async Task<ActionResult> InitializeMatches()
+        {
+            if (Context.Matches.Any())
+                return View("Index", model: "The matches have been already initialized");
+
+            if(!Context.Teams.Any())
+                return View("Index", model: "You should first initialize teams and then matches");
+
+            for (int i = 1; i < 16; i++)
+            {
+                var url = new Uri(string.Format("http://footballdb.herokuapp.com/api/v1/event/world.2014/round/{0}", i));
+                var httpClient = new HttpClient();
+                var matchesAsJson = await httpClient.GetStringAsync(url);
+                var matches = JsonConvert.DeserializeAnonymousType(matchesAsJson, new {games = new List<Match>()});
+
+                Context.Matches.AddRange(matches.games);
+            }
+
+            await Context.SaveChangesAsync();
+           
+            return View("Index", model:"You successfully initialized all matches");    
+        } 
+
     }
 }

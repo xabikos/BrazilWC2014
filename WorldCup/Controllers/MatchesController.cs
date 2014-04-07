@@ -1,14 +1,15 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 
 namespace WorldCup.Controllers
 {
     [Authorize]
-    public class MatchesController : Controller
+    public class MatchesController : ControllerBase
     {
 
         public ActionResult Index()
         {
-            return View();
+            return View(Context.Matches.OrderBy(m => m.Date));
         }
     }
 }

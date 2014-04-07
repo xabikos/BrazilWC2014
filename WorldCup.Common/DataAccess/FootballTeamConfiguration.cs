@@ -3,7 +3,7 @@ using WorldCup.Common.Entities;
 
 namespace WorldCup.Common.DataAccess
 {
-    public class FootballTeamConfiguration : EntityTypeConfiguration<FootballTeam>
+    public class FootballTeamConfiguration : EntityTypeConfiguration<Team>
     {
         public FootballTeamConfiguration()
         {

@@ -61,9 +61,9 @@
   <ItemGroup>
     <Compile Include="DataAccess\FootballMatchConfiguration.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
-    <Compile Include="Entities\FootballMatch.cs" />
-    <Compile Include="Entities\FootballPlayer.cs" />
-    <Compile Include="Entities\FootballTeam.cs" />
+    <Compile Include="Entities\Match.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Team.cs" />
     <Compile Include="DataAccess\FootballTeamConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

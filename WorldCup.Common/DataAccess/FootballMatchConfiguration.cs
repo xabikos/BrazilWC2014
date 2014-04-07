@@ -4,7 +4,7 @@ using WorldCup.Common.Entities;
 
 namespace WorldCup.Common.DataAccess
 {
-    public class FootballMatchConfiguration : EntityTypeConfiguration<FootballMatch>
+    public class FootballMatchConfiguration : EntityTypeConfiguration<Match>
     {
         public FootballMatchConfiguration()
         {

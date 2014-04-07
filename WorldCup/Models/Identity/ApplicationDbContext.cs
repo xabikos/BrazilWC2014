@@ -35,9 +35,9 @@ namespace WorldCup.Models.Identity
 
         #region DbSets
 
-        public DbSet<FootballTeam> Teams { get; set; }
-        public DbSet<FootballPlayer> Players { get; set; }
-        public DbSet<FootballMatch> Matches { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Match> Matches { get; set; }
 
         #endregion
     }

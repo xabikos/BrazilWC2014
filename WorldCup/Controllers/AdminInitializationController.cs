@@ -27,7 +27,7 @@ namespace WorldCup.Controllers
 
             var httpClient = new HttpClient();
             var teamsAsJson = await httpClient.GetStringAsync(url);
-            var allTeams = JsonConvert.DeserializeAnonymousType(teamsAsJson, new {teams = new List<FootballTeam>()});
+            var allTeams = JsonConvert.DeserializeAnonymousType(teamsAsJson, new {teams = new List<Team>()});
 
             Context.Teams.AddRange(allTeams.teams);
 

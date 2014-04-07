@@ -2,9 +2,9 @@
 
 namespace WorldCup.Common.Entities
 {
-    public class FootballPlayer
+    public class Player
     {
-        public FootballPlayer()
+        public Player()
         {
             Id = Guid.NewGuid().ToString();
         }
@@ -13,7 +13,7 @@ namespace WorldCup.Common.Entities
         public string LastName { get; set; }
         public int Old { get; set; }
         public string TeamId { get; set; }
-        public FootballTeam Team { get; set; }
+        public Team Team { get; set; }
 
     }
 }

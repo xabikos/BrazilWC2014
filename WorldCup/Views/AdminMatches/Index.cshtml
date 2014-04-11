@@ -1,5 +1,59 @@
-﻿@{
-    ViewBag.Title = "Matches Administration";
+﻿@using GridMvc.Html
+@{
+    ViewBag.Title = "Matches overview";
 }
 
-<h2>All the administration regarding matches</h2>
+@model IQueryable<WorldCup.Common.Entities.Match>
+
+<h2>Upcoming matches</h2>
+
+@Html.Grid(Model).Named("matches").Columns(columns =>
+    {
+        columns.Add(m => m.Id, true);
+        columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            //.RenderValueAs(m => @<button type="button" value="@m.Id" name="editMatch" class="btn btn-primary edit-match" data-backdrop="static" data-toggle="modal" data-target="#editMatch">Edit</button>)
+            .RenderValueAs(m => @Html.ActionLink("Edit", "Edit", new { id = m.Id }, new { @class = "btn btn-primary" }))
+            .SetWidth(10);
+        columns.Add(m => m.Date.Date).Titled("Date").SetWidth(20);
+        columns.Add(m => m.HomeTeam.Name)
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.HomeTeam.Name, u.HomeTeam.Code }))
+            .Titled("Home Team")
+            .SetWidth(35);
+        columns.Add(m => m.AwayTeam.Name)
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.AwayTeam.Name, u.AwayTeam.Code }))
+            .Titled("Away Team")
+            .SetWidth(35);
+    }).Sortable().WithPaging(15).Filterable()
+
+<!-- Modal -->
+<div class="modal fade" id="editMatch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Edit Match details</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //$(function() {
+    //    $('.edit-match').click(function (e) {
+    //        var matchId = e.target.value;
+    //    });
+    //});
+</script>

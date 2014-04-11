@@ -6,9 +6,9 @@ using WorldCup.Common.Entities;
 
 namespace WorldCup.Common.DataAccess
 {
-    public class FootballMatchConfiguration : EntityTypeConfiguration<Match>
+    public class MatchConfiguration : EntityTypeConfiguration<Match>
     {
-        public FootballMatchConfiguration()
+        public MatchConfiguration()
         {
             Property(m => m.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
@@ -26,6 +26,8 @@ namespace WorldCup.Common.DataAccess
             Property(m => m.AwayTeamId)
                 .HasColumnAnnotation("Index",
                     new IndexAnnotation(new IndexAttribute("UN_HOMETEAM_AWAYTEAM", 2) {IsUnique = true}));
+            Ignore(m => m.HalfTimeResult);
+            Ignore(m => m.FullTimeResult);
         }
 
     }

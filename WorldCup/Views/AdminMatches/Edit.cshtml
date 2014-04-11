@@ -1,0 +1,26 @@
+﻿@model WorldCup.Common.Entities.Match
+
+@{
+    ViewBag.Title = "Edit match details";
+}
+
+<h3>Edit match details @Model.HomeTeam.Name vs @Model.AwayTeam.Name</h3>
+
+@using (Html.BeginForm("Edit", "AdminMatches", FormMethod.Post, new { role = "form" }))
+{
+    <div class="row">
+        <div class='col-sm-3'>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Date)
+                @Html.EditorFor(m=>m.Date,"_DateTime")
+            </div>   
+        </div>
+    </div>
+
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>

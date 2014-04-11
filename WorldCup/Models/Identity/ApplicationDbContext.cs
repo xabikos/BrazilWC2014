@@ -28,7 +28,7 @@ namespace WorldCup.Models.Identity
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new FootballTeamConfiguration());
-            modelBuilder.Configurations.Add(new FootballMatchConfiguration());
+            modelBuilder.Configurations.Add(new MatchConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

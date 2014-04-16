@@ -60,8 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\MatchConfiguration.cs" />
+    <Compile Include="DataAccess\MatchPredictionConfiguration.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Match.cs" />
+    <Compile Include="Entities\MatchPrediction.cs" />
     <Compile Include="Entities\MatchResult.cs" />
     <Compile Include="Entities\MatchStage.cs" />
     <Compile Include="Entities\Player.cs" />

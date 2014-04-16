@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -10,6 +11,7 @@ namespace WorldCup.Common.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public virtual ICollection<MatchPrediction> MatchPredictions { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

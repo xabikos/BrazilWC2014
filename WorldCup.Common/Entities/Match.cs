@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
@@ -76,6 +77,8 @@ namespace WorldCup.Common.Entities
         public int? YellowCards { get; set; }
 
         public int? RedCards { get; set; }
+
+        public ICollection<MatchPrediction> MatchPredictions { get; set; }
        
     }
 }

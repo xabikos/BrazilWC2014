@@ -1,0 +1,25 @@
+﻿@using GridMvc.Html
+@model WorldCup.Models.Predictions.PredictionsViewModel
+
+@{
+    ViewBag.Title = "Predictions";
+}
+
+@Html.Grid(Model.Matches).Named("matches").Columns(columns =>
+    {
+        columns.Add(m => m.Id, true);
+        columns.Add(m => m.Date.Date).Titled("Date").SetWidth(30);
+        columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);
+        columns.Add(m => m.HomeTeam.Name)
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(m => Html.Partial("_FlaggedTeam", new[] { m.HomeTeam.Name, m.HomeTeam.Code }))
+            .Titled("Home Team")
+            .SetWidth(30);
+        columns.Add(u => u.AwayTeam.Name)
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(m => Html.Partial("_FlaggedTeam", new[] { m.AwayTeam.Name, m.AwayTeam.Code }))
+            .Titled("Away Team")
+            .SetWidth(30);
+    }).Sortable().WithPaging(10)

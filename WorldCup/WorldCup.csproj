@@ -331,6 +331,7 @@
     <Content Include="Views\AdminMatches\Add.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Match.cshtml" />
     <Content Include="Views\Predictions\Index.cshtml" />
+    <Content Include="Views\Predictions\MatchPrediction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

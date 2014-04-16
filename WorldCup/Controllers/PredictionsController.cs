@@ -1,19 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using WorldCup.Common.Entities;
 using WorldCup.Models.Predictions;
 
 namespace WorldCup.Controllers
 {
+    [Authorize]
     public class PredictionsController : ControllerBase
     {
         // GET: Predictions
         public ActionResult Index()
         {
             return View(new PredictionsViewModel { Matches = Context.Matches.OrderBy(m => m.Date) });
+        }
+
+        public async Task<ViewResult> MatchPrediction(int id)
+        {
+            if(id == default(int))
+            {
+                // TODO redirect to default error page
+                return View(new MatchPrediction());
+            }
+
+            return View(new MatchPrediction {Match = await Context.Matches.SingleAsync(m => m.Id == id)});
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> MatchPrediction(MatchPrediction model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            var applicationUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if(model.Id == default(int))
+            {
+                applicationUser.MatchPredictions.Add(model);
+            }
+
+            await Context.SaveChangesAsync();
+
+            return RedirectToAction("MatchPrediction", new {id = model.Id});
         }
 
     }

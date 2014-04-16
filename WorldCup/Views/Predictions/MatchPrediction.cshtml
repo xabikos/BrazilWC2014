@@ -1,0 +1,9 @@
+﻿@model WorldCup.Common.Entities.MatchPrediction
+
+@{
+    ViewBag.Title = string.Format("{0} vs {1} prediction", Model.Match.HomeTeam.Name, Model.Match.AwayTeam.Name);
+}
+
+<h2>title</h2>
+
+@Html.HiddenFor(m=>m.Id)

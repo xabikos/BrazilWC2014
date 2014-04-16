@@ -1,0 +1,76 @@
+﻿@model WorldCup.Common.Entities.Match
+
+@{
+    object htmlAttributes;
+    if(ViewData["selectTeamsAllowed"] == null || (bool) ViewData["selectTeamsAllowed"])
+    {
+        htmlAttributes = new
+        {
+            @class = "form-control"
+        };
+    }
+    else
+    {
+        htmlAttributes = new
+        {
+            @class = "form-control",
+            disabled = "disabled"
+        };
+    }
+}
+
+
+<div class="row">
+    <div class='col-md-6'>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HomeTeam)
+            @Html.DropDownListFor(m => m.HomeTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), htmlAttributes)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.AwayTeam)
+            @Html.DropDownListFor(m => m.AwayTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), htmlAttributes)
+        </div>
+        <div class='col-md-7'>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Date)
+                @Html.EditorFor(m => m.Date, "_DateTime")
+                <span class="label label-danger">The date and time should be UTC</span>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-3'>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HomeTeamHalfTimeGoals)
+            @Html.EditorFor(m => m.HomeTeamHalfTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.AwayTeamHalfTimeGoals)
+            @Html.EditorFor(m => m.AwayTeamHalfTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.HomeTeamFullTimeGoals)
+            @Html.EditorFor(m => m.HomeTeamFullTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.AwayTeamFullTimeGoals)
+            @Html.EditorFor(m => m.AwayTeamFullTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class='col-md-3'>
+        <div class="form-group">
+            @Html.LabelFor(m => m.YellowCards)
+            @Html.EditorFor(m => m.YellowCards, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.RedCards)
+            @Html.EditorFor(m => m.RedCards, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Result)
+            @Html.EnumDropDownListFor(m => m.Result, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Save</button>

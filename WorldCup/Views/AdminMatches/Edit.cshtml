@@ -8,20 +8,5 @@
 
 @using (Html.BeginForm("Edit", "AdminMatches", FormMethod.Post, new { role = "form" }))
 {
-    <div class="row">
-        <div class='col-sm-3'>
-            <div class="form-group">
-                @Html.LabelFor(m=>m.Date)
-                @Html.EditorFor(m=>m.Date,"_DateTime")
-                <span class="label label-danger">The date and time should be UTC</span>
-            </div>   
-        </div>
-    </div>
-
+    @Html.EditorForModel(new { selectTeamsAllowed = false })
 }
-
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
-</script>

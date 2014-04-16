@@ -38,6 +38,8 @@ namespace WorldCup.Controllers
 
         public async Task<ViewResult> Edit(int id)
         {
+            ViewBag.Teams = Context.Teams.ToList();
+
             if (id == default (int))
                 return View(new Match());
 

@@ -7,16 +7,21 @@ namespace WorldCup.Common.Entities
     public class Match
     {
         public int Id { get; set; }
+
+        public MatchStage Stage { get; set; }
+
         public virtual Team HomeTeam { get; set; }
         
         [JsonProperty(PropertyName = "team1_key")]
         [Required]
+        [Display(Name = "Home Team")]
         public string HomeTeamId { get; set; }
         
         public virtual Team AwayTeam { get; set; }
         
         [JsonProperty(PropertyName = "team2_key")]
         [Required]
+        [Display(Name = "Away Team")]
         public string AwayTeamId { get; set; }
 
         [JsonProperty(PropertyName = "play_at")]
@@ -57,6 +62,7 @@ namespace WorldCup.Common.Entities
         /// The final result of the match. CAn be different from full time result in case there is 
         /// extra time or penalties
         /// </summary>
+        [Display(Name = "Final Result")]
         public MatchResult Result { get; set; }
 
         public int? HomeTeamHalfTimeGoals { get; set; }

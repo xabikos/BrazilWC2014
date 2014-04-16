@@ -63,6 +63,7 @@
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Match.cs" />
     <Compile Include="Entities\MatchResult.cs" />
+    <Compile Include="Entities\MatchStage.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="DataAccess\FootballTeamConfiguration.cs" />

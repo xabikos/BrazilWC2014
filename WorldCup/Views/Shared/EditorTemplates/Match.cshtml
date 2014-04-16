@@ -2,7 +2,7 @@
 
 @{
     object htmlAttributes;
-    if(ViewData["selectTeamsAllowed"] == null || (bool) ViewData["selectTeamsAllowed"])
+    if (ViewData["selectTeamsAllowed"] == null || (bool)ViewData["selectTeamsAllowed"])
     {
         htmlAttributes = new
         {
@@ -23,11 +23,15 @@
 <div class="row">
     <div class='col-md-6'>
         <div class="form-group">
-            @Html.LabelFor(m => m.HomeTeam)
+            @Html.LabelFor(m => m.Stage)
+            @Html.EnumDropDownListFor(m => m.Stage, htmlAttributes)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HomeTeamId)
             @Html.DropDownListFor(m => m.HomeTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), htmlAttributes)
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.AwayTeam)
+            @Html.LabelFor(m => m.AwayTeamId)
             @Html.DropDownListFor(m => m.AwayTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), htmlAttributes)
         </div>
         <div class='col-md-7'>
@@ -40,35 +44,36 @@
     </div>
     <div class='col-md-3'>
         <div class="form-group">
-            @Html.LabelFor(m => m.HomeTeamHalfTimeGoals)
+            @Html.LabelFor(m => m.HomeTeamHalfTimeGoals, string.Format("{0} half time goals", Model.HomeTeam != null ? Model.HomeTeam.Name : ""))
             @Html.EditorFor(m => m.HomeTeamHalfTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.AwayTeamHalfTimeGoals)
+            @Html.LabelFor(m => m.AwayTeamHalfTimeGoals, string.Format("{0} half time goals", Model.AwayTeam != null ? Model.AwayTeam.Name : ""))
             @Html.EditorFor(m => m.AwayTeamHalfTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.HomeTeamFullTimeGoals)
+            @Html.LabelFor(m => m.HomeTeamFullTimeGoals, string.Format("{0} full time goals", Model.HomeTeam != null ? Model.HomeTeam.Name : ""))
             @Html.EditorFor(m => m.HomeTeamFullTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.AwayTeamFullTimeGoals)
+            @Html.LabelFor(m => m.AwayTeamFullTimeGoals, string.Format("{0} full time goals", Model.AwayTeam != null ? Model.AwayTeam.Name : ""))
             @Html.EditorFor(m => m.AwayTeamFullTimeGoals, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
     <div class='col-md-3'>
         <div class="form-group">
-            @Html.LabelFor(m => m.YellowCards)
+            @Html.LabelFor(m => m.YellowCards, "Yellow cards*")
             @Html.EditorFor(m => m.YellowCards, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.RedCards)
+            @Html.LabelFor(m => m.RedCards, "Red cards*")
             @Html.EditorFor(m => m.RedCards, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.Result)
+            @Html.LabelFor(m => m.Result, "Final result*")
             @Html.EnumDropDownListFor(m => m.Result, new { @class = "form-control" })
+            <span class="help-block">* = after extra time or penalties</span>
         </div>
     </div>
 </div>

@@ -196,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationDbContext.cs" />
     <Compile Include="Models\Identity\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />

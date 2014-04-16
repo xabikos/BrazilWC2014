@@ -15,7 +15,6 @@
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            //.RenderValueAs(m => @<button type="button" value="@m.Id" name="editMatch" class="btn btn-primary edit-match" data-backdrop="static" data-toggle="modal" data-target="#editMatch">Edit</button>)
             .RenderValueAs(m => @Html.ActionLink("Edit", "Edit", new { id = m.Id }, new { @class = "btn btn-primary" }))
             .SetWidth(10);
         columns.Add(m => m.Date.Date).Titled("Date").SetWidth(20);

@@ -1,16 +1,16 @@
 ﻿@model DateTime
            
+@{ var modelvalue = Model != default(DateTime) ? Model : DateTime.Now;}
 <div id="datetimepicker" class="input-group date" data-date-format="DD/MM/YYYY HH:MM">
     <input type='text' class="form-control" name="@Html.NameForModel()" />
     <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
     </span>
 </div>
-@Model.Date.ToUniversalTime()
 
 <script>
     $(function () {
         $("#datetimepicker").datetimepicker();
-        $("#datetimepicker").data("DateTimePicker").setDate('@Model.Date.ToUniversalTime()');
+        $("#datetimepicker").data("DateTimePicker").setDate('@modelvalue');
     });
 </script>

@@ -10,11 +10,13 @@ namespace WorldCup.Common.Entities
         public virtual Team HomeTeam { get; set; }
         
         [JsonProperty(PropertyName = "team1_key")]
+        [Required]
         public string HomeTeamId { get; set; }
         
         public virtual Team AwayTeam { get; set; }
         
         [JsonProperty(PropertyName = "team2_key")]
+        [Required]
         public string AwayTeamId { get; set; }
 
         [JsonProperty(PropertyName = "play_at")]
@@ -57,17 +59,17 @@ namespace WorldCup.Common.Entities
         /// </summary>
         public MatchResult Result { get; set; }
 
-        public int HomeTeamHalfTimeGoals { get; set; }
+        public int? HomeTeamHalfTimeGoals { get; set; }
 
-        public int AwayTeamHalfTimeGoals { get; set; }
+        public int? AwayTeamHalfTimeGoals { get; set; }
 
-        public int HomeTeamFullTimeGoals { get; set; }
+        public int? HomeTeamFullTimeGoals { get; set; }
 
-        public int AwayTeamFullTimeGoals { get; set; }
+        public int? AwayTeamFullTimeGoals { get; set; }
 
-        public int YellowCards { get; set; }
+        public int? YellowCards { get; set; }
 
-        public int RedCards { get; set; }
+        public int? RedCards { get; set; }
        
     }
 }

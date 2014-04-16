@@ -7,6 +7,8 @@
 
 <h2>Upcoming matches</h2>
 
+@Html.ActionLink("Add new match", "Add", null, new {@class = "btn btn-primary"})
+
 @Html.Grid(Model).Named("matches").Columns(columns =>
     {
         columns.Add(m => m.Id, true);

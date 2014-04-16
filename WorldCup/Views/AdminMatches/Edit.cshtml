@@ -13,6 +13,7 @@
             <div class="form-group">
                 @Html.LabelFor(m=>m.Date)
                 @Html.EditorFor(m=>m.Date,"_DateTime")
+                <span class="label label-danger">The date and time should be UTC</span>
             </div>   
         </div>
     </div>

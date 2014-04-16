@@ -327,6 +327,7 @@
     <Content Include="Views\Shared\_FlaggedTeam.cshtml" />
     <Content Include="Views\AdminMatches\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_DateTime.cshtml" />
+    <Content Include="Views\AdminMatches\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

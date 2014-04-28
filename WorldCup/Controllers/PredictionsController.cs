@@ -20,12 +20,6 @@ namespace WorldCup.Controllers
 
         public async Task<ViewResult> MatchPrediction(int id)
         {
-            if(id == default(int))
-            {
-                // TODO redirect to default error page
-                return View(new MatchPrediction());
-            }
-
             return View(new MatchPrediction {Match = await Context.Matches.SingleAsync(m => m.Id == id)});
         }
 

@@ -11,7 +11,7 @@ namespace WorldCup.Common.DataAccess
 
         public MatchPredictionConfiguration()
         {
-            Property(mp => mp.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(mp => mp.MatchPredictionId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             HasRequired(mp => mp.User)
                 .WithMany(u => u.MatchPredictions)

@@ -1,9 +1,64 @@
-﻿@model WorldCup.Common.Entities.MatchPrediction
+﻿@using WorldCup.Extensions
+@model WorldCup.Common.Entities.MatchPrediction
 
 @{
     ViewBag.Title = string.Format("{0} vs {1} predictions", Model.Match.HomeTeam.Name, Model.Match.AwayTeam.Name);
 }
 
-<h2>title</h2>
+ 
+<div class="row">
 
-@Html.HiddenFor(m=>m.Id)
+    @Html.LabelFor(m => m.Match.Stage)@Model.Match.Stage @Model.Match.Date
+    @Html.Partial("_FlaggedTeam", new[] { Model.Match.HomeTeam.Name, Model.Match.HomeTeam.Code })
+    @Html.Partial("_FlaggedTeam", new[] { Model.Match.AwayTeam.Name, Model.Match.AwayTeam.Code })
+</div>
+@using (Html.BeginForm("MatchPrediction", "Predictions", FormMethod.Post, new { role = "form" }))
+{
+    @Html.HiddenFor(m => m.MatchPredictionId)
+    @Html.HiddenFor(m => m.MatchId)
+    <div class="row">
+    
+        <div class='col-md-6'>
+            <div class="form-group">
+                @Html.LabelFor(m => m.HomeTeamHalfTimeGoals, string.Format("{0} half time goals", Model.Match.HomeTeam != null ? Model.Match.HomeTeam.Name : ""))
+                @Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)
+                @Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AwayTeamHalfTimeGoals, string.Format("{0} half time goals", Model.Match.AwayTeam != null ? Model.Match.AwayTeam.Name : ""))
+                @Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals)
+                @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.HomeTeamFullTimeGoals, string.Format("{0} full time goals", Model.Match.HomeTeam != null ? Model.Match.HomeTeam.Name : ""))
+                @Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals)
+                @Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AwayTeamFullTimeGoals, string.Format("{0} full time goals", Model.Match.AwayTeam != null ? Model.Match.AwayTeam.Name : ""))
+                @Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)
+                @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)
+            </div>
+        </div>
+        <div class='col-md-6'>
+            <div class="form-group">
+                @Html.LabelFor(m => m.YellowCards, "Yellow cards*")
+                @Html.BootstrapEditorFor(m => m.YellowCards)
+                @Html.ValidationMessageFor(m => m.YellowCards)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.RedCards, "Red cards*")
+                @Html.BootstrapEditorFor(m => m.RedCards)
+                @Html.ValidationMessageFor(m => m.RedCards)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Result, "Final result*")
+                @Html.EnumDropDownListFor(m => m.Result, new {@class = "form-control"})
+                <span class="help-block">* = after extra time or penalties</span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

@@ -9,29 +9,29 @@
     <div class='col-md-6'>
         <div class="form-group">
             @Html.LabelFor(m => m.SecondStageTeamsIds)
-            @Html.ListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), new { @class = "form-control chosen-select" })
+            @Html.ListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select sixteen teams" })
             @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.QuarterFinalTeamsIds)
-            @Html.ListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), new { @class = "form-control chosen-select" })
+            @Html.ListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select eight teams" })
             @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
         </div>
     </div>
     <div class='col-md-6'>
         <div class="form-group">
             @Html.LabelFor(m => m.SemiFinalTeamsIds)
-            @Html.ListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), new { @class = "form-control chosen-select" })
+            @Html.ListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select four teams" })
             @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.SmallFinalTeamsIds)
-            @Html.ListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), new { @class = "form-control chosen-select" })
+            @Html.ListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select two teams" })
             @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.FinalTeamsIds)
-            @Html.ListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), new { @class = "form-control chosen-select" })
+            @Html.ListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select two teams" })
             @Html.ValidationMessageFor(m => m.FinalTeamsIds)
         </div>
         <div class="form-group">

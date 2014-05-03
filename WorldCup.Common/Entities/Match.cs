@@ -78,7 +78,7 @@ namespace WorldCup.Common.Entities
 
         public int? RedCards { get; set; }
 
-        public ICollection<MatchPrediction> MatchPredictions { get; set; }
+        public virtual ICollection<MatchPrediction> MatchPredictions { get; set; }
        
     }
 }

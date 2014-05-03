@@ -11,6 +11,7 @@ namespace WorldCup.Common.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public virtual LongRunningPrediction LongRunningPrediction { get; set; }
         public virtual ICollection<MatchPrediction> MatchPredictions { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

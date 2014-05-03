@@ -112,7 +112,7 @@ namespace WorldCup.Common.Entities
         /// <summary>
         /// The id of the team that will win the competition
         /// </summary>
-        [Display(Name = "Select the teams that will win the competition")]
+        [Display(Name = "Select the team that will win the competition")]
         public string WinnerTeamId { get; set; }
         
         /// <summary>

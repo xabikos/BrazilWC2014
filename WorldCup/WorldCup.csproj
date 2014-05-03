@@ -209,10 +209,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-chosen.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
     <Content Include="Content\Flags\ALG.png" />
     <Content Include="Content\Flags\ARG.png" />
     <Content Include="Content\Flags\AUS.png" />
@@ -264,9 +267,13 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Properties\ligershark.webjobs.targets" />
     <Content Include="Properties\ligershark.webjobs.ext.targets" />
+    <Content Include="Content\bootstrap-chosen.scss" />
+    <Content Include="Content\bootstrap-chosen.less" />
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />

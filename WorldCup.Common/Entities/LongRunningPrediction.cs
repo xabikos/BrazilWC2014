@@ -1,11 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WorldCup.Common.Entities
 {
     public class LongRunningPrediction
     {
+        public LongRunningPrediction()
+        {
+            SecondStageTeamsIds = new string[16];
+            QuarterFinalTeamsIds = new string[8];
+            SemiFinalTeamsIds = new string[4];
+            SmallFinalTeamsIds = new string[2];
+            FinalTeamsIds = new string[2];
+        }
+
         /// <summary>
         /// The id of the user the prediction belongs to
         /// </summary>
@@ -23,13 +31,15 @@ namespace WorldCup.Common.Entities
         public string SecondStageTeams
         {
             get { return string.Join(",", SecondStageTeamsIds); }
-            set { SecondStageTeamsIds = new Collection<string>(value.Split(',')); }
+            set { value.Split(',').CopyTo(SecondStageTeamsIds, 0); }
         }
 
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the round of 16
         /// </summary>
-        public ICollection<string> SecondStageTeamsIds { get; set; }
+        [Display(Name = "Select the teams that will advanced to the round of 16")]
+        [MaxLength(16, ErrorMessage = "You are allowed to select at most 16 teams")]
+        public string[] SecondStageTeamsIds { get; set; }
 
         /// <summary>
         /// Contains teams Ids as comma separated values for user's prediction 
@@ -38,13 +48,15 @@ namespace WorldCup.Common.Entities
         public string QuarterFinalTeams
         {
             get { return string.Join(",", QuarterFinalTeamsIds); }
-            set { QuarterFinalTeamsIds = new Collection<string>(value.Split(',')); }
+            set { value.Split(',').CopyTo(QuarterFinalTeamsIds,0); }
         }
 
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the quarter final
         /// </summary>
-        public ICollection<string> QuarterFinalTeamsIds { get; set; }
+        [Display(Name = "Select the teams that will advanced to the Quarter finals")]
+        [MaxLength(8, ErrorMessage = "You are allowed to select at most 8 teams")]
+        public string[] QuarterFinalTeamsIds { get; set; }
 
         /// <summary>
         /// Contains teams Ids as comma separated values for user's prediction 
@@ -53,13 +65,15 @@ namespace WorldCup.Common.Entities
         public string SemiFinalTeams
         {
             get { return string.Join(",", SemiFinalTeamsIds); }
-            set { SecondStageTeamsIds = new Collection<string>(value.Split(',')); }
+            set { value.Split(',').CopyTo(SemiFinalTeamsIds, 0); }
         }
 
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the semi final
         /// </summary>
-        public ICollection<string> SemiFinalTeamsIds { get; set; }
+        [Display(Name = "Select the teams that will advanced to the Semi finals")]
+        [MaxLength(4, ErrorMessage = "You are allowed to select at most 4 teams")]
+        public string[] SemiFinalTeamsIds { get; set; }
 
         /// <summary>
         /// Contains teams Ids as comma separated values for user's prediction 
@@ -68,13 +82,15 @@ namespace WorldCup.Common.Entities
         public string SmallFinalTeams
         {
             get { return string.Join(",", SmallFinalTeamsIds); }
-            set { SmallFinalTeamsIds = new Collection<string>(value.Split(',')); }
+            set { value.Split(',').CopyTo(SmallFinalTeamsIds, 0); }
         }
 
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the small final (3rd place match)
         /// </summary>
-        public ICollection<string> SmallFinalTeamsIds { get; set; }
+        [Display(Name = "Select the teams that will advanced to the match for the third place")]
+        [MaxLength(2, ErrorMessage = "You are allowed to select at most 2 teams")]
+        public string[] SmallFinalTeamsIds { get; set; }
 
         /// <summary>
         /// Contains teams Ids as comma separated values for user's prediction 
@@ -83,17 +99,20 @@ namespace WorldCup.Common.Entities
         public string FinalTeams
         {
             get { return string.Join(",", FinalTeamsIds); }
-            set { FinalTeamsIds = new Collection<string>(value.Split(',')); }
+            set { value.Split(',').CopyTo(FinalTeamsIds, 0); }
         }
 
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the final
         /// </summary>
-        public ICollection<string> FinalTeamsIds { get; set; }
+        [Display(Name = "Select the teams that will advanced to the Final")]
+        [MaxLength(2, ErrorMessage = "You are allowed to select at most 2 teams")]
+        public string[] FinalTeamsIds { get; set; }
 
         /// <summary>
         /// The id of the team that will win the competition
         /// </summary>
+        [Display(Name = "Select the teams that will win the competition")]
         public string WinnerTeamId { get; set; }
         
         /// <summary>

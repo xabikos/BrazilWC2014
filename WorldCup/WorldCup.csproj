@@ -334,6 +334,7 @@
     <Content Include="Views\Shared\EditorTemplates\Match.cshtml" />
     <Content Include="Views\Predictions\Index.cshtml" />
     <Content Include="Views\Predictions\MatchPrediction.cshtml" />
+    <Content Include="Views\Predictions\LongRunningPredictions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -63,5 +63,43 @@ namespace WorldCup.Controllers
             return RedirectToAction("MatchPrediction", new {id = model.MatchId});
         }
 
+        public async Task<ActionResult> LongRunningPredictions()
+        {
+            ViewBag.Teams = Context.Teams.OrderBy(t=>t.Name);
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            return View(user.LongRunningPrediction ?? new LongRunningPrediction());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> LongRunningPredictions(LongRunningPrediction model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
+                return View(model);
+            }
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            // first time a long running prediction is done
+            if (user.LongRunningPrediction == null)
+            {
+                user.LongRunningPrediction = model;
+            }
+            // user updates the long running prediction
+            else
+            {
+                user.LongRunningPrediction.SecondStageTeamsIds = model.SecondStageTeamsIds;
+                user.LongRunningPrediction.QuarterFinalTeamsIds = model.QuarterFinalTeamsIds;
+                user.LongRunningPrediction.SemiFinalTeamsIds = model.SemiFinalTeamsIds;
+                user.LongRunningPrediction.SmallFinalTeamsIds = model.SmallFinalTeamsIds;
+                user.LongRunningPrediction.FinalTeamsIds = model.FinalTeamsIds;
+                user.LongRunningPrediction.WinnerTeamId = model.WinnerTeamId;
+            }
+
+            await Context.SaveChangesAsync();
+
+            return RedirectToAction("LongRunningPredictions");
+        }
+
     }
 }

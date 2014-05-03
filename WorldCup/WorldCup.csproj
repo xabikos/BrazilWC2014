@@ -266,6 +266,7 @@
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\default.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />

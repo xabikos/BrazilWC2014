@@ -6,21 +6,48 @@
 }
 
 <div class="jumbotron">
-    <p class="lead">This is a small web application for predictions regarding World Cup 2014</p>
+    <p class="lead">World Cup 2014</p>
+    <p>Predictions</p>
 </div>
 
 <div class="row">
     <div class="col-md-6">
-        <h2>Users rating</h2>
-        <p>
-            Maybe a list with the top users according to current results
-        </p>
-    </div>
+        <h2>Introduction</h2>
+        <p>Welcome to the NIPO UNICEF World Cup Prediction website.</p>
+        <h2>Users ranking / Registered</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="full-width">Name</th>
+                    <th class="table-points">Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td class="full-width">Babis</td>
+                    <td class="table-points">90</td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td class="full-width">Hakan</td>
+                    <td class="table-points">85</td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td class="full-width">Jeroen</td>
+                    <td class="table-points">82</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
     <div class="col-md-6">
         <h2>Upcoming matches</h2>
         @Html.Grid(Model.UpcomingMatches).Named("matches").Columns(columns =>
         {
             columns.Add(u => u.Id, true);
+            // columns.Add().RenderValueAs(u => "<button type='button' class='btn btn-primary' value='" + u.Id + "'>Predict</button>");
             columns.Add(u => u.Date.Date).Titled("Date").SetWidth(30);
             columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);
             columns.Add(u => u.HomeTeam.Name)

@@ -25,3 +25,13 @@ textarea {
     display: block;
     height: 29px;
 }
+
+/* Table formatting */
+.full-width {
+    width: 100%;
+}
+
+.table-points {
+    text-align: right;
+    font-weight: 700;
+}

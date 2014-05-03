@@ -193,6 +193,7 @@
     <Compile Include="Controllers\AdminInitializationController.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\RankingsController.cs" />
+    <Compile Include="Extensions\MatchResultExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

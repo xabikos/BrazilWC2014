@@ -14,6 +14,7 @@ namespace WorldCup.Common.Entities
         public int MatchId { get; set; }
 
         [Display(Name = "Final Result")]
+        [Required]
         public MatchResult Result { get; set; }
 
         [Range(0,15, ErrorMessage = "The value should be between 0 and 15")]

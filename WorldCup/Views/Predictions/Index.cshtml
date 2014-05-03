@@ -1,17 +1,21 @@
 ﻿@using GridMvc.Html
-@model WorldCup.Models.Predictions.PredictionsViewModel
+
+@model IQueryable<WorldCup.Common.Entities.Match>
 
 @{
     ViewBag.Title = "Predictions";
 }
-
-@Html.Grid(Model.Matches).Named("matches").Columns(columns =>
+@{
+    var matchesUserHasDonePredictions = (List<int>)ViewBag.UserPredictions;
+}
+@Html.Grid(Model).Named("matches").Columns(columns =>
     {
         columns.Add(m => m.Id, true);
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => @Html.ActionLink("Predict", "MatchPrediction", new { id = m.Id }, new {@class = "btn btn-primary"}))
+            .RenderValueAs(m => @Html.ActionLink("Predict", "MatchPrediction", new {id = m.Id}, 
+                new {@class = matchesUserHasDonePredictions.Contains(m.Id) ? "btn btn-success" : "btn btn-primary"}))
             .SetWidth(10);
         columns.Add(m => m.Date.Date).Titled("Date").SetWidth(25);
         columns.Add(m => m.Stage).Titled("Stage").SetWidth(5);

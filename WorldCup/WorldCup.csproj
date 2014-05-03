@@ -204,7 +204,6 @@
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\Identity\RegisterViewModel.cs" />
-    <Compile Include="Models\Predictions\PredictionsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -346,6 +345,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Admin\" />
+    <Folder Include="Models\Predictions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

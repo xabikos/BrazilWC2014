@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WorldCup.Common.Entities;
-using WorldCup.Models.Predictions;
 
 namespace WorldCup.Controllers
 {
@@ -13,9 +12,12 @@ namespace WorldCup.Controllers
     public class PredictionsController : ControllerBase
     {
         // GET: Predictions
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(new PredictionsViewModel { Matches = Context.Matches.OrderBy(m => m.Date) });
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            ViewBag.UserPredictions = user.MatchPredictions.Select(mp => mp.MatchId).ToList();
+
+            return View(Context.Matches.OrderBy(m => m.Date));
         }
 
         public async Task<ViewResult> MatchPrediction(int id)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using WorldCup.Attributes;
 using WorldCup.Common.Entities;
 
 namespace WorldCup.Controllers
@@ -32,6 +33,7 @@ namespace WorldCup.Controllers
         }
 
         [HttpPost]
+        [UserConfirmedFilter]
         public async Task<ActionResult> MatchPrediction(MatchPrediction model)
         {
             if(!ModelState.IsValid)
@@ -74,6 +76,7 @@ namespace WorldCup.Controllers
         }
 
         [HttpPost]
+        [UserConfirmedFilter]
         public async Task<ActionResult> LongRunningPredictions(LongRunningPrediction model)
         {
             if (!ModelState.IsValid)

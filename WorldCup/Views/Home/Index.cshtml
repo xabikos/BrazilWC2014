@@ -7,43 +7,98 @@
 
 <div class="jumbotron">
     <p class="lead">World Cup 2014</p>
-    <p>Predictions</p>
+    <p>Pool</p>
 </div>
 
 <div class="row">
     <div class="col-md-6">
-        <h2>Introduction</h2>
-        <p>Welcome to the NIPO UNICEF World Cup Prediction website.</p>
-        <h2>Users ranking / Registered</h2>
+        <h1>Introduction</h1>
+        <p>Welcome to the NIPO UNICEF World Cup Pool. The minimum amount to take part in this pool is €10,-. Please note that all the proceeds will go to UNICEF. But what is there to win then, apart from ever lasting glory? Well, it's actually a really nice dinner on the roof of an Amsterdam building, with a very special - foreign - cook. How to win? Check the <a href="/Home/Rules">rules</a>.</p>
+        <h1>Current ranking</h1>
+        <p>After every match the scores will be updated as soon as possible. </p>
+        <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
+        Check the <a href="/Rankings">rankings</a> for a complete overview.
+        <h1>Your latest results</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th class="full-width">Name</th>
+                    <th>Date</th>
+                    <th class="full-width">Match</th>
                     <th class="table-points">Points</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1.</td>
-                    <td class="full-width">Babis</td>
-                    <td class="table-points">90</td>
+                    <td>14 June</td>
+                    <td class="full-width">Côte d'Ivoire vs Japan</td>
+                    <td class="table-points">1</td>
                 </tr>
                 <tr>
-                    <td>2.</td>
-                    <td class="full-width">Hakan</td>
-                    <td class="table-points">85</td>
+                    <td>13 June</td>
+                    <td class="full-width">Mexico vs Cameroon</td>
+                    <td class="table-points">2</td>
                 </tr>
                 <tr>
-                    <td>3.</td>
-                    <td class="full-width">Jeroen</td>
-                    <td class="table-points">82</td>
+                    <td>13 June</td>
+                    <td class="full-width">Spain vs Netherlands</td>
+                    <td class="table-points">1</td>
+                </tr>
+                <tr class="info">
+                    <td>12 June</td>
+                    <td class="full-width">Chile vs Australia</td>
+                    <td class="table-points">10</td>
+                </tr>
+                <tr>
+                    <td>12 June</td>
+                    <td class="full-width">Brazil vs Croatia</td>
+                    <td class="table-points">3</td>
                 </tr>
             </tbody>
         </table>
-</div>
+        Check your <a href="/Results">personal page</a> for a more detailed view.
+    </div>
     <div class="col-md-6">
-        <h2>Upcoming matches</h2>
+        <h1>Your predictions</h1>
+        <p>24 hours before a match is played, all preditions for that match will freeze. You will see your predictions of the coming match below.</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="grid-header" style="display:none;"></th>
+                    <th class="grid-header" style="width:30px;"><div class="grid-header-title"><span>Date</span></div></th>
+                    <th class="grid-header" style="width:30px;"><div class="grid-header-title"><span>Home Team</span></div></th>
+                    <th class="grid-header" style="width:10px;"><div class="grid-header-title"><span>Score</span></div></th>
+                    <th class="grid-header" style="width:30px;"><div class="grid-header-title"><span>Away Team</span></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="grid-row ">
+                    <td class="grid-cell" data-name="Id" style="display:none;">4</td>
+                    <td class="grid-cell" data-name="Date.Date">10-6-2014 18:00:00</td>
+                    <td class="grid-cell" data-name="HomeTeam.Name">
+                        <span class="flagRow"><img height="50" width="57" alt="Chile" src="/Content/Flags/CHI.png">Chile</span>
+                    </td>
+                    <td class="grid-cell" data-name="Score">1 - 1
+
+                    </td>
+                    <td class="grid-cell" data-name="AwayTeam.Name">
+                        <span class="flagRow"><img height="50" width="57" alt="Australia" src="/Content/Flags/NED.png">Netherlands</span>
+                    </td>
+                </tr>
+                <tr class="grid-row ">
+                    <td class="grid-cell" data-name="Id" style="display:none;">4</td>
+                    <td class="grid-cell" data-name="Date.Date">10-6-2014 21:00:00</td>
+                    <td class="grid-cell" data-name="HomeTeam.Name">
+                        <span class="flagRow"><img height="50" width="57" alt="Chile" src="/Content/Flags/AUS.png">Austria</span>
+                    </td>
+                    <td class="grid-cell" data-name="Score">0 - 2</td>
+                    <td class="grid-cell" data-name="AwayTeam.Name">
+                        <span class="flagRow"><img height="50" width="57" alt="Australia" src="/Content/Flags/ESP.png">Spain</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Check the <a href="/Predictions/1/2">predictions</a> of others for these matches.</p>
+        <h1>Upcoming matches</h1>
         @Html.Grid(Model.UpcomingMatches).Named("matches").Columns(columns =>
         {
             columns.Add(u => u.Id, true);
@@ -63,5 +118,116 @@
                 .Titled("Away Team")
                 .SetWidth(30);
         })
+        <p>See the whole <a href="/Predictions">match schedule</a> and start predicting.</p>
+        
+        <h2>Money raised</h2>
+        <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
+        See how you can make a <a href="/Contributions">contribution</a> to UNICEF and see <a href="http://www.unicef.com">where your money goes to</a>.
     </div>
-</div>
+</div> 
+
+<script type="text/javascript">
+
+    var currentRankingSource = [
+    {
+        date: "2 June",
+        player_0: 10, player_1: 8, player_2: 11, player_3: 12, player_4: 6
+    },
+    {
+        date: "3 June",
+        player_0: 15, player_1: 8, player_2: 15, player_3: 16, player_4: 9
+    },
+    {
+        date: "4 June",
+        player_0: 18, player_1: 20, player_2: 21, player_3: 18, player_4: 14
+    },
+    {
+        date: "5 June",
+        player_0: 25, player_1: 21, player_2: 21, player_3: 20, player_4: 21
+    },
+    {
+        date: "6 June",
+        player_0: 26, player_1: 24, player_2: 29, player_3: 25, player_4: 24
+    }
+    ];
+
+    var currentRaisedMoneySource = [
+    {
+        date: "2 June",
+        amount: 20
+    },
+    {
+        date: "3 June",
+        amount: 60
+    },
+    {
+        date: "4 June",
+        amount: 70
+    },
+    {
+        date: "5 June",
+        amount: 90
+    },
+    {
+        date: "6 June",
+        amount: 120
+    }
+    ];
+
+    $("#rankingChart").dxChart({
+        title: {
+            text: 'Current top 5 (last update: 6 June)'
+        },
+        legend: {
+            horizontalAlignment: 'center',
+            verticalAlignment: 'bottom'
+        },
+        tooltip: {
+            enabled: true
+        },
+        dataSource: currentRankingSource,
+
+        commonSeriesSettings: {
+            argumentField: 'date'
+        },
+        series: [{
+            name: 'Frank Scholten',
+            valueField: 'player_0',
+            color: '#158cba'
+        }, {
+            name: 'Neil Boyd',
+            valueField: 'player_1',
+            color: '#28b62c'
+        }, {
+            name: 'Babis Karypidis',
+            valueField: 'player_2',
+            color: '#75caeb'
+        }, {
+            name: 'Hakan Tuncer',
+            valueField: 'player_3',
+            color: '#ff851b'
+        }, {
+            name: 'Ard Bisschop',
+            valueField: 'player_4',
+            color: '#ff4136'
+        }]
+    });
+
+    $("#unicefChart").dxChart({
+        tooltip: {
+            enabled: true
+        },
+        dataSource: currentRaisedMoneySource,
+        legend: {
+            horizontalAlignment: 'center',
+            verticalAlignment: 'bottom'
+        },
+        series: {
+            argumentField: "date",
+            valueField: "amount",
+            name: "Money raised (in euro)",
+            type: "bar",
+            color: '#28b62c'
+        }
+    });
+</script>

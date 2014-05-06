@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using WorldCup.Attributes;
 using WorldCup.Common.Entities;
-using WorldCup.Models.Predictions;
 
 namespace WorldCup.Controllers
 {
@@ -13,9 +13,12 @@ namespace WorldCup.Controllers
     public class PredictionsController : ControllerBase
     {
         // GET: Predictions
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(new PredictionsViewModel { Matches = Context.Matches.OrderBy(m => m.Date) });
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            ViewBag.UserPredictions = user.MatchPredictions.Select(mp => mp.MatchId).ToList();
+
+            return View(Context.Matches.OrderBy(m => m.Date));
         }
 
         public async Task<ViewResult> MatchPrediction(int id)
@@ -30,6 +33,7 @@ namespace WorldCup.Controllers
         }
 
         [HttpPost]
+        [UserConfirmedFilter]
         public async Task<ActionResult> MatchPrediction(MatchPrediction model)
         {
             if(!ModelState.IsValid)
@@ -61,6 +65,45 @@ namespace WorldCup.Controllers
             await Context.SaveChangesAsync();
 
             return RedirectToAction("MatchPrediction", new {id = model.MatchId});
+        }
+
+        public async Task<ActionResult> LongRunningPredictions()
+        {
+            ViewBag.Teams = Context.Teams.OrderBy(t=>t.Name);
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            return View(user.LongRunningPrediction ?? new LongRunningPrediction());
+        }
+
+        [HttpPost]
+        [UserConfirmedFilter]
+        public async Task<ActionResult> LongRunningPredictions(LongRunningPrediction model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
+                return View(model);
+            }
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            // first time a long running prediction is done
+            if (user.LongRunningPrediction == null)
+            {
+                user.LongRunningPrediction = model;
+            }
+            // user updates the long running prediction
+            else
+            {
+                user.LongRunningPrediction.SecondStageTeamsIds = model.SecondStageTeamsIds;
+                user.LongRunningPrediction.QuarterFinalTeamsIds = model.QuarterFinalTeamsIds;
+                user.LongRunningPrediction.SemiFinalTeamsIds = model.SemiFinalTeamsIds;
+                user.LongRunningPrediction.SmallFinalTeamsIds = model.SmallFinalTeamsIds;
+                user.LongRunningPrediction.FinalTeamsIds = model.FinalTeamsIds;
+                user.LongRunningPrediction.WinnerTeamId = model.WinnerTeamId;
+            }
+
+            await Context.SaveChangesAsync();
+
+            return RedirectToAction("LongRunningPredictions");
         }
 
     }

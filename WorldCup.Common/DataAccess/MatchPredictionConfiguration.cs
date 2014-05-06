@@ -18,7 +18,7 @@ namespace WorldCup.Common.DataAccess
                 .HasForeignKey(mp => mp.UserId)
                 .WillCascadeOnDelete(true);
             Property(m => m.UserId)
-                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UN_USER_MATCH", 1)));
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UN_MATCHPREDICTION_USER_MATCH", 1)));
 
             HasRequired(mp => mp.Match)
                 .WithMany(m=>m.MatchPredictions)
@@ -26,7 +26,7 @@ namespace WorldCup.Common.DataAccess
                 .WillCascadeOnDelete(false);
             Property(m => m.MatchId)
                 .HasColumnAnnotation("Index",
-                    new IndexAnnotation(new IndexAttribute("UN_USER_MATCH", 2) { IsUnique = true }));
+                    new IndexAnnotation(new IndexAttribute("UN_MATCHPREDICTION_USER_MATCH", 2) { IsUnique = true }));
         }
 
     }

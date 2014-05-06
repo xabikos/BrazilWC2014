@@ -17,7 +17,7 @@ namespace WorldCup.Common.DataAccess
                 .HasForeignKey(m => m.HomeTeamId)
                 .WillCascadeOnDelete(false);
             Property(m => m.HomeTeamId)
-                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UN_HOMETEAM_AWAYTEAM", 1)));
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UN_MATCH_HOMETEAMAWAYTEAM", 1)));
             
             HasRequired(m => m.AwayTeam)
                 .WithMany(t=>t.AwayMatches)
@@ -25,7 +25,7 @@ namespace WorldCup.Common.DataAccess
                 .WillCascadeOnDelete(false);
             Property(m => m.AwayTeamId)
                 .HasColumnAnnotation("Index",
-                    new IndexAnnotation(new IndexAttribute("UN_HOMETEAM_AWAYTEAM", 2) {IsUnique = true}));
+                    new IndexAnnotation(new IndexAttribute("UN_MATCH_HOMETEAMAWAYTEAM", 2) { IsUnique = true }));
             Ignore(m => m.HalfTimeResult);
             Ignore(m => m.FullTimeResult);
         }

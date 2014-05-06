@@ -18,5 +18,10 @@ namespace WorldCup.Controllers
             return View();
         }
 
+        public ActionResult UserNotConfirmed()
+        {
+            return View();
+        }
+
     }
 }

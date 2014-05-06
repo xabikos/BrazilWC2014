@@ -27,6 +27,7 @@ namespace WorldCup.Models.Identity
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new LongRunningPredictionConfiguration());
             modelBuilder.Configurations.Add(new FootballTeamConfiguration());
             modelBuilder.Configurations.Add(new MatchConfiguration());
             modelBuilder.Configurations.Add(new MatchPredictionConfiguration());
@@ -39,7 +40,8 @@ namespace WorldCup.Models.Identity
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Match> Matches { get; set; }
-        
+        public DbSet<SystemParameters> SystemParameters { get; set; }
+
         #endregion
     }
 

@@ -20,14 +20,14 @@ namespace WorldCup
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/moment-with-langs.min.js",      
-                        "~/Scripts/bootstrap.js", 
-                        "~/Scripts/bootstrap-datetimepicker.min.js",
-                      
-                      "~/Scripts/respond.js"));
+                "~/Scripts/moment-with-langs.min.js",
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/bootstrap-datetimepicker.min.js",
+                "~/Scripts/chosen.jquery.min.js",
+                "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css", "~/Content/bootstrap-datetimepicker.min.css",
+                      "~/Content/bootstrap.lumen.min.css", "~/Content/bootstrap-datetimepicker.min.css", "~/Content/bootstrap-chosen.css",
                       "~/Content/site.css", "~/Content/Gridmvc.css", "~/Content/toastr.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));

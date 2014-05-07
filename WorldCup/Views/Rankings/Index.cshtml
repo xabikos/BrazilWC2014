@@ -6,6 +6,8 @@
     <h1>Rankings</h1>
 </div>
 
+<div id="currentRankingChart" style="max-width:1140px;height: 500px;"></div>
+
 <div class="row">
     <div class="col-lg-6">
         <h2>Current ranking</h2>
@@ -17,3 +19,105 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    var currentRankingSource = [
+    {
+        date: "2 June",
+        player_0: 10, player_1: 8, player_2: 11, player_3: 12, player_4: 6, player_5: 5, player_6: 9, player_7: 6, player_8: 10, player_9: 7
+    },
+    {
+        date: "3 June",
+        player_0: 15, player_1: 8, player_2: 15, player_3: 16, player_4: 9, player_5: 7, player_6: 12, player_7: 9, player_8: 14, player_9: 14
+    },
+    {
+        date: "4 June",
+        player_0: 18, player_1: 20, player_2: 21, player_3: 18, player_4: 14, player_5: 11, player_6: 15, player_7: 12, player_8: 15, player_9: 17
+    },
+    {
+        date: "5 June",
+        player_0: 25, player_1: 21, player_2: 21, player_3: 20, player_4: 21, player_5: 15, player_6: 17, player_7: 14, player_8: 19, player_9: 24
+    },
+    {
+        date: "6 June",
+        player_0: 26, player_1: 24, player_2: 29, player_3: 25, player_4: 24, player_5: 16, player_6: 18, player_7: 15, player_8: 21, player_9: 24
+    }
+    ];
+
+    $("#currentRankingChart").dxChart({
+        title: {
+            text: 'Current top 10 (last update: 6 June)'
+        },
+        legend: {
+            horizontalAlignment: 'center',
+            verticalAlignment: 'bottom'
+        },
+        tooltip: {
+            enabled: true
+        },
+        dataSource: currentRankingSource,
+
+        commonSeriesSettings: {
+            argumentField: 'date'
+        },
+        series: [{
+            name: 'Frank Scholten',
+            valueField: 'player_0',
+            color: '#158cba'
+        }, {
+            name: 'Neil Boyd',
+            valueField: 'player_1',
+            color: '#28b62c'
+        }, {
+            name: 'Babis Karypidis',
+            valueField: 'player_2',
+            color: '#75caeb'
+        }, {
+            name: 'Hakan Tuncer',
+            valueField: 'player_3',
+            color: '#ff851b'
+        }, {
+            name: 'Ard Bisschop',
+            valueField: 'player_4',
+            color: '#ff4136'
+        }, {
+            name: 'Martijn van Emmen',
+            valueField: 'player_5',
+            color: '#158cba'
+        }, {
+            name: 'Filip de Bruin',
+            valueField: 'player_6',
+            color: '#28b62c'
+        }, {
+            name: 'Björn Colthof',
+            valueField: 'player_7',
+            color: '#75caeb'
+        }, {
+            name: 'Martin Rijks',
+            valueField: 'player_8',
+            color: '#ff851b'
+        }, {
+            name: 'Ifran Metin',
+            valueField: 'player_9',
+            color: '#ff4136'
+        }]
+    });
+
+    $("#unicefChart").dxChart({
+        tooltip: {
+            enabled: true
+        },
+        dataSource: currentRaisedMoneySource,
+        legend: {
+            horizontalAlignment: 'center',
+            verticalAlignment: 'bottom'
+        },
+        series: {
+            argumentField: "date",
+            valueField: "amount",
+            name: "Money raised (in euro)",
+            type: "bar",
+            color: '#28b62c'
+        }
+    });
+</script>

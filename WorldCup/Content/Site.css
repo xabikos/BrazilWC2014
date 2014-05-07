@@ -20,10 +20,12 @@ textarea {
     color: red;
 }
 
-.flagRow {
-    overflow: hidden;
-    display: block;
-    height: 29px;
+.flagRow img {
+    margin: .5em;
+}
+
+.team-name {
+
 }
 
 /* Table formatting */

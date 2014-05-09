@@ -12,6 +12,9 @@ namespace WorldCup.Controllers
     [Authorize]
     public class PredictionsController : ControllerBase
     {
+        // The date and time of the first match in utc
+        private readonly DateTime _firstMatchDate = new DateTime(2014, 6, 12, 20, 0, 0);
+
         // GET: Predictions
         public async Task<ActionResult> Index()
         {
@@ -70,7 +73,8 @@ namespace WorldCup.Controllers
         public async Task<ActionResult> LongRunningPredictions()
         {
             ViewBag.Teams = Context.Teams.OrderBy(t=>t.Name);
-
+            ViewBag.IsLongRunningPredictionsEnabled = DateTime.UtcNow < _firstMatchDate;
+            
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             return View(user.LongRunningPrediction ?? new LongRunningPrediction());
         }
@@ -84,6 +88,13 @@ namespace WorldCup.Controllers
                 ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
                 return View(model);
             }
+
+            // Check if the long running prediction still applies
+            if (DateTime.UtcNow > _firstMatchDate)
+            {
+                return View("TimeOverpassed");
+            }
+
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             // first time a long running prediction is done
             if (user.LongRunningPrediction == null)

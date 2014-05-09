@@ -787,6 +787,7 @@
     <Content Include="Views\AdminInitialization\Parameters.cshtml" />
     <Content Include="Views\Home\UserNotConfirmed.cshtml" />
     <Content Include="Views\Rankings\_FlaggedTeam.cshtml" />
+    <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

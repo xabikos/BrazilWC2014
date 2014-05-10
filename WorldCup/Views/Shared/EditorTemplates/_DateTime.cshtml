@@ -1,6 +1,7 @@
-﻿@model DateTime
+﻿@using System.Globalization
+@model DateTime
            
-@{ var modelvalue = Model != default(DateTime) ? Model : DateTime.Now;}
+@{ var modelvalue = Model != default(DateTime) ? Model.ToString(CultureInfo.InvariantCulture) : DateTime.Now.ToString(CultureInfo.InvariantCulture);}
 <div id="datetimepicker" class="input-group date" data-date-format="DD/MM/YYYY HH:MM">
     <input type='text' class="form-control" name="@Html.NameForModel()" />
     <span class="input-group-addon">

@@ -9,6 +9,8 @@ namespace WorldCup.Common.Entities
     {
         public int Id { get; set; }
 
+        public MatchState State { get; set; }
+
         public MatchStage Stage { get; set; }
 
         public virtual Team HomeTeam { get; set; }

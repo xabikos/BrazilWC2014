@@ -21,8 +21,8 @@ namespace WorldCup.Controllers
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             ViewBag.UserPredictions = user.MatchPredictions.Select(mp => mp.MatchId).ToList();
 
-            // Return only the matches that are valid for predictions
-            return View(Context.Matches.Where(m => m.Date > DateTime.UtcNow).OrderBy(m => m.Date));
+            // Return only the matches that are valid for predictions or are finalized
+            return View(Context.Matches.Where(m => m.State != MatchState.Created).OrderBy(m => m.Date));
         }
 
         public async Task<ViewResult> MatchPrediction(int id)
@@ -30,7 +30,7 @@ namespace WorldCup.Controllers
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             // match prediction is null the first time
             var matchPrediction = user.MatchPredictions.SingleOrDefault(mp => mp.MatchId == id) ?? new MatchPrediction();
-            var match = await Context.Matches.SingleAsync(m => m.Id == id);
+            var match = await Context.Matches.SingleAsync(m => m.Id == id && m.State != MatchState.Created);
             matchPrediction.Match = match;
             matchPrediction.MatchId = match.Id;
 
@@ -52,7 +52,7 @@ namespace WorldCup.Controllers
             }
 
             // Check if the match prediction still applies
-            if (DateTime.UtcNow > match.Date)
+            if (DateTime.UtcNow > match.Date || match.State != MatchState.VisibleForPredictions)
             {
                 return View("TimeOverpassed");
             }

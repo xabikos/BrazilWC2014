@@ -51,6 +51,10 @@ namespace WorldCup.Controllers
                 var httpClient = new HttpClient();
                 var matchesAsJson = await httpClient.GetStringAsync(url);
                 var matches = JsonConvert.DeserializeAnonymousType(matchesAsJson, new {games = new List<Match>()});
+                foreach (var match in matches.games)
+                {
+                    match.State = MatchState.Created;
+                }
 
                 Context.Matches.AddRange(matches.games);
             }

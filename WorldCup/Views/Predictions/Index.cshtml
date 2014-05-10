@@ -22,7 +22,7 @@ Server time to local: @DateTime.Now.ToLocalTime()
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => @Html.ActionLink("Predict", "MatchPrediction", new {id = m.Id}, 
+            .RenderValueAs(m => @Html.ActionLink(DateTime.UtcNow < m.Date ? "Predict" : "Show info", "MatchPrediction", new {id = m.Id}, 
                 new {@class = matchesUserHasDonePredictions.Contains(m.Id) ? "btn btn-success" : "btn btn-primary"}))
             .SetWidth(10);
         columns.Add()

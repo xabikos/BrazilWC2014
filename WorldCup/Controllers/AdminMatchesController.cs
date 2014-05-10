@@ -59,6 +59,7 @@ namespace WorldCup.Controllers
 
             var match = await Context.Matches.FirstAsync(m => m.Id == model.Id);
 
+            match.State = model.State;
             match.Date = model.Date;
             match.HomeTeamHalfTimeGoals = model.HomeTeamHalfTimeGoals;
             match.AwayTeamHalfTimeGoals = model.AwayTeamHalfTimeGoals;

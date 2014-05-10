@@ -187,12 +187,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminMatchesController.cs" />
+    <Compile Include="Controllers\AdminRankinsController.cs" />
     <Compile Include="Controllers\AdminUsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminInitializationController.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\RankingsController.cs" />
+    <Compile Include="Extensions\MatchExtensions.cs" />
     <Compile Include="Extensions\MatchResultExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -787,6 +789,7 @@
     <Content Include="Views\Home\UserNotConfirmed.cshtml" />
     <Content Include="Views\Rankings\_FlaggedTeam.cshtml" />
     <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
+    <Content Include="Views\AdminRankins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

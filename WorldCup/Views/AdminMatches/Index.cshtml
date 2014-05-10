@@ -30,11 +30,12 @@
             .Sanitized(false)
             .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.HomeTeam.Name, u.HomeTeam.Code }))
             .Titled("Home Team")
-            .SetWidth(30);
+            .SetWidth(25);
         columns.Add(m => m.AwayTeam.Name)
             .Encoded(false)
             .Sanitized(false)
             .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.AwayTeam.Name, u.AwayTeam.Code }))
             .Titled("Away Team")
-            .SetWidth(30);
+            .SetWidth(25);
+        columns.Add(m => m.State).Titled("State").SetWidth(10);
     }).Sortable().WithPaging(15).Filterable()

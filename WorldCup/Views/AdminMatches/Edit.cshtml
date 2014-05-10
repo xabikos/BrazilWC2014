@@ -1,5 +1,6 @@
-﻿@using WorldCup.Extensions
-@model WorldCup.Common.Entities.Match
+﻿@using WorldCup.Common.Entities
+@using WorldCup.Extensions
+@model Match
 
 @{
     ViewBag.Title = "Edit match details";
@@ -12,6 +13,9 @@
     @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m=>m.HomeTeamId)
     @Html.HiddenFor(m=>m.AwayTeamId)
+ 
+    @Html.ValidationSummary()
+    
     <div class="row">
         <div class="col-md-6">
             <p><strong>@Html.Partial("_FlaggedTeam", new[] { Model.HomeTeam.Name, Model.HomeTeam.Code })</strong> vs <strong>@Html.Partial("_FlaggedTeam", new[] { Model.AwayTeam.Name, Model.AwayTeam.Code })</strong></p>
@@ -36,40 +40,50 @@
         <div class='col-md-3'>
             <div class="form-group">
                 @Html.LabelFor(m => m.HomeTeamHalfTimeGoals, string.Format("{0} half time goals", Model.HomeTeam.Name))
-                @Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)
+                @Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, Model.State != MatchState.Finalized)
                 @Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.AwayTeamHalfTimeGoals, string.Format("{0} half time goals", Model.AwayTeam.Name))
-                @Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals)
+                @Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, Model.State != MatchState.Finalized)
                 @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.HomeTeamFullTimeGoals, string.Format("{0} full time goals", Model.HomeTeam.Name))
-                @Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals)
+                @Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, Model.State != MatchState.Finalized)
                 @Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.AwayTeamFullTimeGoals, string.Format("{0} full time goals", Model.AwayTeam.Name))
-                @Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)
+                @Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, Model.State != MatchState.Finalized)
                 @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)
             </div>
         </div>
         <div class='col-md-3'>
             <div class="form-group">
                 @Html.LabelFor(m => m.YellowCards, "Yellow cards*")
-                @Html.BootstrapEditorFor(m => m.YellowCards)
+                @Html.BootstrapEditorFor(m => m.YellowCards, Model.State != MatchState.Finalized)
                 @Html.ValidationMessageFor(m => m.YellowCards)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.RedCards, "Red cards*")
-                @Html.BootstrapEditorFor(m => m.RedCards)
+                @Html.BootstrapEditorFor(m => m.RedCards, Model.State != MatchState.Finalized)
                 @Html.ValidationMessageFor(m => m.RedCards)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Result, "Final result*")
-                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model), new {@class = "form-control"})
+                @{
+                    var htmlAttributes = new Dictionary<string, object>
+                    {
+                        {"class", "form-control"}
+                    };
+                    if (Model.State == MatchState.Finalized)
+                    {
+                        htmlAttributes.Add("disabled", "disabled");
+                    }
+                }
+                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model), htmlAttributes)
                 @Html.ValidationMessageFor(m => m.Result)
                 <span class="help-block">* = after extra time or penalties</span>
             </div>

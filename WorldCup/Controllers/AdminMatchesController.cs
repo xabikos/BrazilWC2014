@@ -38,8 +38,6 @@ namespace WorldCup.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            ViewBag.Teams = await Context.Teams.ToListAsync();
-
             if (id == default (int))
                 return View(new Match());
 
@@ -51,13 +49,20 @@ namespace WorldCup.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(Match model)
         {
-            if (!ModelState.IsValid)
+            var match = await Context.Matches.FirstAsync(m => m.Id == model.Id);
+
+            //Check if we try to edit a match that has already some calculations
+            if (Context.MatchPoints.Any(mp => mp.MatchId == match.Id))
             {
-                ViewBag.Teams = await Context.Teams.ToListAsync();
-                return View(model);
+                ModelState.AddModelError("MatchClosedForModification","There are calculation based on this match so the modification is not allowed");
             }
 
-            var match = await Context.Matches.FirstAsync(m => m.Id == model.Id);
+            if (!ModelState.IsValid)
+            {
+                model.HomeTeam = match.HomeTeam;
+                model.AwayTeam = match.AwayTeam;
+                return View(model);
+            }
 
             match.State = model.State;
             match.Date = model.Date;

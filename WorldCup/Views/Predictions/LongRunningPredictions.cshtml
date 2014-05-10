@@ -4,6 +4,13 @@
     ViewBag.Title = "Long running predictions";
 }
 
+<div class="page-header">
+    <h2>
+        Long running predictions<br />
+        <small>Select the teams advancing to the next round(s)</small>
+    </h2>
+</div>
+
 @using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new {role = "form"}))
 {
     <div class='col-md-6'>

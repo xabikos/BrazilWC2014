@@ -6,7 +6,30 @@
 
 <h2>Add new match</h2>
 
-@using (Html.BeginForm("Add", "AdminMatches", FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm("Add", "AdminMatches", FormMethod.Post, new {role = "form"}))
 {
-    @Html.EditorForModel()
+    <div class="row">
+        <div class='col-md-6'>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Stage)
+                @Html.EnumDropDownListFor(m => m.Stage, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.HomeTeamId)
+                @Html.DropDownListFor(m => m.HomeTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AwayTeamId)
+                @Html.DropDownListFor(m => m.AwayTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), new { @class = "form-control" })
+            </div>
+            <div class='col-md-7'>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Date)
+                    @Html.EditorFor(m => m.Date, "_DateTime")
+                    <span class="label label-danger">The date and time should be UTC</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
 }

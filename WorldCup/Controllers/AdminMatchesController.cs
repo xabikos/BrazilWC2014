@@ -15,37 +15,62 @@ namespace WorldCup.Controllers
             return View(Context.Matches.OrderBy(m => m.Date));
         }
 
-        public async Task<ViewResult> Add()
+        public async Task<ActionResult> Add()
         {
-            ViewBag.Teams = Context.Teams.ToList();
+            ViewBag.Teams = await Context.Teams.ToListAsync();
             return View(new Match());
         }
 
         [HttpPost]
-        public async Task<ActionResult> Add(Match match)
+        public async Task<ActionResult> Add(Match model)
         {
             if(!ModelState.IsValid)
             {
-                ViewBag.Teams = Context.Teams.ToList();
-                return View(match);
+                ViewBag.Teams = await Context.Teams.ToListAsync();
+                return View(model);
             }
 
-            Context.Matches.Add(match);
+            Context.Matches.Add(model);
             await Context.SaveChangesAsync();
 
             return RedirectToAction("Add");
         }
 
-        public async Task<ViewResult> Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            ViewBag.Teams = Context.Teams.ToList();
+            ViewBag.Teams = await Context.Teams.ToListAsync();
 
             if (id == default (int))
                 return View(new Match());
 
-            var match = await Context.Matches.SingleOrDefaultAsync(m => m.Id == id);
+            var match = await Context.Matches.FirstAsync(m => m.Id == id);
 
             return View(match);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(Match model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Teams = await Context.Teams.ToListAsync();
+                return View(model);
+            }
+
+            var match = await Context.Matches.FirstAsync(m => m.Id == model.Id);
+
+            match.Date = model.Date;
+            match.HomeTeamHalfTimeGoals = model.HomeTeamHalfTimeGoals;
+            match.AwayTeamHalfTimeGoals = model.AwayTeamHalfTimeGoals;
+            match.HomeTeamFullTimeGoals = model.HomeTeamFullTimeGoals;
+            match.AwayTeamFullTimeGoals = model.AwayTeamFullTimeGoals;
+            match.YellowCards = model.YellowCards;
+            match.RedCards = model.RedCards;
+            match.Result = model.Result;
+
+            await Context.SaveChangesAsync();
+
+            return RedirectToAction("Edit", new {id = model.Id});
         }
 
     }

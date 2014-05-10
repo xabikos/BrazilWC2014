@@ -780,7 +780,6 @@
     <Content Include="Views\AdminMatches\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_DateTime.cshtml" />
     <Content Include="Views\AdminMatches\Add.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Match.cshtml" />
     <Content Include="Views\Predictions\Index.cshtml" />
     <Content Include="Views\Predictions\MatchPrediction.cshtml" />
     <Content Include="Views\Predictions\LongRunningPredictions.cshtml" />

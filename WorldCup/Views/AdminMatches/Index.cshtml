@@ -21,7 +21,7 @@
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => m.Date.ToLocalTime().ToString("G"))
+            .RenderValueAs(m => m.Date.ToLocalTime().ToString("dd/MM/yyyy HH:mm"))
             .Titled("Date")
             .SetWidth(20);
         columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);

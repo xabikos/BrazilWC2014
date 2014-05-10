@@ -24,9 +24,9 @@ namespace WorldCup.Controllers
             if(systemParameters == null)
                 return View("Index", model: "Initialize the system parameters and then update the rankings");
 
-            foreach (var match in Context.Matches.Where(m=>m.State == MatchState.Finalized))
+            foreach (var match in Context.Matches.Where(m=>m.State == MatchState.Finalized).ToList())
             {
-                foreach (var user in UserManager.AllUsers)
+                foreach (var user in UserManager.AllUsers.ToList())
                 {
                     // The calculation has be done already
                     if (user.MatchPoints.Any(mp => mp.MatchId == match.Id)) 

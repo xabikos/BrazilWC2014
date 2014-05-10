@@ -1,4 +1,5 @@
-﻿@using GridMvc.Html
+﻿@using System.Globalization
+@using GridMvc.Html
 
 @model IQueryable<WorldCup.Common.Entities.Match>
 
@@ -22,7 +23,12 @@
             .RenderValueAs(m => @Html.ActionLink("Predict", "MatchPrediction", new {id = m.Id}, 
                 new {@class = matchesUserHasDonePredictions.Contains(m.Id) ? "btn btn-success" : "btn btn-primary"}))
             .SetWidth(10);
-        columns.Add(m => m.Date.Date).Titled("Date").SetWidth(25);
+        columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(m => m.Date.ToLocalTime().ToString(CultureInfo.CurrentCulture))
+            .Titled("Date")
+            .SetWidth(25);
         columns.Add(m => m.Stage).Titled("Stage").SetWidth(5);
         columns.Add(m => m.HomeTeam.Name)
             .Encoded(false)

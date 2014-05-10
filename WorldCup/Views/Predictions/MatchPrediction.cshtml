@@ -1,4 +1,5 @@
-﻿@using WorldCup.Extensions
+﻿@using System.Globalization
+@using WorldCup.Extensions
 @model WorldCup.Common.Entities.MatchPrediction
 
 @{
@@ -13,7 +14,7 @@
     </div>
     <div class="col-md-6">
         <p class="text-right">
-            @Model.Match.Date<br />
+            @Model.Match.Date.ToLocalTime().ToString(CultureInfo.CurrentCulture)<br />
             @Html.LabelFor(m => m.Match.Stage): @Model.Match.Stage
         </p>
     </div>

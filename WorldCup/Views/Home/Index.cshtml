@@ -1,4 +1,5 @@
-﻿@using GridMvc.Html
+﻿@using System.Globalization
+@using GridMvc.Html
 @model WorldCup.Models.HomeViewModel
 
 @{
@@ -103,20 +104,26 @@
         {
             columns.Add(u => u.Id, true);
             // columns.Add().RenderValueAs(u => "<button type='button' class='btn btn-primary' value='" + u.Id + "'>Predict</button>");
-            columns.Add(u => u.Date.Date).Titled("Date").SetWidth(30);
+            columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(m => m.Date.ToLocalTime().ToString(CultureInfo.CurrentCulture))
+            .Titled("Date")
+            .SetWidth(35);
+            //columns.Add(u => u.Date.Date).Titled("Date").SetWidth(30);
             columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);
             columns.Add(u => u.HomeTeam.Name)
                 .Encoded(false)
                 .Sanitized(false)
                 .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.HomeTeam.Name, u.HomeTeam.Code }))
                 .Titled("Home Team")
-                .SetWidth(30);
+                .SetWidth(25);
             columns.Add(u => u.AwayTeam.Name)
                 .Encoded(false)
                 .Sanitized(false)
                 .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.AwayTeam.Name, u.AwayTeam.Code }))
                 .Titled("Away Team")
-                .SetWidth(30);
+                .SetWidth(25);
         })
         <p>See the whole <a href="/Predictions">match schedule</a> and start predicting.</p>
         

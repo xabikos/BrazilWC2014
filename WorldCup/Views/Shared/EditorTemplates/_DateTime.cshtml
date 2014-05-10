@@ -11,9 +11,7 @@
 
 <script>
     $(function () {
-        $("#datetimepicker").datetimepicker({
-            minuteStepping: 15
-        });
+        $("#datetimepicker").datetimepicker();
         $("#datetimepicker").data("DateTimePicker").setMinDate(new Date(2014, 5, 12));
         $("#datetimepicker").data("DateTimePicker").setMaxDate(new Date(2014, 6, 13));
         $("#datetimepicker").data("DateTimePicker").setDate('@modelvalue');

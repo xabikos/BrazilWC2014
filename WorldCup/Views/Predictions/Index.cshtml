@@ -14,6 +14,8 @@
 @{
     var matchesUserHasDonePredictions = (List<int>)ViewBag.UserPredictions;
 }
+Server time: @DateTime.Now
+Server time to local: @DateTime.Now.ToLocalTime()
 @Html.Grid(Model).Named("matches").Columns(columns =>
     {
         columns.Add(m => m.Id, true);
@@ -26,7 +28,7 @@
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => m.Date.ToLocalTime().ToString("dd/MM/yyyy HH:mm"))
+            .RenderValueAs(m => m.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("dd/MM/yyyy HH:mm"))
             .Titled("Date")
             .SetWidth(25);
         columns.Add(m => m.Stage).Titled("Stage").SetWidth(5);

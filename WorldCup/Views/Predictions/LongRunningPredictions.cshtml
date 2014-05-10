@@ -1,5 +1,4 @@
-﻿@using Microsoft.Ajax.Utilities
-@using WorldCup.Extensions
+﻿@using WorldCup.Extensions
 @model WorldCup.Common.Entities.LongRunningPrediction
 
 @{
@@ -52,7 +51,7 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.islongrunningpredictionsenabled ? "disabled=disabled" :"")>Save</button>
+    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" :"")>Save</button>
 }
 
 <script>$(".chosen-select").chosen(); </script>

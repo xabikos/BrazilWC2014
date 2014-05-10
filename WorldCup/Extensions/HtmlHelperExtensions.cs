@@ -12,9 +12,11 @@ namespace WorldCup.Extensions
         /// Helper method that adds the required class for bootstrap form controls
         /// </summary>
         public static MvcHtmlString BootstrapEditorFor<TModel, TValue>(this HtmlHelper<TModel> html,
-            Expression<Func<TModel, TValue>> expression)
+            Expression<Func<TModel, TValue>> expression, bool isEnabled = true)
         {
-            return html.EditorFor(expression, new {htmlAttributes = new {@class = "form-control"}});
+            return isEnabled
+                ? html.EditorFor(expression, new {htmlAttributes = new {@class = "form-control"}})
+                : html.EditorFor(expression, new {htmlAttributes = new {@class = "form-control", disabled = "disabled"}});
         }
 
         /// <summary>

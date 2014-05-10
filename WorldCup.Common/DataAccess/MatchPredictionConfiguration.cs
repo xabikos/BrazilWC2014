@@ -21,6 +21,7 @@ namespace WorldCup.Common.DataAccess
                 .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UN_MATCHPREDICTION_USER_MATCH", 1)));
 
             HasRequired(mp => mp.Match)
+                // TODO remove this relationship
                 .WithMany(m=>m.MatchPredictions)
                 .HasForeignKey(mp=>mp.MatchId)
                 .WillCascadeOnDelete(false);

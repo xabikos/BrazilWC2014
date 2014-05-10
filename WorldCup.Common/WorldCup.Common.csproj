@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\LongRunningPredictionConfiguration.cs" />
     <Compile Include="DataAccess\MatchConfiguration.cs" />
+    <Compile Include="DataAccess\MatchPointsConfiguration.cs" />
     <Compile Include="DataAccess\MatchPredictionConfiguration.cs" />
     <Compile Include="DataAccess\SystemParametersConfiguration.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Entities\SystemParameters.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="DataAccess\FootballTeamConfiguration.cs" />
+    <Compile Include="Entities\MatchPoints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,7 @@ namespace WorldCup.Models.Identity
             modelBuilder.Configurations.Add(new FootballTeamConfiguration());
             modelBuilder.Configurations.Add(new MatchConfiguration());
             modelBuilder.Configurations.Add(new MatchPredictionConfiguration());
+            modelBuilder.Configurations.Add(new MatchPointsConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -41,6 +42,7 @@ namespace WorldCup.Models.Identity
         public DbSet<Player> Players { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<SystemParameters> SystemParameters { get; set; }
+        public DbSet<MatchPoints> MatchPoints { get; set; }
 
         #endregion
     }

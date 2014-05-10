@@ -14,6 +14,8 @@ namespace WorldCup.Common.Entities
         public virtual LongRunningPrediction LongRunningPrediction { get; set; }
         public virtual ICollection<MatchPrediction> MatchPredictions { get; set; }
 
+        public virtual ICollection<MatchPoints> MatchPoints { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

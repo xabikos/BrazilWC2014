@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-6">
         <p class="text-right">
-            @Model.Match.Date.ToLocalTime().ToString("dd/MM/yyyy HH:mm")<br />
+            @Model.Match.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("dd/MM/yyyy HH:mm")<br />
             @Html.LabelFor(m => m.Match.Stage): @Model.Match.Stage
         </p>
     </div>

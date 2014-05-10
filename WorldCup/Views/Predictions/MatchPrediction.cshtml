@@ -31,14 +31,14 @@
         <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.HomeTeamHalfTimeGoals, string.Format("{0} half time goals", Model.Match.HomeTeam != null ? Model.Match.HomeTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)
+                @Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)
                 @Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals)
             </div>
         </div>
         <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.AwayTeamHalfTimeGoals, string.Format("{0} half time goals", Model.Match.AwayTeam != null ? Model.Match.AwayTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals)
+                @Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)
                 @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)
             </div>
         </div>
@@ -50,14 +50,14 @@
         <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.HomeTeamFullTimeGoals, string.Format("{0} full time goals", Model.Match.HomeTeam != null ? Model.Match.HomeTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals)
+                @Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)
                 @Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals)
             </div>
         </div>
         <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.AwayTeamFullTimeGoals, string.Format("{0} full time goals", Model.Match.AwayTeam != null ? Model.Match.AwayTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)
+                @Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)
                 @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)
             </div>
         </div>
@@ -69,14 +69,14 @@
         <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.YellowCards, "Yellow cards*")
-                @Html.BootstrapEditorFor(m => m.YellowCards)
+                @Html.BootstrapEditorFor(m => m.YellowCards, (bool)ViewBag.IsMatchPredictionsEnabled)
                 @Html.ValidationMessageFor(m => m.YellowCards)
             </div>
         </div>
         <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.RedCards, "Red cards*")
-                @Html.BootstrapEditorFor(m => m.RedCards)
+                @Html.BootstrapEditorFor(m => m.RedCards, (bool)ViewBag.IsMatchPredictionsEnabled)
                 @Html.ValidationMessageFor(m => m.RedCards)
             </div>
         </div>
@@ -85,16 +85,25 @@
     <hr class="divider" />
 
     <div class="row">
-        <div class='col-md-6 col-md-offset-6'>
+        <div class='col-md-6'>
             <div class="form-group">
                 @Html.LabelFor(m => m.Result, "Final result*")
-                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), new { @class = "form-control" })
+                @{
+                    var htmlAttributes = new Dictionary<string, object>
+                    {
+                        {"class", "form-control"}
+                    };
+                    if (!ViewBag.IsMatchPredictionsEnabled)
+                    {
+                        htmlAttributes.Add("disabled", "disabled");
+                    }
+                }
+                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
                 <span class="help-block">* = after extra time or penalties</span>
             </div>
         </div>
 
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
-
+    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
 }

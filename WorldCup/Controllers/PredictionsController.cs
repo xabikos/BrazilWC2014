@@ -12,13 +12,17 @@ namespace WorldCup.Controllers
     [Authorize]
     public class PredictionsController : ControllerBase
     {
+        // The date and time of the first match in utc
+        private readonly DateTime _firstMatchDate = new DateTime(2014, 6, 12, 20, 0, 0);
+
         // GET: Predictions
         public async Task<ActionResult> Index()
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             ViewBag.UserPredictions = user.MatchPredictions.Select(mp => mp.MatchId).ToList();
 
-            return View(Context.Matches.OrderBy(m => m.Date));
+            // Return only the matches that are valid for predictions
+            return View(Context.Matches.Where(m => m.Date > DateTime.UtcNow).OrderBy(m => m.Date));
         }
 
         public async Task<ViewResult> MatchPrediction(int id)
@@ -29,6 +33,9 @@ namespace WorldCup.Controllers
             var match = await Context.Matches.SingleAsync(m => m.Id == id);
             matchPrediction.Match = match;
             matchPrediction.MatchId = match.Id;
+
+            ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
+
             return View(matchPrediction);
         }
 
@@ -36,11 +43,18 @@ namespace WorldCup.Controllers
         [UserConfirmedFilter]
         public async Task<ActionResult> MatchPrediction(MatchPrediction model)
         {
+            var match = await Context.Matches.SingleAsync(m => m.Id == model.MatchId);
+
             if(!ModelState.IsValid)
             {
-                var match = await Context.Matches.SingleAsync(m => m.Id == model.MatchId);
                 model.Match = match;
                 return View(model);
+            }
+
+            // Check if the match prediction still applies
+            if (DateTime.UtcNow > match.Date)
+            {
+                return View("TimeOverpassed");
             }
             
             var applicationUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -70,7 +84,8 @@ namespace WorldCup.Controllers
         public async Task<ActionResult> LongRunningPredictions()
         {
             ViewBag.Teams = Context.Teams.OrderBy(t=>t.Name);
-
+            ViewBag.IsLongRunningPredictionsEnabled = DateTime.UtcNow < _firstMatchDate;
+            
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             return View(user.LongRunningPrediction ?? new LongRunningPrediction());
         }
@@ -84,6 +99,13 @@ namespace WorldCup.Controllers
                 ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
                 return View(model);
             }
+
+            // Check if the long running prediction still applies
+            if (DateTime.UtcNow > _firstMatchDate)
+            {
+                return View("TimeOverpassed");
+            }
+
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             // first time a long running prediction is done
             if (user.LongRunningPrediction == null)

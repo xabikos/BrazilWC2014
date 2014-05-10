@@ -1,4 +1,5 @@
-﻿@model WorldCup.Common.Entities.LongRunningPrediction
+﻿@using WorldCup.Extensions
+@model WorldCup.Common.Entities.LongRunningPrediction
 
 @{
     ViewBag.Title = "Long running predictions";
@@ -16,38 +17,48 @@
     <div class='col-md-6'>
         <div class="form-group">
             @Html.LabelFor(m => m.SecondStageTeamsIds)
-            @Html.ListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select sixteen teams" })
+            @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
             @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.QuarterFinalTeamsIds)
-            @Html.ListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select eight teams" })
+            @Html.BootstrapListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), "Select eight teams")
             @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
         </div>
     </div>
     <div class='col-md-6'>
         <div class="form-group">
             @Html.LabelFor(m => m.SemiFinalTeamsIds)
-            @Html.ListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select four teams" })
+            @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
             @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.SmallFinalTeamsIds)
-            @Html.ListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select two teams" })
+            @Html.BootstrapListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), "Select two teams")
             @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.FinalTeamsIds)
-            @Html.ListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), new { @class = "form-control chosen-select", data_placeholder = "Select two teams" })
+            @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
             @Html.ValidationMessageFor(m => m.FinalTeamsIds)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.WinnerTeamId)
-            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), new { @class = "form-control" })
+            @{
+                var htmlAttributes = new Dictionary<string, object>
+                {
+                    {"class", "form-control"}
+                };
+                if (!ViewBag.IsLongRunningPredictionsEnabled)
+                {
+                    htmlAttributes.Add("disabled", "disabled");
+                }
+            }
+            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), htmlAttributes)
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" :"")>Save</button>
 }
 
 <script>$(".chosen-select").chosen(); </script>

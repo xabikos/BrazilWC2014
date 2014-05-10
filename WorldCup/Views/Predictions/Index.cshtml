@@ -26,7 +26,7 @@
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => m.Date.ToLocalTime().ToString(CultureInfo.CurrentCulture))
+            .RenderValueAs(m => m.Date.ToLocalTime().ToString(CultureInfo.InvariantCulture))
             .Titled("Date")
             .SetWidth(25);
         columns.Add(m => m.Stage).Titled("Stage").SetWidth(5);

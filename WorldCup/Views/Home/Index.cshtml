@@ -107,10 +107,9 @@
             columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => m.Date.ToLocalTime().ToString(CultureInfo.CurrentCulture))
+            .RenderValueAs(m => m.Date.ToLocalTime().ToString(CultureInfo.InvariantCulture))
             .Titled("Date")
             .SetWidth(35);
-            //columns.Add(u => u.Date.Date).Titled("Date").SetWidth(30);
             columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);
             columns.Add(u => u.HomeTeam.Name)
                 .Encoded(false)

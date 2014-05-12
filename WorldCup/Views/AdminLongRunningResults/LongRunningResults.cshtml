@@ -1,18 +1,18 @@
 ﻿@using WorldCup.Extensions
-@model WorldCup.Common.Entities.LongRunningPrediction
+@model WorldCup.Common.Entities.LongRunningResults
 
 @{
-    ViewBag.Title = "Long running predictions";
+    ViewBag.Title = "Long running results";
 }
 
 <div class="page-header">
     <h2>
         Long running predictions<br />
-        <small>Select the teams advancing to the next round(s)</small>
+        <small>Select the teams that advanced to the next round(s)</small>
     </h2>
 </div>
 
-@using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new {role = "form"}))
+@using (Html.BeginForm("LongRunningResults", "AdminLongRunningResults", FormMethod.Post, new { role = "form" }))
 {
     <div class='col-md-6'>
         <div class="form-group">
@@ -44,21 +44,11 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.WinnerTeamId)
-            @{
-                var htmlAttributes = new Dictionary<string, object>
-                {
-                    {"class", "form-control"}
-                };
-                if (!ViewBag.IsLongRunningPredictionsEnabled)
-                {
-                    htmlAttributes.Add("disabled", "disabled");
-                }
-            }
-            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
+            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", new {@class = "form-control"})
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" :"")>Save</button>
+    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button>
 }
 
 <script>$(".chosen-select").chosen(); </script>

@@ -186,6 +186,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminLongRunningResultsController.cs" />
     <Compile Include="Controllers\AdminMatchesController.cs" />
     <Compile Include="Controllers\AdminRankinsController.cs" />
     <Compile Include="Controllers\AdminUsersController.cs" />
@@ -790,6 +791,7 @@
     <Content Include="Views\Rankings\_FlaggedTeam.cshtml" />
     <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
     <Content Include="Views\AdminRankins\Index.cshtml" />
+    <Content Include="Views\AdminLongRunningResults\LongRunningResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

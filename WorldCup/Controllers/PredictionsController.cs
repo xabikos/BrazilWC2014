@@ -97,6 +97,8 @@ namespace WorldCup.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
+                ViewBag.IsLongRunningPredictionsEnabled = DateTime.UtcNow < _firstMatchDate;
+
                 return View(model);
             }
 

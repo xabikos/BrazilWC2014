@@ -5,20 +5,18 @@ using WorldCup.Common.Entities;
 
 namespace WorldCup.Common.DataAccess
 {
-    public class LongRunningPredictionConfiguration : EntityTypeConfiguration<LongRunningPrediction>
+    public class LongRunningResultsConfiguration : EntityTypeConfiguration<LongRunningResults>
     {
-        public LongRunningPredictionConfiguration()
-        {
-            HasKey(lrp => lrp.UserId);
-            Property(lrp => lrp.UserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
-            HasRequired(lrp => lrp.User).WithRequiredDependent(u => u.LongRunningPrediction).WillCascadeOnDelete(true);
+        public LongRunningResultsConfiguration()
+        {
+            Property(m => m.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             HasOptional(lrp => lrp.WinnerTeam)
                 .WithMany()
                 .HasForeignKey(lrp => lrp.WinnerTeamId)
                 .WillCascadeOnDelete(false);
-            
+
             Ignore(lrp => lrp.SecondStageTeamsIds);
             Ignore(lrp => lrp.QuarterFinalTeamsIds);
             Ignore(lrp => lrp.SemiFinalTeamsIds);

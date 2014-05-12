@@ -39,12 +39,13 @@ namespace WorldCup.Models.Identity
         #region DbSets
 
         public DbSet<Team> Teams { get; set; }
-        public DbSet<Player> Players { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<SystemParameters> SystemParameters { get; set; }
         public DbSet<MatchPoints> MatchPoints { get; set; }
+        public DbSet<LongRunningResults> LongRunningResults { get; set; }
 
         #endregion
+
     }
 
     internal class ApplicationDatabaseInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>

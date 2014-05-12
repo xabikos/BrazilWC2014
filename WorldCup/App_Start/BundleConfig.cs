@@ -34,6 +34,8 @@ namespace WorldCup
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/chart").Include("~/Scripts/globalize/globalize.js", "~/Scripts/dx.chartjs.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/slider").Include("~/Scripts/bootstrap-slider.js"));
         }
     }
 }

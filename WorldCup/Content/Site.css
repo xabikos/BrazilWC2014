@@ -37,3 +37,7 @@ textarea {
     text-align: right;
     font-weight: 700;
 }
+
+.nowrap {
+    white-space: nowrap;
+}

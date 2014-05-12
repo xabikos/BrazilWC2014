@@ -215,6 +215,7 @@
     <Content Include="Content\bootstrap-chosen.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-slider\bootstrap-slider.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.lumen.css" />
     <Content Include="Content\bootstrap.lumen.min.css" />
@@ -318,6 +319,7 @@
     <Content Include="Content\images\flags\sui.png" />
     <Content Include="Content\images\flags\uru.png" />
     <Content Include="Content\images\flags\usa.png" />
+    <Content Include="Content\images\world-cup.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -327,6 +329,7 @@
     <Content Include="Properties\WebJobs.xml" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-slider.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

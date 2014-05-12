@@ -43,9 +43,6 @@
             </div>
         </div>
     </div>
-
-    <hr class="divider" />
-
     <div class="row">
         <div class='col-md-6'>
             <div class="form-group">
@@ -61,6 +58,25 @@
                 @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class='col-md-12 center-block'>
+            <div class="form-group result-buttons">
+                @Html.LabelFor(m => m.Result, "Winner*")
+                @{
+                    var htmlAttributes = new Dictionary<string, object>
+                    {
+                        {"class", "form-control"}
+                    };
+                    if (!ViewBag.IsMatchPredictionsEnabled)
+                    {
+                        htmlAttributes.Add("disabled", "disabled");
+                    }
+                }
+                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
+            </div>
+        </div>
+
     </div>
 
     <hr class="divider" />
@@ -87,28 +103,47 @@
     <div class="row">
         <div class='col-md-6'>
             <div class="form-group">
-                @Html.LabelFor(m => m.Result, "Final result*")
-                @{
-                    var htmlAttributes = new Dictionary<string, object>
-                    {
-                        {"class", "form-control"}
-                    };
-                    if (!ViewBag.IsMatchPredictionsEnabled)
-                    {
-                        htmlAttributes.Add("disabled", "disabled");
-                    }
-                }
-                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
                 <span class="help-block">* = after extra time or penalties</span>
             </div>
         </div>
-
     </div>
 
-    <button type="submit" class="btn btn-primary " @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
+    <button type="submit" class="btn btn-success " @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
 }
-<hr class="divider" />
-<div class="btn-group">
-    @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-success btn-group" })
-    @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { @class = "btn btn-success btn-group" })
+&nbsp;
+<div class="btn-group btn-group-justified">
+    @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { @class = "btn btn-info btn-group" })
 </div>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.
+
+        var result = $("#Result");
+
+        if (result) {
+            var buttonGroup = $('<div class="btn-group btn-group-justified" data-toggle="buttons"></div>');
+
+            $.map($("option", result), function (element, index) {
+                button = $('<label class="btn btn-default"><input type="radio" name="' + result.attr("name") + '" value="' + element.value + '">' + element.text + '</label>').appendTo(buttonGroup);
+
+                if (element.selected) {
+                    button.addClass("active");
+                    $("input", button).prop("checked", true);
+                }
+
+            });
+
+            buttonGroup.appendTo(".result-buttons");
+
+            result.remove();
+
+        }
+
+
+    });
+
+</script>

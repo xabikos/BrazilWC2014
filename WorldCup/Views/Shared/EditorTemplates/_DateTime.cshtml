@@ -2,7 +2,7 @@
 @model DateTime
            
 @{ var modelvalue = Model != default(DateTime) ? Model.ToString(CultureInfo.InvariantCulture) : DateTime.Now.ToString(CultureInfo.InvariantCulture);}
-<div id="datetimepicker" class="input-group date" data-date-format="DD/MM/YYYY HH:mm">
+<div id="datetimepicker" class="input-group date" data-date-format="dd/MM/yyyy HH:mm">
     <input type='text' class="form-control" name="@Html.NameForModel()" />
     <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>

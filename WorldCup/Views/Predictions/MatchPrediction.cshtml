@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@using WorldCup.Extensions
+﻿@using WorldCup.Extensions
 @model WorldCup.Common.Entities.MatchPrediction
 
 @{
@@ -106,5 +105,10 @@
 
     </div>
 
-    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
+    <button type="submit" class="btn btn-primary " @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
 }
+<hr class="divider" />
+<div class="btn-group">
+    @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-success btn-group" })
+    @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { @class = "btn btn-success btn-group" })
+</div>

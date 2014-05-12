@@ -48,6 +48,7 @@ namespace WorldCup.Controllers
             if(!ModelState.IsValid)
             {
                 model.Match = match;
+                ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
                 return View(model);
             }
 

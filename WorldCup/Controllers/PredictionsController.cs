@@ -144,6 +144,7 @@ namespace WorldCup.Controllers
             ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
 
             var matchesIds = Context.Matches.OrderBy(m => m.Date)
+                .Where(m=>m.State != MatchState.Created)
                 .Select(m => m.Id)
                 .ToList()
                 .FindSandwichedItem(m => m == id)

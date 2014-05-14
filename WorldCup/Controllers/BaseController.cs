@@ -11,6 +11,8 @@ namespace WorldCup.Controllers
 
         private ApplicationUserManager _userManager;
 
+        protected string UserSavedSuccessfullyKey = "UserSavedSuccessfully";
+
         protected ApplicationUserManager UserManager
         {
             get

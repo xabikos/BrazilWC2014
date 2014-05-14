@@ -88,6 +88,14 @@
             // Uncomment the following line to force page refresh.  
             // window.location.reload();
         }
+
+        $(function() {
+            // Show the success message when saved
+            var userSuccesfulySaved = '@TempData["UserSavedSuccessfully"]';
+            if (userSuccesfulySaved !== "") {
+                toastr.success(userSuccesfulySaved);
+            }
+        });
     </script>
 </body>
 </html>

@@ -141,11 +141,5 @@
             buttonGroup.appendTo("#result-buttons");
             result.remove();
         }
-
-        // Show the success message when saved
-        var userSuccesfulySaved = '@TempData["UserMatchPredictionSuccessful"]';
-        if (userSuccesfulySaved !== "") {
-            toastr.success(userSuccesfulySaved);
-        }
     });
 </script>

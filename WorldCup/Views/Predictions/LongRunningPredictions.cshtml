@@ -63,11 +63,4 @@
 
 <script>
     $(".chosen-select").chosen();
-    $(function() {
-        // Show the success message when saved
-        var userSuccesfulySaved = '@TempData["UserLongRunningPredictionSuccessful"]';
-        if (userSuccesfulySaved !== "") {
-            toastr.success(userSuccesfulySaved);
-        }
-    });
 </script>

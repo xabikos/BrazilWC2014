@@ -2,6 +2,9 @@
 
 namespace WorldCup.Common.Entities
 {
+    /// <summary>
+    /// Contains the points for each match for each user
+    /// </summary>
     public class MatchPoints
     {
         public int MatchPointsId { get; set; }

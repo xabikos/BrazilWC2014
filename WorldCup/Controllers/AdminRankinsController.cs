@@ -52,8 +52,71 @@ namespace WorldCup.Controllers
             if (systemParameters == null)
                 return View("Index", model: "Initialize the system parameters and then update the rankings");
 
+            var longRunningResults = await Context.LongRunningResults.FirstOrDefaultAsync();
+
+            if(longRunningResults == null)
+            {
+                return View("Index",
+                    model: "Select the correct teams for long running results and then try to update the rankings");
+            }
+
+            // Calculate only for users that have done long running predictions
+            foreach(var user in UserManager.AllUsers.Where(u => u.LongRunningPrediction != null).ToList())
+            {
+                if(user.LongRunningPoints == null)
+                {
+                    user.LongRunningPoints = new LongRunningPoints();
+                }
+
+                // Second stage teams
+                var correctSecondStageUserTeams =
+                    longRunningResults.SecondStageTeamsIds.Intersect(user.LongRunningPrediction.SecondStageTeamsIds)
+                        .Where(el => !string.IsNullOrEmpty(el));
+                user.LongRunningPoints.SecondStagePoints = correctSecondStageUserTeams.Count()*
+                                                           systemParameters.Round16TeamsFactor;
+
+                // Quarter final stage teams
+                var correctQuarterFinalUserTeams =
+                    longRunningResults.QuarterFinalTeamsIds.Intersect(user.LongRunningPrediction.QuarterFinalTeamsIds)
+                        .Where(el => !string.IsNullOrEmpty(el));
+                user.LongRunningPoints.QuarterFinalPoints = correctQuarterFinalUserTeams.Count()*
+                                                            systemParameters.QuarterFinalTeamsFactor;
+
+                // Semi final stage teams
+                var correctSemiFinalUserTeams =
+                    longRunningResults.SemiFinalTeamsIds.Intersect(user.LongRunningPrediction.SemiFinalTeamsIds)
+                        .Where(el => !string.IsNullOrEmpty(el));
+                user.LongRunningPoints.SemiFinalPoints = correctSemiFinalUserTeams.Count()*
+                                                         systemParameters.SemiFinalTeamsFactor;
+
+                // Small final stage teams
+                var correctSmallFinalUserTeams =
+                    longRunningResults.SmallFinalTeamsIds.Intersect(user.LongRunningPrediction.SmallFinalTeamsIds)
+                        .Where(el => !string.IsNullOrEmpty(el));
+                user.LongRunningPoints.SmallFinalPoints = correctSmallFinalUserTeams.Count()*
+                                                          systemParameters.SmallFinalTeamsFactor;
+
+                // Small final stage teams
+                var correctFinalUserTeams =
+                    longRunningResults.FinalTeamsIds.Intersect(user.LongRunningPrediction.FinalTeamsIds)
+                        .Where(el => !string.IsNullOrEmpty(el));
+                user.LongRunningPoints.FinalPoints = correctFinalUserTeams.Count()*
+                                                     systemParameters.SmallFinalTeamsFactor;
+
+                // Winner of tournament points
+                if(!string.IsNullOrEmpty(longRunningResults.WinnerTeamId) &&
+                   longRunningResults.WinnerTeamId == user.LongRunningPrediction.WinnerTeamId)
+                {
+                    user.LongRunningPoints.WinnerPoints = systemParameters.WinnerTeamFactor;
+                }
+            }
+
+            await Context.SaveChangesAsync();
+
             return View("Index", model: "You successfully update long running rankings");
         }
+
+        #region calculate match points
 
         private static int CalculateMatchPoints(ApplicationUser user, Match match, SystemParameters systemParameters)
         {
@@ -148,6 +211,8 @@ namespace WorldCup.Controllers
 
             return result;
         }
-        
+
+        #endregion
+
     }
 }

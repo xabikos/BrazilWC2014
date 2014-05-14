@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace WorldCup.Common.Entities
 {
@@ -40,7 +41,7 @@ namespace WorldCup.Common.Entities
         public string QuarterFinalTeams
         {
             get { return string.Join(",", QuarterFinalTeamsIds); }
-            set { value.Split(',').CopyTo(QuarterFinalTeamsIds, 0); }
+            set { value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).CopyTo(QuarterFinalTeamsIds, 0); }
         }
 
         /// <summary>

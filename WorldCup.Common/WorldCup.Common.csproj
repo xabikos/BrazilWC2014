@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\LongRunningPointsConfiguration.cs" />
     <Compile Include="DataAccess\LongRunningPredictionConfiguration.cs" />
     <Compile Include="DataAccess\LongRunningResultsConfiguration.cs" />
     <Compile Include="DataAccess\MatchConfiguration.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="DataAccess\MatchPredictionConfiguration.cs" />
     <Compile Include="DataAccess\SystemParametersConfiguration.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\LongRunningPoints.cs" />
     <Compile Include="Entities\LongRunningPrediction.cs" />
     <Compile Include="Entities\LongRunningResults.cs" />
     <Compile Include="Entities\Match.cs" />

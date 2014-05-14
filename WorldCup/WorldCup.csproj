@@ -782,7 +782,6 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="webjobs.wpp.targets" />
-    <Content Include="Views\AdminInitialization\Index.cshtml" />
     <Content Include="Views\Shared\_FlaggedTeam.cshtml" />
     <Content Include="Views\AdminMatches\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_DateTime.cshtml" />

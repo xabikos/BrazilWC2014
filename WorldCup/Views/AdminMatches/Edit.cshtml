@@ -92,3 +92,9 @@
 
     <button type="submit" class="btn btn-primary">Save</button>
 }
+&nbsp;
+<div class="btn-group btn-group-justified">
+    @Html.ActionLink("Previous match", "Edit", "AdminMatches", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Back to list", "Index", "AdminMatches", new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Next match", "Edit", "AdminMatches", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+</div>

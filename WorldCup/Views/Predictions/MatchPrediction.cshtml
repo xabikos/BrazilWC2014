@@ -28,88 +28,128 @@
 
     <div class="row">
 
-        <div class='col-md-6'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.HomeTeamHalfTimeGoals, string.Format("{0} half time goals", Model.Match.HomeTeam != null ? Model.Match.HomeTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, (bool) ViewBag.IsMatchPredictionsEnabled)
-                @Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals)
-            </div>
+        <div class="col-xs-6 col-md-4"></div>
+
+        <div class="col-xs-3 col-md-2">
+            @Model.Match.HomeTeam.Code
         </div>
-        <div class='col-md-6'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.AwayTeamHalfTimeGoals, string.Format("{0} half time goals", Model.Match.AwayTeam != null ? Model.Match.AwayTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, (bool) ViewBag.IsMatchPredictionsEnabled)
-                @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)
-            </div>
+
+        <div class="col-xs-1 visible-lg"></div>
+
+        <div class="col-xs-3 col-md-2">
+            @Model.Match.AwayTeam.Code
         </div>
+
+        <div class="visible-lg col-md-3"></div>
     </div>
+    
     <div class="row">
-        <div class='col-md-6'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.HomeTeamFullTimeGoals, string.Format("{0} full time goals", Model.Match.HomeTeam != null ? Model.Match.HomeTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, (bool) ViewBag.IsMatchPredictionsEnabled)
-                @Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals)
-            </div>
-        </div>
-        <div class='col-md-6'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.AwayTeamFullTimeGoals, string.Format("{0} full time goals", Model.Match.AwayTeam != null ? Model.Match.AwayTeam.Name : ""))
-                @Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, (bool) ViewBag.IsMatchPredictionsEnabled)
-                @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)
-            </div>
-        </div>
+
+        <div class="col-xs-6 col-md-4"><label class="text-right form-label">Half time score</label></div>
+
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+
+        <div class="visible-lg col-md-1"><label class="text-center form-label">-</label></div>
+
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+
+        <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)</div>
+
+     </div>
+    
+    <div class="row">
+
+
+        <div class="col-xs-6 col-md-4"><label class="text-right form-label">Full time score</label></div>
+
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+
+        <div class="visible-lg col-md-1"><label class="text-center form-label">-</label></div>
+
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+
+        <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</div>
+
+
     </div>
+    
     <div class="row">
-        <div class='col-md-12 center-block'>
-            <div id="result-buttons" class="form-group">
-                @Html.LabelFor(m => m.Result, "Winner*")
-                @{
-                    var htmlAttributes = new Dictionary<string, object>
+
+        <div class="col-xs-6 col-md-4">
+            @Html.LabelFor(m => m.Result, "Winner*", new { @class = "text-right form-label" })
+        </div>
+
+        <div class="col-xs-6 col-md-5" id="result-buttons">
+            @{
+    var htmlAttributes = new Dictionary<string, object>
                     {
                         {"class", "form-control"}
                     };
-                    if(!ViewBag.IsMatchPredictionsEnabled)
-                    {
-                        htmlAttributes.Add("disabled", "disabled");
-                    }
-                }
-                @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
-            </div>
-
+    if (!ViewBag.IsMatchPredictionsEnabled)
+    {
+        htmlAttributes.Add("disabled", "disabled");
+    }
+            }
+            @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
         </div>
 
+        <div class="visible-lg col-md-3"></div>
+            
     </div>
+    
+    <hr class="divider" />
+    
+    <div class="row">
 
+        <div class="col-xs-6 col-md-4">
+            @Html.LabelFor(m => m.YellowCards, "Yellow cards*", new { @class = "text-right form-label" })
+        </div>
+
+        <div class="visible-lg col-md-2"></div>
+
+        <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.YellowCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+
+        <div class="visible-lg col-md-2"></div>
+
+        <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.YellowCards)</div>
+            
+    </div>
+    
+    <div class="row">
+
+        <div class="col-xs-6 col-md-4">
+            @Html.LabelFor(m => m.RedCards, "Red cards*", new { @class = "text-right form-label" })
+        </div>
+
+        <div class="visible-lg col-md-2"></div>
+
+        <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.RedCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+
+        <div class="visible-lg col-md-2"></div>
+
+        <div class="col-xs-12 col-md-3" >@Html.ValidationMessageFor(m => m.RedCards)</div>
+            
+    </div>
+    
     <hr class="divider" />
 
-    <div class="row">
-        <div class='col-md-6'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.YellowCards, "Yellow cards*")
-                @Html.BootstrapEditorFor(m => m.YellowCards, (bool) ViewBag.IsMatchPredictionsEnabled)
-                @Html.ValidationMessageFor(m => m.YellowCards)
-            </div>
-        </div>
-        <div class='col-md-6'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.RedCards, "Red cards*")
-                @Html.BootstrapEditorFor(m => m.RedCards, (bool) ViewBag.IsMatchPredictionsEnabled)
-                @Html.ValidationMessageFor(m => m.RedCards)
-            </div>
-        </div>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="row">
-        <div class='col-md-6'>
+        <div class="row">
+        <div class='col-md-12'>
             <div class="form-group">
                 <span class="help-block">* = after extra time or penalties</span>
             </div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success " @(!(bool) ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
+    <div class="btn-group btn-group-justified visible-xs visible-sm">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </div>
+
+    <div class="hidden-xs hidden-sm">
+        <button type="submit" class="btn btn-success " @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
+    </div>
 }
 &nbsp;
 <div class="btn-group btn-group-justified">

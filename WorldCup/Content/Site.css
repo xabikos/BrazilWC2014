@@ -28,6 +28,11 @@ textarea {
     color: red;
 }
 
+/* Form formatting */
+.form-label {
+    display: block;
+}
+
 /* Table formatting */
 .full-width {
     width: 100%;

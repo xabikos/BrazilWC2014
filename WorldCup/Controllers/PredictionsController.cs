@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WorldCup.Attributes;
 using WorldCup.Common.Entities;
+using WorldCup.Extensions;
 
 namespace WorldCup.Controllers
 {
@@ -35,6 +36,14 @@ namespace WorldCup.Controllers
             matchPrediction.MatchId = match.Id;
 
             ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
+            var matchesIds = Context.Matches.OrderBy(m => m.Date)
+                                            .Select(m => m.Id)
+                                            .ToList()
+                                            .FindSandwichedItem(m => m == id)
+                                            .ToList();
+
+            ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : id;
+            ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : id;
 
             return View(matchPrediction);
         }

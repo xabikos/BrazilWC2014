@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AdminInitializationController.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\RankingsController.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\MatchExtensions.cs" />
     <Compile Include="Extensions\MatchResultExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />

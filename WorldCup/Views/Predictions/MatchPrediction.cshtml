@@ -113,9 +113,9 @@
 }
 &nbsp;
 <div class="btn-group btn-group-justified">
-    @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
     @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
-    @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
 </div>
 
 <script type="text/javascript">

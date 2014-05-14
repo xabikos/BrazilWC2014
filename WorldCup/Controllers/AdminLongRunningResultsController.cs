@@ -49,6 +49,8 @@ namespace WorldCup.Controllers
 
             await Context.SaveChangesAsync();
 
+            TempData[UserSavedSuccessfullyKey] = "You successfully updated the long running results";
+
             return RedirectToAction("LongRunningResults");
         }
 

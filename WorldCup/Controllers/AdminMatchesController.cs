@@ -33,6 +33,8 @@ namespace WorldCup.Controllers
             Context.Matches.Add(model);
             await Context.SaveChangesAsync();
 
+            TempData[UserSavedSuccessfullyKey] = "You successfully added the match";
+
             return RedirectToAction("Add");
         }
 
@@ -75,6 +77,8 @@ namespace WorldCup.Controllers
             match.Result = model.Result;
 
             await Context.SaveChangesAsync();
+
+            TempData[UserSavedSuccessfullyKey] = "You successfully edit the match";
 
             return RedirectToAction("Edit", new {id = model.Id});
         }

@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@using GridMvc.Html
+﻿@using GridMvc.Html
 
 @model IQueryable<WorldCup.Common.Entities.Match>
 
@@ -14,8 +13,7 @@
 @{
     var matchesUserHasDonePredictions = (List<int>)ViewBag.UserPredictions;
 }
-Server time: @DateTime.Now
-Server time to local: @DateTime.Now.ToLocalTime()
+
 @Html.Grid(Model).Named("matches").Columns(columns =>
     {
         columns.Add(m => m.Id, true);

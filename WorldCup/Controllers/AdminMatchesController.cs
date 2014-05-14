@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using WorldCup.Common.Entities;
+using WorldCup.Extensions;
 
 namespace WorldCup.Controllers
 {
@@ -45,6 +46,8 @@ namespace WorldCup.Controllers
 
             var match = await Context.Matches.FirstAsync(m => m.Id == id);
 
+            PrepareViewBag(id, match);
+
             return View(match);
         }
 
@@ -61,6 +64,7 @@ namespace WorldCup.Controllers
 
             if (!ModelState.IsValid)
             {
+                PrepareViewBag(model.Id, match);
                 model.HomeTeam = match.HomeTeam;
                 model.AwayTeam = match.AwayTeam;
                 return View(model);
@@ -81,6 +85,17 @@ namespace WorldCup.Controllers
             TempData[UserSavedSuccessfullyKey] = "You successfully edit the match";
 
             return RedirectToAction("Edit", new {id = model.Id});
+        }
+
+        private void PrepareViewBag(int id, Match match)
+        {
+            var matchesIds = Context.Matches.OrderBy(m => m.Date)
+                .Select(m => m.Id)
+                .ToList()
+                .FindSandwichedItem(m => m == id)
+                .ToList();
+            ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : id;
+            ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : id;
         }
 
     }

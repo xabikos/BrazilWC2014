@@ -61,4 +61,13 @@
     <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" :"")>Save</button>
 }
 
-<script>$(".chosen-select").chosen(); </script>
+<script>
+    $(".chosen-select").chosen();
+    $(function() {
+        // Show the success message when saved
+        var userSuccesfulySaved = '@TempData["UserLongRunningPredictionSuccessful"]';
+        if (userSuccesfulySaved !== "") {
+            toastr.success(userSuccesfulySaved);
+        }
+    });
+</script>

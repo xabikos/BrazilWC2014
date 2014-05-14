@@ -13,8 +13,9 @@ namespace WorldCup.Controllers
     [Authorize]
     public class PredictionsController : ControllerBase
     {
-        const string SuccesMatchPredictionSaved = "You successfully saved your prediction";
-        const string SuccessPredictionKey = "UserPredictionSuccessful";
+        private const string SuccesMatchPredictionSaved = "You successfully saved your predictions";
+        private const string MatchSuccessPredictionKey = "UserMatchPredictionSuccessful";
+        private const string LongRunningPredictionKey = "UserLongRunningPredictionSuccessful";
 
         // The date and time of the first match in utc
         private readonly DateTime _firstMatchDate = new DateTime(2014, 6, 12, 20, 0, 0);
@@ -84,7 +85,7 @@ namespace WorldCup.Controllers
             
             await Context.SaveChangesAsync();
 
-            TempData[SuccessPredictionKey] = SuccesMatchPredictionSaved;
+            TempData[MatchSuccessPredictionKey] = SuccesMatchPredictionSaved;
 
             return RedirectToAction("MatchPrediction", new {id = model.MatchId});
         }
@@ -134,6 +135,8 @@ namespace WorldCup.Controllers
             }
 
             await Context.SaveChangesAsync();
+
+            TempData[LongRunningPredictionKey] = SuccesMatchPredictionSaved;
 
             return RedirectToAction("LongRunningPredictions");
         }

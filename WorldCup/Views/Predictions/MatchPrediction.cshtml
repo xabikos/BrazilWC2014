@@ -142,8 +142,8 @@
             result.remove();
         }
 
-        // Show the success message
-        var userSuccesfulySaved = '@TempData["UserPredictionSuccessful"]';
+        // Show the success message when saved
+        var userSuccesfulySaved = '@TempData["UserMatchPredictionSuccessful"]';
         if (userSuccesfulySaved !== "") {
             toastr.success(userSuccesfulySaved);
         }

@@ -95,6 +95,11 @@
             if (userSuccesfulySaved !== "") {
                 toastr.success(userSuccesfulySaved);
             }
+
+            var modelIsValid = '@ViewData.ModelState.IsValid';
+            if (modelIsValid === "False") {
+                toastr.error("Warning! You have selected some invalid values.");
+            }
         });
     </script>
 </body>

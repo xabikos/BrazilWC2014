@@ -24,8 +24,8 @@ textarea {
     margin: .5em;
 }
 
-.team-name {
-
+.field-validation-error {
+    color: red;
 }
 
 /* Table formatting */

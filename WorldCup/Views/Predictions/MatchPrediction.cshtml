@@ -61,20 +61,21 @@
     </div>
     <div class="row">
         <div class='col-md-12 center-block'>
-            <div class="form-group result-buttons">
+            <div id="result-buttons" class="form-group">
                 @Html.LabelFor(m => m.Result, "Winner*")
                 @{
-                    var htmlAttributes = new Dictionary<string, object>
+    var htmlAttributes = new Dictionary<string, object>
                     {
                         {"class", "form-control"}
                     };
-                    if (!ViewBag.IsMatchPredictionsEnabled)
-                    {
-                        htmlAttributes.Add("disabled", "disabled");
-                    }
+    if (!ViewBag.IsMatchPredictionsEnabled)
+    {
+        htmlAttributes.Add("disabled", "disabled");
+    }
                 }
                 @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
             </div>
+
         </div>
 
     </div>
@@ -127,8 +128,8 @@
         if (result) {
             var buttonGroup = $('<div class="btn-group btn-group-justified" data-toggle="buttons"></div>');
 
-            $.map($("option", result), function (element, index) {
-                button = $('<label class="btn btn-default"><input type="radio" name="' + result.attr("name") + '" value="' + element.value + '">' + element.text + '</label>').appendTo(buttonGroup);
+            $.map($("option", result), function (element) {
+                var button = $('<label class="btn btn-default"><input type="radio" name="' + result.attr("name") + '" value="' + element.value + '">' + element.text + '</label>').appendTo(buttonGroup);
 
                 if (element.selected) {
                     button.addClass("active");
@@ -137,7 +138,7 @@
 
             });
 
-            buttonGroup.appendTo(".result-buttons");
+            buttonGroup.appendTo("#result-buttons");
 
             result.remove();
 

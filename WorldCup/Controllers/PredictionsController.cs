@@ -13,6 +13,9 @@ namespace WorldCup.Controllers
     [Authorize]
     public class PredictionsController : ControllerBase
     {
+        const string SuccesMatchPredictionSaved = "You successfully saved your prediction";
+        const string SuccessPredictionKey = "UserPredictionSuccessful";
+
         // The date and time of the first match in utc
         private readonly DateTime _firstMatchDate = new DateTime(2014, 6, 12, 20, 0, 0);
 
@@ -35,15 +38,7 @@ namespace WorldCup.Controllers
             matchPrediction.Match = match;
             matchPrediction.MatchId = match.Id;
 
-            ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
-            var matchesIds = Context.Matches.OrderBy(m => m.Date)
-                                            .Select(m => m.Id)
-                                            .ToList()
-                                            .FindSandwichedItem(m => m == id)
-                                            .ToList();
-
-            ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : id;
-            ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : id;
+            PrepareViewBag(id, match);
 
             return View(matchPrediction);
         }
@@ -56,8 +51,9 @@ namespace WorldCup.Controllers
 
             if(!ModelState.IsValid)
             {
+                PrepareViewBag(model.MatchId, match);
                 model.Match = match;
-                ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
+                
                 return View(model);
             }
 
@@ -87,6 +83,8 @@ namespace WorldCup.Controllers
             }
             
             await Context.SaveChangesAsync();
+
+            TempData[SuccessPredictionKey] = SuccesMatchPredictionSaved;
 
             return RedirectToAction("MatchPrediction", new {id = model.MatchId});
         }
@@ -138,6 +136,19 @@ namespace WorldCup.Controllers
             await Context.SaveChangesAsync();
 
             return RedirectToAction("LongRunningPredictions");
+        }
+
+        private void PrepareViewBag(int id, Match match)
+        {
+            ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
+
+            var matchesIds = Context.Matches.OrderBy(m => m.Date)
+                .Select(m => m.Id)
+                .ToList()
+                .FindSandwichedItem(m => m == id)
+                .ToList();
+            ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : id;
+            ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : id;
         }
 
     }

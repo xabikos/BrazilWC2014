@@ -1,0 +1,3 @@
+﻿@model string[]
+@{ var flagUrl = string.Format("/Content/Flags/{0}.png", Model[0]); }
+<img height="50" width="57" alt="@Model[1]" src="@flagUrl"/>

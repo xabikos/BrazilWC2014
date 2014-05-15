@@ -796,6 +796,7 @@
     <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
     <Content Include="Views\AdminRankins\Index.cshtml" />
     <Content Include="Views\AdminLongRunningResults\LongRunningResults.cshtml" />
+    <Content Include="Views\Predictions\_TeamFlag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

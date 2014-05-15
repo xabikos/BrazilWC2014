@@ -163,10 +163,7 @@
         $(function () {
 
             // Match date
-
-            var matchDate = "@Model.Match.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("yyyy-MM-dd HH:mm")";
-
-            $("#match-date").text(moment(matchDate).format("dddd, MMMM Do YYYY, HH:mm"));
+            $("#match-date").text(moment(moment.utc("@Model.Match.Date", "D-M-YYYY HH:mm:ss")).local().format("dddd, MMMM Do YYYY [at] HH:mm"));
 
 
             // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.

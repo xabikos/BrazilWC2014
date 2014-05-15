@@ -27,42 +27,15 @@
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
         Check the <a href="/Rankings">rankings</a> for a complete overview.
         <h1>Your latest results</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th class="full-width">Match</th>
-                    <th class="table-points">Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>14 June</td>
-                    <td class="full-width">Côte d'Ivoire vs Japan</td>
-                    <td class="table-points">1</td>
-                </tr>
-                <tr>
-                    <td>13 June</td>
-                    <td class="full-width">Mexico vs Cameroon</td>
-                    <td class="table-points">2</td>
-                </tr>
-                <tr>
-                    <td>13 June</td>
-                    <td class="full-width">Spain vs Netherlands</td>
-                    <td class="table-points">1</td>
-                </tr>
-                <tr>
-                    <td class="nowrap">12 June</td>
-                    <td class="full-width">Chile vs Australia</td>
-                    <td class="table-points">10</td>
-                </tr>
-                <tr>
-                    <td>12 June</td>
-                    <td class="full-width">Brazil vs Croatia</td>
-                    <td class="table-points">3</td>
-                </tr>
-            </tbody>
-        </table>
+        <p>Graphic with current rankings</p>
+
+        @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
+        {
+            columns.Add(ur => ur.Date).Titled("Date").SetWidth(30);
+            columns.Add(ur => ur.Match).Titled("Match").SetWidth(60);
+            columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
+        })
+
         Check your <a href="/Results">personal page</a> for a more detailed view.
     </div>
     <div class="col-md-6">
@@ -132,37 +105,29 @@
                 .SetWidth(25);
         })
         <p>See the whole <a href="/Predictions">match schedule</a> and start predicting.</p>
-        
+
         <h2>Money raised</h2>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
         See how you can make a <a href="/Contributions">contribution</a> to UNICEF and see <a href="http://www.unicef.com">where your money goes to</a>.
     </div>
-</div> 
+</div>
 
 <script type="text/javascript">
 
-    var currentRankingSource = [
-    {
-        date: "2 June",
-        player_0: 10, player_1: 8, player_2: 11, player_3: 12, player_4: 6
-    },
-    {
-        date: "3 June",
-        player_0: 15, player_1: 8, player_2: 15, player_3: 16, player_4: 9
-    },
-    {
-        date: "4 June",
-        player_0: 18, player_1: 20, player_2: 21, player_3: 18, player_4: 14
-    },
-    {
-        date: "5 June",
-        player_0: 25, player_1: 21, player_2: 21, player_3: 20, player_4: 21
-    },
-    {
-        date: "6 June",
-        player_0: 26, player_1: 24, player_2: 29, player_3: 25, player_4: 24
-    }
-    ];
+    $(function () {
+        $.ajax({
+            url: '/Rankings/TopUsersInfo?numberOfUsers=5',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                updateTopFiveChart(data);
+            },
+            error: function (data) {
+                toastr.error(data.statusText);
+            }
+        });
+    });
 
     var currentRaisedMoneySource = [
     {
@@ -187,44 +152,27 @@
     }
     ];
 
-    $("#rankingChart").dxChart({
-        title: {
-            text: 'Current top 5 (last update: 12 May)'
-        },
-        legend: {
-            horizontalAlignment: 'center',
-            verticalAlignment: 'bottom'
-        },
-        tooltip: {
-            enabled: true
-        },
-        dataSource: currentRankingSource,
+    var updateTopFiveChart = function (data) {
 
-        commonSeriesSettings: {
-            argumentField: 'date'
-        },
-        series: [{
-            name: 'Frank Scholten',
-            valueField: 'player_0',
-            color: '#158cba'
-        }, {
-            name: 'Neil Boyd',
-            valueField: 'player_1',
-            color: '#28b62c'
-        }, {
-            name: 'Babis Karypidis',
-            valueField: 'player_2',
-            color: '#75caeb'
-        }, {
-            name: 'Hakan Tuncer',
-            valueField: 'player_3',
-            color: '#ff851b'
-        }, {
-            name: 'Ard Bisschop',
-            valueField: 'player_4',
-            color: '#ff4136'
-        }]
-    });
+        $("#rankingChart").dxChart({
+            title: {
+                text: 'Current top 5 (last update: 12 May)'
+            },
+            legend: {
+                horizontalAlignment: 'center',
+                verticalAlignment: 'bottom'
+            },
+            tooltip: {
+                enabled: true
+            },
+            dataSource: data.rankings,
+
+            commonSeriesSettings: {
+                argumentField: 'date'
+            },
+            series: data.users
+        });
+    }
 
     $("#unicefChart").dxChart({
         tooltip: {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
+using WorldCup.Models.Rankings;
 
 namespace WorldCup.Controllers
 {
@@ -11,7 +11,37 @@ namespace WorldCup.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = from user in Context.Users.ToList()
+                let matchPoints = user.MatchPoints.Sum(m => m.Points)
+                let longRunningPoints = user.LongRunningPoints != null
+                    ? (user.LongRunningPoints.SecondStagePoints +
+                       user.LongRunningPoints.QuarterFinalPoints +
+                       user.LongRunningPoints.SemiFinalPoints +
+                       user.LongRunningPoints.SmallFinalPoints +
+                       user.LongRunningPoints.FinalPoints +
+                       user.LongRunningPoints.WinnerPoints)
+                    : 0
+                let totalPoints = matchPoints + longRunningPoints
+                orderby totalPoints descending
+                select  new UserRankingViewModel
+                {
+                    Name = user.FirstName + " " + user.LastName,
+                    MatchPoints = matchPoints,
+                    LongRunningPoints = longRunningPoints
+                };
+
+            model =
+                model.Select(
+                    (m, i) =>
+                        new UserRankingViewModel
+                        {
+                            Postion = i + 1,
+                            Name = m.Name,
+                            MatchPoints = m.MatchPoints,
+                            LongRunningPoints = m.LongRunningPoints
+                        });
+
+            return View(model.ToList().AsQueryable());
         }
 
         public JsonResult TopTenInfo()

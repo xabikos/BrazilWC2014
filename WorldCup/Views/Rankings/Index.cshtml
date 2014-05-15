@@ -1,4 +1,8 @@
-﻿@{
+﻿@using GridMvc.Html
+
+@model IQueryable<WorldCup.Models.Rankings.UserRankingViewModel>
+
+@{
     ViewBag.Title = "Rankings";
 }
 
@@ -11,14 +15,18 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-6">
+    
         <h2>Current ranking</h2>
         <p>Graphic with current rankings</p>
-    </div>
-    <div class="col-lg-6">
-        <h2>Here is the list with rankings</h2>
-        <p>Table with rankings</p>
-    </div>
+    @Html.Grid(Model).Named("rankings").Columns(columns =>
+    {
+        columns.Add(ur => ur.Postion).Titled("#").SetWidth(10);
+        columns.Add(ur => ur.Name).Titled("Name").SetWidth(45);
+        columns.Add(ur => ur.MatchPoints).Titled("Matches Points").SetWidth(15);
+        columns.Add(ur => ur.LongRunningPoints).Titled("Long running Points").SetWidth(15);
+        columns.Add(ur => ur.TotalPoints).Titled("Total Points").SetWidth(15);        
+    }).Sortable().WithPaging(10).Filterable()
+    
 </div>
 
 <script type="text/javascript">

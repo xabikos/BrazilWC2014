@@ -27,42 +27,15 @@
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
         Check the <a href="/Rankings">rankings</a> for a complete overview.
         <h1>Your latest results</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th class="full-width">Match</th>
-                    <th class="table-points">Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>14 June</td>
-                    <td class="full-width">Côte d'Ivoire vs Japan</td>
-                    <td class="table-points">1</td>
-                </tr>
-                <tr>
-                    <td>13 June</td>
-                    <td class="full-width">Mexico vs Cameroon</td>
-                    <td class="table-points">2</td>
-                </tr>
-                <tr>
-                    <td>13 June</td>
-                    <td class="full-width">Spain vs Netherlands</td>
-                    <td class="table-points">1</td>
-                </tr>
-                <tr>
-                    <td class="nowrap">12 June</td>
-                    <td class="full-width">Chile vs Australia</td>
-                    <td class="table-points">10</td>
-                </tr>
-                <tr>
-                    <td>12 June</td>
-                    <td class="full-width">Brazil vs Croatia</td>
-                    <td class="table-points">3</td>
-                </tr>
-            </tbody>
-        </table>
+        <p>Graphic with current rankings</p>
+
+        @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
+        {
+            columns.Add(ur => ur.Date).Titled("Date").SetWidth(30);
+            columns.Add(ur => ur.Match).Titled("Match").SetWidth(60);
+            columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
+        })
+
         Check your <a href="/Results">personal page</a> for a more detailed view.
     </div>
     <div class="col-md-6">
@@ -132,12 +105,12 @@
                 .SetWidth(25);
         })
         <p>See the whole <a href="/Predictions">match schedule</a> and start predicting.</p>
-        
+
         <h2>Money raised</h2>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
         See how you can make a <a href="/Contributions">contribution</a> to UNICEF and see <a href="http://www.unicef.com">where your money goes to</a>.
     </div>
-</div> 
+</div>
 
 <script type="text/javascript">
 

@@ -141,28 +141,20 @@
 
 <script type="text/javascript">
 
-    var currentRankingSource = [
-    {
-        date: "2 June",
-        player_0: 10, player_1: 8, player_2: 11, player_3: 12, player_4: 6
-    },
-    {
-        date: "3 June",
-        player_0: 15, player_1: 8, player_2: 15, player_3: 16, player_4: 9
-    },
-    {
-        date: "4 June",
-        player_0: 18, player_1: 20, player_2: 21, player_3: 18, player_4: 14
-    },
-    {
-        date: "5 June",
-        player_0: 25, player_1: 21, player_2: 21, player_3: 20, player_4: 21
-    },
-    {
-        date: "6 June",
-        player_0: 26, player_1: 24, player_2: 29, player_3: 25, player_4: 24
-    }
-    ];
+    $(function () {
+        $.ajax({
+            url: '/Rankings/TopUsersInfo?numberOfUsers=5',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                updateTopFiveChart(data);
+            },
+            error: function (data) {
+                toastr.error(data.statusText);
+            }
+        });
+    });
 
     var currentRaisedMoneySource = [
     {
@@ -187,44 +179,27 @@
     }
     ];
 
-    $("#rankingChart").dxChart({
-        title: {
-            text: 'Current top 5 (last update: 12 May)'
-        },
-        legend: {
-            horizontalAlignment: 'center',
-            verticalAlignment: 'bottom'
-        },
-        tooltip: {
-            enabled: true
-        },
-        dataSource: currentRankingSource,
+    var updateTopFiveChart = function (data) {
 
-        commonSeriesSettings: {
-            argumentField: 'date'
-        },
-        series: [{
-            name: 'Frank Scholten',
-            valueField: 'player_0',
-            color: '#158cba'
-        }, {
-            name: 'Neil Boyd',
-            valueField: 'player_1',
-            color: '#28b62c'
-        }, {
-            name: 'Babis Karypidis',
-            valueField: 'player_2',
-            color: '#75caeb'
-        }, {
-            name: 'Hakan Tuncer',
-            valueField: 'player_3',
-            color: '#ff851b'
-        }, {
-            name: 'Ard Bisschop',
-            valueField: 'player_4',
-            color: '#ff4136'
-        }]
-    });
+        $("#rankingChart").dxChart({
+            title: {
+                text: 'Current top 5 (last update: 12 May)'
+            },
+            legend: {
+                horizontalAlignment: 'center',
+                verticalAlignment: 'bottom'
+            },
+            tooltip: {
+                enabled: true
+            },
+            dataSource: data.rankings,
+
+            commonSeriesSettings: {
+                argumentField: 'date'
+            },
+            series: data.users
+        });
+    }
 
     $("#unicefChart").dxChart({
         tooltip: {

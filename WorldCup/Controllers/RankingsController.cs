@@ -44,7 +44,7 @@ namespace WorldCup.Controllers
             return View(model.ToList().AsQueryable());
         }
 
-        public JsonResult TopTenInfo()
+        public JsonResult TopUsersInfo(int numberOfUsers)
         {
             var topTenUsers = (from user in Context.Users
                 let userPoints = user.MatchPoints.Sum(m => m.Points)
@@ -56,7 +56,7 @@ namespace WorldCup.Controllers
                                        user.LongRunningPoints.WinnerPoints
                                      )
                 orderby userPoints descending
-                select user).Take(10).ToList();
+                select user).Take(numberOfUsers).ToList();
 
             var usersInfoPerDate = new List<Dictionary<string, object>>();
 

@@ -74,7 +74,7 @@
         //updateToptenChart(dummyData);
 
         $.ajax({
-            url: '/Rankings/TopTenInfo',
+            url: '/Rankings/TopUsersInfo?numberOfUsers=10',
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',

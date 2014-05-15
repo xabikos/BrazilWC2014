@@ -28,6 +28,11 @@ textarea {
     color: red;
 }
 
+/* Home page */
+#remaining-days {
+    float: right;
+}
+
 /* Form formatting */
 .form-label {
     display: block;

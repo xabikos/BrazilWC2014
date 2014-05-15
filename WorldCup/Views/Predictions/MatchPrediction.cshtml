@@ -5,23 +5,24 @@
     ViewBag.Title = string.Format("{0} vs {1} predictions", Model.Match.HomeTeam.Name, Model.Match.AwayTeam.Name);
 }
 
-<h2>Match prediction</h2>
-
 <div class="row">
     <div class="col-md-6">
-        <p><strong>@Html.Partial("_FlaggedTeam", new[] { Model.Match.HomeTeam.Name, Model.Match.HomeTeam.Code })</strong> vs <strong>@Html.Partial("_FlaggedTeam", new[] { Model.Match.AwayTeam.Name, Model.Match.AwayTeam.Code })</strong></p>
+        <h2>
+            Match prediction<br>
+            <small>@Model.Match.HomeTeam.Name vs @Model.Match.AwayTeam.Name <span class="badge">@Model.Match.Stage</span></small>
+        </h2>
     </div>
-    <div class="col-md-6">
-        <p class="text-right">
-            @Model.Match.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("dd/MM/yyyy HH:mm")<br />
-            @Html.LabelFor(m => m.Match.Stage): @Model.Match.Stage
-        </p>
+    <div class="col-md-6 text-right">
+        <h4>
+            <span id="match-date"></span><br />
+            <small>your local time</small>
+        </h4>
     </div>
 </div>
 
 <hr class="divider" />
 
-@using(Html.BeginForm("MatchPrediction", "Predictions", FormMethod.Post, new {role = "form"}))
+@using (Html.BeginForm("MatchPrediction", "Predictions", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
     @Html.HiddenFor(m => m.MatchPredictionId)
     @Html.HiddenFor(m => m.MatchId)
@@ -29,54 +30,48 @@
     <div class="row">
 
         <div class="col-xs-6 col-md-4"></div>
-
-        <div class="col-xs-3 col-md-2">
-            @Model.Match.HomeTeam.Code
+        <div class="col-xs-3 col-md-2 text-center">
+            @Html.Partial("_TeamFlag", new[] { Model.Match.HomeTeam.Code, Model.Match.HomeTeam.Name })
         </div>
-
         <div class="col-xs-1 visible-lg"></div>
-
-        <div class="col-xs-3 col-md-2">
-            @Model.Match.AwayTeam.Code
+        <div class="col-xs-3 col-md-2 text-center">
+            @Html.Partial("_TeamFlag", new[] { Model.Match.AwayTeam.Code, Model.Match.AwayTeam.Name })
         </div>
-
         <div class="visible-lg col-md-3"></div>
     </div>
     
     <div class="row">
 
-        <div class="col-xs-6 col-md-4"><label class="text-right form-label">Half time score</label></div>
+        <div class="form-group">
 
-        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-6 col-md-4 text-right"><label class="control-label">Half time score</label></div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="visible-lg col-md-1 text-center"><label class="text-center">-</label></div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)</div>
 
-        <div class="visible-lg col-md-1"><label class="text-center form-label">-</label></div>
-
-        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
-
-        <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)</div>
+        </div>
 
      </div>
     
     <div class="row">
 
+        <div class="form-group">
 
-        <div class="col-xs-6 col-md-4"><label class="text-right form-label">Full time score</label></div>
+            <div class="col-xs-6 col-md-4 text-right"><label class="control-label">Full time score</label></div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="visible-lg col-md-1 text-center"><label class="control-label">-</label></div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</div>
 
-        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
-
-        <div class="visible-lg col-md-1"><label class="text-center form-label">-</label></div>
-
-        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
-
-        <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</div>
-
+        </div>
 
     </div>
     
     <div class="row">
 
-        <div class="col-xs-6 col-md-4">
-            @Html.LabelFor(m => m.Result, "Winner*", new { @class = "text-right form-label" })
+        <div class="col-xs-6 col-md-4 text-right">
+            @Html.LabelFor(m => m.Result, "Winner", new { @class = "control-label" })
         </div>
 
         <div class="col-xs-6 col-md-5" id="result-buttons">
@@ -101,85 +96,97 @@
     
     <div class="row">
 
-        <div class="col-xs-6 col-md-4">
-            @Html.LabelFor(m => m.YellowCards, "Yellow cards*", new { @class = "text-right form-label" })
+        <div class="form-group">
+
+            <div class="col-xs-6 col-md-4 text-right">
+                @Html.LabelFor(m => m.YellowCards, "Total yellow cards", new { @class = "control-label" })
+            </div>
+            <div class="visible-lg col-md-2"></div>
+            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.YellowCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="visible-lg col-md-2"></div>
+            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.YellowCards)</div>
+
         </div>
 
-        <div class="visible-lg col-md-2"></div>
-
-        <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.YellowCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
-
-        <div class="visible-lg col-md-2"></div>
-
-        <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.YellowCards)</div>
-            
     </div>
     
     <div class="row">
 
-        <div class="col-xs-6 col-md-4">
-            @Html.LabelFor(m => m.RedCards, "Red cards*", new { @class = "text-right form-label" })
+        <div class="form-group">
+
+            <div class="col-xs-6 col-md-4 text-right">
+                @Html.LabelFor(m => m.RedCards, "Total red cards", new { @class = "control-label" })
+            </div>
+            <div class="visible-lg col-md-2"></div>
+            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.RedCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="visible-lg col-md-2"></div>
+            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.RedCards)</div>
+
         </div>
 
-        <div class="visible-lg col-md-2"></div>
-
-        <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.RedCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
-
-        <div class="visible-lg col-md-2"></div>
-
-        <div class="col-xs-12 col-md-3" >@Html.ValidationMessageFor(m => m.RedCards)</div>
-            
     </div>
     
-    <hr class="divider" />
-
-        <div class="row">
-        <div class='col-md-12'>
-            <div class="form-group">
-                <span class="help-block">* = after extra time or penalties</span>
-            </div>
-        </div>
-    </div>
-
+    <p></p>
+    
     <div class="btn-group btn-group-justified visible-xs visible-sm">
         <div class="btn-group">
             <button type="submit" class="btn btn-success">Save</button>
         </div>
     </div>
 
-    <div class="hidden-xs hidden-sm">
-        <button type="submit" class="btn btn-success " @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
+    <div class="hidden-xs hidden-sm text-center">
+        <button type="submit" class="btn btn-success btn-lg" @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
     </div>
 }
 &nbsp;
-<div class="btn-group btn-group-justified">
-    @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
-    @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
-    @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+<div class="visible-xs visible-sm">
+    <div class="btn-group btn-group-justified">
+        @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+        @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
+        @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+    </div>
+</div>
+<div class="hidden-xs hidden-sm">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="btn-group btn-group-justified">
+                @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+                @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
+                @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+            </div>
+        </div>
+    </div>
 </div>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    $(function () {
+        $(function () {
 
-        // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.
+            // Match date
 
-        var result = $("#Result");
+            var matchDate = "@Model.Match.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("yyyy-MM-dd HH:mm")";
 
-        if (result) {
-            var buttonGroup = $('<div class="btn-group btn-group-justified" data-toggle="buttons"></div>');
+            $("#match-date").text(moment(matchDate).format("dddd, MMMM Do YYYY, HH:mm"));
 
-            $.map($("option", result), function (element) {
-                var button = $('<label class="btn btn-default"><input type="radio" name="' + result.attr("name") + '" value="' + element.value + '">' + element.text + '</label>').appendTo(buttonGroup);
 
-                if (element.selected) {
-                    button.addClass("active");
-                    $("input", button).prop("checked", true);
-                }
-            });
+            // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.
 
-            buttonGroup.appendTo("#result-buttons");
-            result.remove();
-        }
-    });
-</script>
+            var result = $("#Result");
+
+            if (result) {
+                var buttonGroup = $('<div class="btn-group btn-group-justified" data-toggle="buttons"></div>');
+
+                $.map($("option", result), function (element) {
+                    var button = $('<label class="btn btn-default"><input type="radio" name="' + result.attr("name") + '" value="' + element.value + '">' + element.text + '</label>').appendTo(buttonGroup);
+
+                    if (element.selected) {
+                        button.addClass("active");
+                        $("input", button).prop("checked", true);
+                    }
+                });
+
+                buttonGroup.appendTo("#result-buttons");
+                result.remove();
+            }
+        });
+    </script>

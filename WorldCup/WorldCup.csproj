@@ -320,6 +320,7 @@
     <Content Include="Content\images\flags\sui.png" />
     <Content Include="Content\images\flags\uru.png" />
     <Content Include="Content\images\flags\usa.png" />
+    <Content Include="Content\images\pool.logo.png" />
     <Content Include="Content\images\world-cup.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -795,6 +796,7 @@
     <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
     <Content Include="Views\AdminRankins\Index.cshtml" />
     <Content Include="Views\AdminLongRunningResults\LongRunningResults.cshtml" />
+    <Content Include="Views\Predictions\_TeamFlag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

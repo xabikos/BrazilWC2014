@@ -6,7 +6,9 @@
     <h1>Rankings</h1>
 </div>
 
-<div id="currentRankingChart" style="max-width:1140px;height: 500px;"></div>
+<div id="currentRankingChart" style="max-width:1140px;height: 450px;">
+    
+</div>
 
 <div class="row">
     <div class="col-lg-6">
@@ -44,64 +46,60 @@
     }
     ];
 
-    $("#currentRankingChart").dxChart({
-        title: {
-            text: 'Current top 10 (last update: 12 May)'
-        },
-        legend: {
-            horizontalAlignment: 'center',
-            verticalAlignment: 'bottom'
-        },
-        tooltip: {
-            enabled: true
-        },
-        dataSource: currentRankingSource,
+    var dummyUsers = [
+        { name: 'Frank Scholten', valueField: 'player_0', color: '#158cba' }, 
+        { name: 'Neil Boyd', valueField: 'player_1', color: '#28b62c' }, 
+        { name: 'Babis Karypidis', valueField: 'player_2', color: '#75caeb'}, 
+        { name: 'Hakan Tuncer', valueField: 'player_3', color: '#ff851b' }, 
+        { name: 'Ard Bisschop', valueField: 'player_4', color: '#ff4136' }, 
+        { name: 'Martijn van Emmen', valueField: 'player_5', color: '#158cba' },
+        { name: 'Filip de Bruin', valueField: 'player_6', color: '#28b62c' }, 
+        { name: 'Björn Colthof', valueField: 'player_7', color: '#75caeb' }, 
+        { name: 'Martin Rijks', valueField: 'player_8', color: '#ff851b' }, 
+        { name: 'Ifran Metin', valueField: 'player_9', color: '#ff4136' }
+    ];
 
-        commonSeriesSettings: {
-            argumentField: 'date'
-        },
-        series: [{
-            name: 'Frank Scholten',
-            valueField: 'player_0',
-            color: '#158cba'
-        }, {
-            name: 'Neil Boyd',
-            valueField: 'player_1',
-            color: '#28b62c'
-        }, {
-            name: 'Babis Karypidis',
-            valueField: 'player_2',
-            color: '#75caeb'
-        }, {
-            name: 'Hakan Tuncer',
-            valueField: 'player_3',
-            color: '#ff851b'
-        }, {
-            name: 'Ard Bisschop',
-            valueField: 'player_4',
-            color: '#ff4136'
-        }, {
-            name: 'Martijn van Emmen',
-            valueField: 'player_5',
-            color: '#158cba'
-        }, {
-            name: 'Filip de Bruin',
-            valueField: 'player_6',
-            color: '#28b62c'
-        }, {
-            name: 'Björn Colthof',
-            valueField: 'player_7',
-            color: '#75caeb'
-        }, {
-            name: 'Martin Rijks',
-            valueField: 'player_8',
-            color: '#ff851b'
-        }, {
-            name: 'Ifran Metin',
-            valueField: 'player_9',
-            color: '#ff4136'
-        }]
+    var dummyData = { rankings: currentRankingSource, users: dummyUsers };
+
+    $(function () {
+
+        //updateToptenChart(dummyData);
+
+        $.ajax({
+            url: '/Rankings/TopTenInfo',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                updateToptenChart(data);
+            },
+            error: function (data) {
+                toastr.error(data.statusText);
+            }
+        });
     });
+
+    var updateToptenChart =  function(data) {
+
+        $("#currentRankingChart").dxChart({
+            title: {
+                text: 'Current top 10 (last update: 12 May)'
+            },
+            legend: {
+                horizontalAlignment: 'center',
+                verticalAlignment: 'bottom'
+            },
+            tooltip: {
+                enabled: true
+            },
+            dataSource: data.rankings,
+
+            commonSeriesSettings: {
+                argumentField: 'date'
+            },
+            series: data.users
+        });
+    }
 
     $("#unicefChart").dxChart({
         tooltip: {

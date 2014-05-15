@@ -36,6 +36,8 @@ namespace WorldCup.Models.Identity
             modelBuilder.Configurations.Add(new MatchPointsConfiguration());
             modelBuilder.Configurations.Add(new LongRunningPointsConfiguration());
 
+            modelBuilder.Entity<ApplicationUser>().Ignore(au => au.FullName);
+
             base.OnModelCreating(modelBuilder);
         }
 

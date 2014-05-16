@@ -163,7 +163,7 @@
         $(function () {
 
             // Match date
-            $("#match-date").text(moment(moment.utc("@Model.Match.Date", "D-M-YYYY HH:mm:ss")).local().format("dddd, MMMM Do YYYY [at] HH:mm"));
+            $("#match-date").text(moment(moment.utc("@Model.Match.Date", "M/D/YYYY h:mm:ss A")).local().format("dddd, MMMM Do YYYY [at] HH:mm"));
 
 
             // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.

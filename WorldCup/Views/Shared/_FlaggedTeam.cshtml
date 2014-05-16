@@ -1,3 +1,5 @@
 ﻿@model string[]
-@{ var flagUrl = string.Format("/Content/images/flags/small.{0}.png", Model[1]); }
-<span class="flagRow"><img height="22" width="34" alt="@Model[0]" src="@flagUrl"/>@Model[0]</span>
+@{
+    var flagClass = string.Format("Content-images-flags-small-{0}", Model[1].ToLower());
+}
+<div class="flagRow @flagClass">@Model[0]</div>

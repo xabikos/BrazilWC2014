@@ -20,8 +20,9 @@ textarea {
     color: red;
 }
 
-.flagRow img {
+.flagRow {
     margin: .5em;
+    padding-left: 40px;
 }
 
 .field-validation-error {

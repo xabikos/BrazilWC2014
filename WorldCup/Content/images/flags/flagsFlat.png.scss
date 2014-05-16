@@ -1,0 +1,387 @@
+﻿/*
+@import this file directly into your existing Scss files to use these mixins
+*/
+@mixin sprite-Content-images-flags-alg() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 0;
+}
+@mixin sprite-Content-images-flags-arg() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -46px;
+}
+@mixin sprite-Content-images-flags-aus() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -92px;
+}
+@mixin sprite-Content-images-flags-bel() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -138px;
+}
+@mixin sprite-Content-images-flags-bih() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -184px;
+}
+@mixin sprite-Content-images-flags-bra() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -230px;
+}
+@mixin sprite-Content-images-flags-chi() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -276px;
+}
+@mixin sprite-Content-images-flags-civ() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -322px;
+}
+@mixin sprite-Content-images-flags-cmr() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -368px;
+}
+@mixin sprite-Content-images-flags-col() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -414px;
+}
+@mixin sprite-Content-images-flags-crc() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -460px;
+}
+@mixin sprite-Content-images-flags-cro() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -506px;
+}
+@mixin sprite-Content-images-flags-ecu() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -552px;
+}
+@mixin sprite-Content-images-flags-eng() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -598px;
+}
+@mixin sprite-Content-images-flags-esp() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -644px;
+}
+@mixin sprite-Content-images-flags-fra() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -690px;
+}
+@mixin sprite-Content-images-flags-ger() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -736px;
+}
+@mixin sprite-Content-images-flags-gha() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -782px;
+}
+@mixin sprite-Content-images-flags-gre() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -828px;
+}
+@mixin sprite-Content-images-flags-hon() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -874px;
+}
+@mixin sprite-Content-images-flags-irn() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -920px;
+}
+@mixin sprite-Content-images-flags-ita() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -966px;
+}
+@mixin sprite-Content-images-flags-jpn() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1012px;
+}
+@mixin sprite-Content-images-flags-kor() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1058px;
+}
+@mixin sprite-Content-images-flags-mex() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1080px;
+}
+@mixin sprite-Content-images-flags-ned() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1126px;
+}
+@mixin sprite-Content-images-flags-nga() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1172px;
+}
+@mixin sprite-Content-images-flags-por() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1218px;
+}
+@mixin sprite-Content-images-flags-rus() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1264px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1286px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1308px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1330px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1352px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1374px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1396px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1418px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1440px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1462px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1484px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1506px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1528px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1550px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1572px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1594px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1616px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1638px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1660px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1682px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1704px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1726px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1748px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1770px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1792px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1814px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1836px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1858px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1880px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1902px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1924px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1946px;
+}
+@mixin sprite-Content-images-flags-small() {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1968px;
+}
+@mixin sprite-Content-images-flags-sui() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1990px;
+}
+@mixin sprite-Content-images-flags-uru() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -2036px;
+}
+@mixin sprite-Content-images-flags-usa() {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -2082px;
+}

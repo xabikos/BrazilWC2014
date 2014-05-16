@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sprite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://vswebessentials.com/schemas/v1/sprite.xsd">
+  <settings>
+    <!--Determines if the sprite image should be automatically optimized after creation/update.-->
+    <optimize>true</optimize>
+    <!--Determines the orientation of images to form this sprite. The value must be vertical or horizontal.-->
+    <orientation>vertical</orientation>
+    <!--File extension of sprite image.-->
+    <outputType>png</outputType>
+    <!--Determin whether to generate/re-generate this sprite on building the solution.-->
+    <runOnBuild>false</runOnBuild>
+    <!--Use full path to generate unique class or mixin name in CSS, LESS and SASS files. Consider disabling this if you want class names to be filename only.-->
+    <fullPathForIdentifierName>true</fullPathForIdentifierName>
+    <!--Use absolute path in the generated CSS-like files. By default, the URLs are relative to sprite image file (and the location of CSS, LESS and SCSS).-->
+    <useAbsoluteUrl>false</useAbsoluteUrl>
+    <!--Specifies a custom subfolder to save CSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForCss />
+    <!--Specifies a custom subfolder to save LESS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForLess />
+    <!--Specifies a custom subfolder to save SCSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForScss />
+  </settings>
+  <!--The order of the <file> elements determines the order of the images in the sprite.-->
+  <files>
+    <file>/Content/images/flags/alg.png</file>
+    <file>/Content/images/flags/arg.png</file>
+    <file>/Content/images/flags/aus.png</file>
+    <file>/Content/images/flags/bel.png</file>
+    <file>/Content/images/flags/bih.png</file>
+    <file>/Content/images/flags/bra.png</file>
+    <file>/Content/images/flags/chi.png</file>
+    <file>/Content/images/flags/civ.png</file>
+    <file>/Content/images/flags/cmr.png</file>
+    <file>/Content/images/flags/col.png</file>
+    <file>/Content/images/flags/crc.png</file>
+    <file>/Content/images/flags/cro.png</file>
+    <file>/Content/images/flags/ecu.png</file>
+    <file>/Content/images/flags/eng.png</file>
+    <file>/Content/images/flags/esp.png</file>
+    <file>/Content/images/flags/fra.png</file>
+    <file>/Content/images/flags/ger.png</file>
+    <file>/Content/images/flags/gha.png</file>
+    <file>/Content/images/flags/gre.png</file>
+    <file>/Content/images/flags/hon.png</file>
+    <file>/Content/images/flags/irn.png</file>
+    <file>/Content/images/flags/ita.png</file>
+    <file>/Content/images/flags/jpn.png</file>
+    <file>/Content/images/flags/kor.png</file>
+    <file>/Content/images/flags/mex.png</file>
+    <file>/Content/images/flags/ned.png</file>
+    <file>/Content/images/flags/nga.png</file>
+    <file>/Content/images/flags/por.png</file>
+    <file>/Content/images/flags/rus.png</file>
+    <file>/Content/images/flags/small.alg.png</file>
+    <file>/Content/images/flags/small.arg.png</file>
+    <file>/Content/images/flags/small.aus.png</file>
+    <file>/Content/images/flags/small.bel.png</file>
+    <file>/Content/images/flags/small.bih.png</file>
+    <file>/Content/images/flags/small.bra.png</file>
+    <file>/Content/images/flags/small.chi.png</file>
+    <file>/Content/images/flags/small.civ.png</file>
+    <file>/Content/images/flags/small.cmr.png</file>
+    <file>/Content/images/flags/small.col.png</file>
+    <file>/Content/images/flags/small.crc.png</file>
+    <file>/Content/images/flags/small.cro.png</file>
+    <file>/Content/images/flags/small.ecu.png</file>
+    <file>/Content/images/flags/small.eng.png</file>
+    <file>/Content/images/flags/small.esp.png</file>
+    <file>/Content/images/flags/small.fra.png</file>
+    <file>/Content/images/flags/small.ger.png</file>
+    <file>/Content/images/flags/small.gha.png</file>
+    <file>/Content/images/flags/small.gre.png</file>
+    <file>/Content/images/flags/small.hon.png</file>
+    <file>/Content/images/flags/small.irn.png</file>
+    <file>/Content/images/flags/small.ita.png</file>
+    <file>/Content/images/flags/small.jpn.png</file>
+    <file>/Content/images/flags/small.kor.png</file>
+    <file>/Content/images/flags/small.mex.png</file>
+    <file>/Content/images/flags/small.ned.png</file>
+    <file>/Content/images/flags/small.nga.png</file>
+    <file>/Content/images/flags/small.por.png</file>
+    <file>/Content/images/flags/small.rus.png</file>
+    <file>/Content/images/flags/small.sui.png</file>
+    <file>/Content/images/flags/small.uru.png</file>
+    <file>/Content/images/flags/small.usa.png</file>
+    <file>/Content/images/flags/sui.png</file>
+    <file>/Content/images/flags/uru.png</file>
+    <file>/Content/images/flags/usa.png</file>
+  </files>
+</sprite>

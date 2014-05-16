@@ -1,0 +1,452 @@
+{
+  "images": [
+    {
+      "name": "/Content/images/flags/alg.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 0
+    },
+    {
+      "name": "/Content/images/flags/arg.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 46
+    },
+    {
+      "name": "/Content/images/flags/aus.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 92
+    },
+    {
+      "name": "/Content/images/flags/bel.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 138
+    },
+    {
+      "name": "/Content/images/flags/bih.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 184
+    },
+    {
+      "name": "/Content/images/flags/bra.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 230
+    },
+    {
+      "name": "/Content/images/flags/chi.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 276
+    },
+    {
+      "name": "/Content/images/flags/civ.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 322
+    },
+    {
+      "name": "/Content/images/flags/cmr.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 368
+    },
+    {
+      "name": "/Content/images/flags/col.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 414
+    },
+    {
+      "name": "/Content/images/flags/crc.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 460
+    },
+    {
+      "name": "/Content/images/flags/cro.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 506
+    },
+    {
+      "name": "/Content/images/flags/ecu.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 552
+    },
+    {
+      "name": "/Content/images/flags/eng.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 598
+    },
+    {
+      "name": "/Content/images/flags/esp.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 644
+    },
+    {
+      "name": "/Content/images/flags/fra.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 690
+    },
+    {
+      "name": "/Content/images/flags/ger.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 736
+    },
+    {
+      "name": "/Content/images/flags/gha.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 782
+    },
+    {
+      "name": "/Content/images/flags/gre.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 828
+    },
+    {
+      "name": "/Content/images/flags/hon.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 874
+    },
+    {
+      "name": "/Content/images/flags/irn.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 920
+    },
+    {
+      "name": "/Content/images/flags/ita.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 966
+    },
+    {
+      "name": "/Content/images/flags/jpn.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 1012
+    },
+    {
+      "name": "/Content/images/flags/kor.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1058
+    },
+    {
+      "name": "/Content/images/flags/mex.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 1080
+    },
+    {
+      "name": "/Content/images/flags/ned.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 1126
+    },
+    {
+      "name": "/Content/images/flags/nga.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 1172
+    },
+    {
+      "name": "/Content/images/flags/por.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 1218
+    },
+    {
+      "name": "/Content/images/flags/rus.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1264
+    },
+    {
+      "name": "/Content/images/flags/small.alg.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1286
+    },
+    {
+      "name": "/Content/images/flags/small.arg.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1308
+    },
+    {
+      "name": "/Content/images/flags/small.aus.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1330
+    },
+    {
+      "name": "/Content/images/flags/small.bel.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1352
+    },
+    {
+      "name": "/Content/images/flags/small.bih.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1374
+    },
+    {
+      "name": "/Content/images/flags/small.bra.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1396
+    },
+    {
+      "name": "/Content/images/flags/small.chi.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1418
+    },
+    {
+      "name": "/Content/images/flags/small.civ.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1440
+    },
+    {
+      "name": "/Content/images/flags/small.cmr.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1462
+    },
+    {
+      "name": "/Content/images/flags/small.col.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1484
+    },
+    {
+      "name": "/Content/images/flags/small.crc.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1506
+    },
+    {
+      "name": "/Content/images/flags/small.cro.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1528
+    },
+    {
+      "name": "/Content/images/flags/small.ecu.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1550
+    },
+    {
+      "name": "/Content/images/flags/small.eng.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1572
+    },
+    {
+      "name": "/Content/images/flags/small.esp.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1594
+    },
+    {
+      "name": "/Content/images/flags/small.fra.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1616
+    },
+    {
+      "name": "/Content/images/flags/small.ger.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1638
+    },
+    {
+      "name": "/Content/images/flags/small.gha.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1660
+    },
+    {
+      "name": "/Content/images/flags/small.gre.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1682
+    },
+    {
+      "name": "/Content/images/flags/small.hon.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1704
+    },
+    {
+      "name": "/Content/images/flags/small.irn.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1726
+    },
+    {
+      "name": "/Content/images/flags/small.ita.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1748
+    },
+    {
+      "name": "/Content/images/flags/small.jpn.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1770
+    },
+    {
+      "name": "/Content/images/flags/small.kor.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1792
+    },
+    {
+      "name": "/Content/images/flags/small.mex.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1814
+    },
+    {
+      "name": "/Content/images/flags/small.ned.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1836
+    },
+    {
+      "name": "/Content/images/flags/small.nga.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1858
+    },
+    {
+      "name": "/Content/images/flags/small.por.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1880
+    },
+    {
+      "name": "/Content/images/flags/small.rus.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1902
+    },
+    {
+      "name": "/Content/images/flags/small.sui.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1924
+    },
+    {
+      "name": "/Content/images/flags/small.uru.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1946
+    },
+    {
+      "name": "/Content/images/flags/small.usa.png",
+      "width": 34,
+      "height": 22,
+      "offsetX": 0,
+      "offsetY": 1968
+    },
+    {
+      "name": "/Content/images/flags/sui.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 1990
+    },
+    {
+      "name": "/Content/images/flags/uru.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 2036
+    },
+    {
+      "name": "/Content/images/flags/usa.png",
+      "width": 70,
+      "height": 46,
+      "offsetX": 0,
+      "offsetY": 2082
+    }
+  ]
+}

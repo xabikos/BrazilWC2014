@@ -272,6 +272,12 @@
     <Content Include="Content\images\flags\ecu.png" />
     <Content Include="Content\images\flags\eng.png" />
     <Content Include="Content\images\flags\esp.png" />
+    <Content Include="Content\images\flags\flagsFlat.png">
+      <DependentUpon>flagsFlat.sprite</DependentUpon>
+    </Content>
+    <Content Include="Content\images\flags\flagsFlat.png.css">
+      <DependentUpon>flagsFlat.png</DependentUpon>
+    </Content>
     <Content Include="Content\images\flags\fra.png" />
     <Content Include="Content\images\flags\ger.png" />
     <Content Include="Content\images\flags\gha.png" />
@@ -344,6 +350,16 @@
     <Content Include="Properties\ligershark.webjobs.ext.targets" />
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
+    <Content Include="Content\images\flags\flagsFlat.sprite" />
+    <Content Include="Content\images\flags\flagsFlat.png.map">
+      <DependentUpon>flagsFlat.png</DependentUpon>
+    </Content>
+    <Content Include="Content\images\flags\flagsFlat.png.less">
+      <DependentUpon>flagsFlat.png</DependentUpon>
+    </Content>
+    <Content Include="Content\images\flags\flagsFlat.png.scss">
+      <DependentUpon>flagsFlat.png</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

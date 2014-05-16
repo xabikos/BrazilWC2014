@@ -1,0 +1,387 @@
+﻿/*
+This is an example of how to use the image sprite in your own CSS files
+*/
+.Content-images-flags-alg {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 0;
+}
+.Content-images-flags-arg {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -46px;
+}
+.Content-images-flags-aus {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -92px;
+}
+.Content-images-flags-bel {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -138px;
+}
+.Content-images-flags-bih {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -184px;
+}
+.Content-images-flags-bra {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -230px;
+}
+.Content-images-flags-chi {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -276px;
+}
+.Content-images-flags-civ {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -322px;
+}
+.Content-images-flags-cmr {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -368px;
+}
+.Content-images-flags-col {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -414px;
+}
+.Content-images-flags-crc {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -460px;
+}
+.Content-images-flags-cro {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -506px;
+}
+.Content-images-flags-ecu {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -552px;
+}
+.Content-images-flags-eng {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -598px;
+}
+.Content-images-flags-esp {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -644px;
+}
+.Content-images-flags-fra {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -690px;
+}
+.Content-images-flags-ger {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -736px;
+}
+.Content-images-flags-gha {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -782px;
+}
+.Content-images-flags-gre {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -828px;
+}
+.Content-images-flags-hon {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -874px;
+}
+.Content-images-flags-irn {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -920px;
+}
+.Content-images-flags-ita {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -966px;
+}
+.Content-images-flags-jpn {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1012px;
+}
+.Content-images-flags-kor {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1058px;
+}
+.Content-images-flags-mex {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1080px;
+}
+.Content-images-flags-ned {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1126px;
+}
+.Content-images-flags-nga {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1172px;
+}
+.Content-images-flags-por {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1218px;
+}
+.Content-images-flags-rus {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1264px;
+}
+.Content-images-flags-small-alg {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1286px;
+}
+.Content-images-flags-small-arg {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1308px;
+}
+.Content-images-flags-small-aus {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1330px;
+}
+.Content-images-flags-small-bel {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1352px;
+}
+.Content-images-flags-small-bih {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1374px;
+}
+.Content-images-flags-small-bra {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1396px;
+}
+.Content-images-flags-small-chi {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1418px;
+}
+.Content-images-flags-small-civ {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1440px;
+}
+.Content-images-flags-small-cmr {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1462px;
+}
+.Content-images-flags-small-col {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1484px;
+}
+.Content-images-flags-small-crc {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1506px;
+}
+.Content-images-flags-small-cro {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1528px;
+}
+.Content-images-flags-small-ecu {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1550px;
+}
+.Content-images-flags-small-eng {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1572px;
+}
+.Content-images-flags-small-esp {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1594px;
+}
+.Content-images-flags-small-fra {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1616px;
+}
+.Content-images-flags-small-ger {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1638px;
+}
+.Content-images-flags-small-gha {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1660px;
+}
+.Content-images-flags-small-gre {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1682px;
+}
+.Content-images-flags-small-hon {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1704px;
+}
+.Content-images-flags-small-irn {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1726px;
+}
+.Content-images-flags-small-ita {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1748px;
+}
+.Content-images-flags-small-jpn {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1770px;
+}
+.Content-images-flags-small-kor {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1792px;
+}
+.Content-images-flags-small-mex {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1814px;
+}
+.Content-images-flags-small-ned {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1836px;
+}
+.Content-images-flags-small-nga {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1858px;
+}
+.Content-images-flags-small-por {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1880px;
+}
+.Content-images-flags-small-rus {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1902px;
+}
+.Content-images-flags-small-sui {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1924px;
+}
+.Content-images-flags-small-uru {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1946px;
+}
+.Content-images-flags-small-usa {
+/* You may have to set 'display: block' */
+	width: 34px;
+	height: 22px;
+	background: url('flagsFlat.png') 0 -1968px;
+}
+.Content-images-flags-sui {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -1990px;
+}
+.Content-images-flags-uru {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -2036px;
+}
+.Content-images-flags-usa {
+/* You may have to set 'display: block' */
+	width: 70px;
+	height: 46px;
+	background: url('flagsFlat.png') 0 -2082px;
+}

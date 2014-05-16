@@ -6,7 +6,6 @@ using WorldCup.Models.Rankings;
 
 namespace WorldCup.Controllers
 {
-    [Authorize]
     public class RankingsController : ControllerBase
     {
         public ActionResult Index()

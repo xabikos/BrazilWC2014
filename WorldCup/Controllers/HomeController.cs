@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using WorldCup.Models;
-using WorldCup.Models.Rankings;
 
 namespace WorldCup.Controllers
 {
@@ -12,10 +12,13 @@ namespace WorldCup.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var matches = new List<UserMatchModel>();
 
-            var matches =
-                user.MatchPredictions //.Where(mp => mp.Match.Date < DateTime.UtcNow) TODO uncomment this part
+            if (Request.IsAuthenticated)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                matches = user.MatchPredictions //.Where(mp => mp.Match.Date < DateTime.UtcNow) TODO uncomment this part
                     .OrderByDescending(mp => mp.Match.Date)
                     .Take(5)
                     .Select(
@@ -29,6 +32,7 @@ namespace WorldCup.Controllers
                                         ? user.MatchPoints.Single(mpoint => mpoint.MatchId == mp.MatchId).Points
                                         : 0
                             }).ToList();
+            }
 
             var model = new HomeViewModel
             {

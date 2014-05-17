@@ -68,7 +68,7 @@
                 .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.AwayTeam.Name, mp.Match.AwayTeam.Code }))
                 .Titled("Away Team")
                 .SetWidth(30);
-        })
+        }).Selectable(false)
         <p>Check the <a href="/Predictions/1/2">predictions</a> of others for these matches.</p>
         <h1>Upcoming matches</h1>
         @Html.Grid(Model.UpcomingMatches).Named("upcomingMatches").Columns(columns =>

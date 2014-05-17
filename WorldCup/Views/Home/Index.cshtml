@@ -41,46 +41,36 @@
     <div class="col-md-6">
         <h1>Your predictions</h1>
         <p>24 hours before a match is played, all preditions for that match will freeze. You will see your predictions of the coming match below.</p>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th class="grid-header" style="display:none;"></th>
-                    <th class="grid-header" style="width:30px;"><div class="grid-header-title"><span>Date</span></div></th>
-                    <th class="grid-header" style="width:30px;"><div class="grid-header-title"><span>Home Team</span></div></th>
-                    <th class="grid-header" style="width:10px;"><div class="grid-header-title"><span>Score</span></div></th>
-                    <th class="grid-header" style="width:30px;"><div class="grid-header-title"><span>Away Team</span></div></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="grid-row ">
-                    <td class="grid-cell" data-name="Id" style="display:none;">1</td>
-                    <td class="grid-cell" data-name="">10-06-2014 18:00</td>
-                    <td class="grid-cell" data-name="HomeTeam.Name">
-                        <span class="flagRow"><img height="22" width="34" alt="Netherlands" src="/Content/images/flags/small.NED.png">Netherlands</span>
-                    </td>
-                    <td class="grid-cell" data-name="Score">
-                        1 - 1
-                    </td>
-                    <td class="grid-cell" data-name="AwayTeam.Name">
-                        <span class="flagRow"><img height="22" width="34" alt="Chile" src="/Content/images/flags/small.CHI.png">Chile</span>
-                    </td>
-                </tr>
-                <tr class="grid-row ">
-                    <td class="grid-cell" data-name="Id" style="display:none;">6</td>
-                    <td class="grid-cell" data-name="">10-06-2014 22:00</td>
-                    <td class="grid-cell" data-name="HomeTeam.Name">
-                        <span class="flagRow"><img height="22" width="34" alt="Cameroon" src="/Content/images/flags/small.CMR.png">Cameroon</span>
-                    </td>
-                    <td class="grid-cell" data-name="Score">0 - 2</td>
-                    <td class="grid-cell" data-name="AwayTeam.Name">
-                        <span class="flagRow"><img height="22" width="34" alt="Mexico" src="/Content/images/flags/small.MEX.png">Mexico</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        @Html.Grid(Model.UserPredictionMatches).Named("matchesPredictions").Columns(columns =>
+        {
+            columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(mp => mp.Match.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("dd/MM/yyyy HH:mm"))
+            .Titled("Date")
+            .SetWidth(20);
+            columns.Add(mp => mp.Match.HomeTeam.Name)
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.HomeTeam.Name, mp.Match.HomeTeam.Code }))
+                .Titled("Home Team")
+                .SetWidth(30);
+            columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(mp => string.Format("{0} - {1}", mp.Match.HomeTeamFullTimeGoals, mp.Match.AwayTeamFullTimeGoals))
+                .Titled("Score")
+                .SetWidth(20);
+            columns.Add(mp => mp.Match.AwayTeam.Name)
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.AwayTeam.Name, mp.Match.AwayTeam.Code }))
+                .Titled("Away Team")
+                .SetWidth(30);
+        })
         <p>Check the <a href="/Predictions/1/2">predictions</a> of others for these matches.</p>
         <h1>Upcoming matches</h1>
-        @Html.Grid(Model.UpcomingMatches).Named("matches").Columns(columns =>
+        @Html.Grid(Model.UpcomingMatches).Named("upcomingMatches").Columns(columns =>
         {
             columns.Add(u => u.Id, true);
             // columns.Add().RenderValueAs(u => "<button type='button' class='btn btn-primary' value='" + u.Id + "'>Predict</button>");

@@ -7,12 +7,19 @@ namespace WorldCup.Models
     public class HomeViewModel
     {
         /// <summary>
+        /// List that contains the latest sign in user results
+        /// </summary>
+        public IList<UserMatchModel> UserLatestResults { get; set; }
+
+        /// <summary>
         /// List that contains the five upcoming matched
         /// </summary>
         public IList<Match> UpcomingMatches { get; set; }
 
-        public IList<UserMatchModel> UserLatestResults { get; set; }
-
+        /// <summary>
+        /// List that contains the two nearest in the future predictions
+        /// </summary>
+        public IList<MatchPrediction> UserPredictionMatches { get; set; }
     }
 
     public class UserMatchModel
@@ -21,4 +28,5 @@ namespace WorldCup.Models
         public string Match { get; set; }
         public int Points { get; set; }
     }
+
 }

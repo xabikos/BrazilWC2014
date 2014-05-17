@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using WorldCup.Common.Entities;
 using WorldCup.Models;
 
 namespace WorldCup.Controllers
@@ -13,6 +14,7 @@ namespace WorldCup.Controllers
         public async Task<ActionResult> Index()
         {
             var matches = new List<UserMatchModel>();
+            var predictions = new List<MatchPrediction>();
 
             if (Request.IsAuthenticated)
             {
@@ -32,13 +34,20 @@ namespace WorldCup.Controllers
                                         ? user.MatchPoints.Single(mpoint => mpoint.MatchId == mp.MatchId).Points
                                         : 0
                             }).ToList();
+
+                predictions = user.MatchPredictions.Where(mp => mp.Match.Date > DateTime.UtcNow)
+                    .OrderBy(mp => mp.Match.Date)
+                    .Take(2)
+                    .ToList();
             }
 
             var model = new HomeViewModel
             {
-                UpcomingMatches = Context.Matches.OrderBy(m => m.Date).Take(5).ToList(),
-                UserLatestResults = matches
+                UserLatestResults = matches,
+                UserPredictionMatches = predictions,
+                UpcomingMatches = Context.Matches.OrderBy(m => m.Date).Take(5).ToList()
             };
+
             return View(model);
         }
 

@@ -58,7 +58,8 @@
             columns.Add()
                 .Encoded(false)
                 .Sanitized(false)
-                .RenderValueAs(mp => string.Format("{0} - {1}", mp.Match.HomeTeamFullTimeGoals, mp.Match.AwayTeamFullTimeGoals))
+                .RenderValueAs(mp => Html.ActionLink(string.Format("{0} - {1}", mp.Match.HomeTeamFullTimeGoals, mp.Match.AwayTeamFullTimeGoals),
+                    "MatchPrediction", "Predictions", new { id = mp.MatchId }, null))
                 .Titled("Score")
                 .SetWidth(20);
             columns.Add(mp => mp.Match.AwayTeam.Name)

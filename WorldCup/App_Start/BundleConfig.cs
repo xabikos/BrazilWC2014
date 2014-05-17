@@ -30,7 +30,7 @@ namespace WorldCup
                 "~/Content/bootstrap.lumen.min.css", "~/Content/bootstrap-datetimepicker.min.css",
                 "~/Content/bootstrap-chosen.css",
                 "~/Content/site.css", "~/Content/Gridmvc.css", "~/Content/toastr.css",
-                "~/Content/images/flags/flagsFlat.png.css"));
+                "~/Content/flagsFlat.png.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.min.js"));

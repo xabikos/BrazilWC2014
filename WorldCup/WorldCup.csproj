@@ -272,10 +272,10 @@
     <Content Include="Content\images\flags\ecu.png" />
     <Content Include="Content\images\flags\eng.png" />
     <Content Include="Content\images\flags\esp.png" />
-    <Content Include="Content\images\flags\flagsFlat.png">
+    <Content Include="Content\flagsFlat.png">
       <DependentUpon>flagsFlat.sprite</DependentUpon>
     </Content>
-    <Content Include="Content\images\flags\flagsFlat.png.css">
+    <Content Include="Content\flagsFlat.png.css">
       <DependentUpon>flagsFlat.png</DependentUpon>
     </Content>
     <Content Include="Content\images\flags\fra.png" />
@@ -350,14 +350,14 @@
     <Content Include="Properties\ligershark.webjobs.ext.targets" />
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
-    <Content Include="Content\images\flags\flagsFlat.sprite" />
-    <Content Include="Content\images\flags\flagsFlat.png.map">
+    <Content Include="Content\flagsFlat.sprite" />
+    <Content Include="Content\flagsFlat.png.map">
       <DependentUpon>flagsFlat.png</DependentUpon>
     </Content>
-    <Content Include="Content\images\flags\flagsFlat.png.less">
+    <Content Include="Content\flagsFlat.png.less">
       <DependentUpon>flagsFlat.png</DependentUpon>
     </Content>
-    <Content Include="Content\images\flags\flagsFlat.png.scss">
+    <Content Include="Content\flagsFlat.png.scss">
       <DependentUpon>flagsFlat.png</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - FTP.pubxml" />

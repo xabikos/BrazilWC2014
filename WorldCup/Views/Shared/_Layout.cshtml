@@ -88,7 +88,15 @@
             // window.location.reload();
         }
 
-        $(function() {
+        $(function () {
+
+            // localize all the dates
+            $.map($(".date-localize"), function (element) {
+                var originalDateInUtc = element.textContent;
+                var locaDate = moment.utc(originalDateInUtc, "M/D/YYYY h:mm:ss A").local().format("DD/MM/YYYY HH:mm");
+                element.textContent = locaDate;
+            });
+
             // Show the success message when saved
             var userSuccesfulySaved = '@TempData["UserSavedSuccessfully"]';
             if (userSuccesfulySaved !== "") {

@@ -14,7 +14,8 @@
     </div>
     <div class="col-md-6 text-right">
         <h4>
-            <span id="match-date"></span><br />
+            <span id="match-date">@Model.Match.Date</span>
+            <br />
             <small>your local time</small>
         </h4>
     </div>
@@ -167,7 +168,6 @@
 
 
             // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.
-
             var result = $("#Result");
 
             if (result) {

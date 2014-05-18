@@ -16,5 +16,7 @@ namespace WorldCup.Common.Entities
         [Range(0, 10000)]
         public int Amount { get; set; }
 
+        public string DummyProperty { get; set; }
+
     }
 }

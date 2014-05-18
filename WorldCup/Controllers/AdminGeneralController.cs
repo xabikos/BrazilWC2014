@@ -1,18 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using WorldCup.Common.Entities;
 
 namespace WorldCup.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class AdminInitializationController : ControllerBase
+    public class AdminGeneralController : ControllerBase
     {
+        public ActionResult RaisedMoney()
+        {
+            return View(new RaisedMoney());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RaisedMoney(RaisedMoney model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // Trim the time as we are interested only on date
+            model.Date = new DateTime(model.Date.Year, model.Date.Month, model.Date.Day);
+
+            if (await Context.RaisedMoney.AnyAsync(rm => rm.Date.Equals(model.Date)))
+            {
+                var existingEntity = await Context.RaisedMoney.FirstAsync(rm => rm.Date.Equals(model.Date));
+                existingEntity.Amount = model.Amount;
+            }
+            else
+            {
+                Context.RaisedMoney.Add(model);
+            }
+
+            await Context.SaveChangesAsync();
+
+            TempData[UserSavedSuccessfullyKey] = "You successfully add or update the raised money info";
+
+            return RedirectToAction("RaisedMoney");
+        }
+
         public async Task<ActionResult> Parameters()
         {
             return View(await Context.SystemParameters.SingleOrDefaultAsync() ?? new SystemParameters());
@@ -55,6 +84,8 @@ namespace WorldCup.Controllers
             }
 
             await Context.SaveChangesAsync();
+
+            TempData[UserSavedSuccessfullyKey] = "You successfully saved the values";
 
             return RedirectToAction("Parameters");
         }

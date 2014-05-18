@@ -76,14 +76,14 @@
 
         <div class="col-xs-6 col-md-5" id="result-buttons">
             @{
-    var htmlAttributes = new Dictionary<string, object>
-                    {
-                        {"class", "form-control"}
-                    };
-    if (!ViewBag.IsMatchPredictionsEnabled)
-    {
-        htmlAttributes.Add("disabled", "disabled");
-    }
+                var htmlAttributes = new Dictionary<string, object>
+                {
+                    {"class", "form-control"}
+                };
+                if (!ViewBag.IsMatchPredictionsEnabled)
+                {
+                    htmlAttributes.Add("disabled", "disabled");
+                }
             }
             @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
         </div>
@@ -163,7 +163,7 @@
         $(function () {
 
             // Match date
-            $("#match-date").text(moment(moment.utc("@Model.Match.Date", "M/D/YYYY h:mm:ss A")).local().format("dddd, MMMM Do YYYY [at] HH:mm"));
+            $("#match-date").text(moment.utc("@Model.Match.Date", "M/D/YYYY h:mm:ss A").local().format("dddd, MMMM Do YYYY [at] HH:mm"));
 
 
             // Temporary solution to replace the dropdown with a button bar, to be removed when normal radio buttons are in place or a better solution.

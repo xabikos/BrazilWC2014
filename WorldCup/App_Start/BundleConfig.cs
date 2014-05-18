@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace WorldCup
 {
@@ -8,6 +7,12 @@ namespace WorldCup
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/bootstrap.lumen.min.css", "~/Content/bootstrap-datetimepicker.min.css",
+                "~/Content/bootstrap-chosen.css",
+                "~/Content/site.css", "~/Content/Gridmvc.css", "~/Content/toastr.css",
+                "~/Content/flagsFlat.png.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -25,12 +30,6 @@ namespace WorldCup
                 "~/Scripts/bootstrap-datetimepicker.min.js",
                 "~/Scripts/chosen.jquery.min.js",
                 "~/Scripts/respond.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.lumen.min.css", "~/Content/bootstrap-datetimepicker.min.css",
-                "~/Content/bootstrap-chosen.css",
-                "~/Content/site.css", "~/Content/Gridmvc.css", "~/Content/toastr.css",
-                "~/Content/flagsFlat.png.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.min.js"));

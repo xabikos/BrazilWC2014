@@ -202,6 +202,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405181302193_InitialCreate.cs" />
+    <Compile Include="Migrations\201405181302193_InitialCreate.Designer.cs">
+      <DependentUpon>201405181302193_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationDbContext.cs" />
     <Compile Include="Models\Identity\ExternalLoginConfirmationViewModel.cs" />
@@ -829,6 +834,11 @@
       <Project>{fdb4ef49-fb1f-4acd-830d-b5fbeed3adcf}</Project>
       <Name>WorldCup.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405181302193_InitialCreate.resx">
+      <DependentUpon>201405181302193_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

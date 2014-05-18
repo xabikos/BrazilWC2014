@@ -1,70 +1,33 @@
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Web;
+using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using WorldCup.Common.DataAccess;
 using WorldCup.Common.Entities;
-using WorldCup.Migrations;
+using WorldCup.Models.Identity;
 
-namespace WorldCup.Models.Identity
+namespace WorldCup.Migrations
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    using System;
+    using System.Data.Entity.Migrations;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
+        public Configuration()
         {
+            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
-        static ApplicationDbContext()
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Configurations.Add(new LongRunningPredictionConfiguration());
-            modelBuilder.Configurations.Add(new FootballTeamConfiguration());
-            modelBuilder.Configurations.Add(new MatchConfiguration());
-            modelBuilder.Configurations.Add(new MatchPredictionConfiguration());
-            modelBuilder.Configurations.Add(new MatchPointsConfiguration());
-            modelBuilder.Configurations.Add(new LongRunningPointsConfiguration());
-            modelBuilder.Configurations.Add(new RaisedMoneyConfiguration());
-
-            modelBuilder.Entity<ApplicationUser>().Ignore(au => au.FullName);
-
-            base.OnModelCreating(modelBuilder);
-        }
-
-        #region DbSets
-
-        public DbSet<Team> Teams { get; set; }
-        public DbSet<Match> Matches { get; set; }
-        public DbSet<SystemParameters> SystemParameters { get; set; }
-        public DbSet<MatchPoints> MatchPoints { get; set; }
-        public DbSet<LongRunningResults> LongRunningResults { get; set; }
-        public DbSet<RaisedMoney> RaisedMoney { get; set; }
-
-        #endregion
-
-    }
-
-    internal class ApplicationDatabaseInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
-    {
         protected override void Seed(ApplicationDbContext context)
         {
-            InitializeAdmins();
-            InitializeUsers();
+            //  This method will be called after migrating to the latest version.
+            // Verifies that initialization logic would be executed only once
+            if (context.Teams.Any()) return;
+
+            InitializeAdmins(context);
+            InitializeUsers(context);
             InitializeTeams(context);
             InitializeMatches(context);
-            base.Seed(context);
         }
 
         private void InitializeTeams(ApplicationDbContext context)
@@ -134,10 +97,10 @@ namespace WorldCup.Models.Identity
             context.SaveChanges();
         }
 
-        private void InitializeAdmins()
+        private void InitializeAdmins(ApplicationDbContext context)
         {
-            var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            var roleManager = new ApplicationRoleManager(new RoleStore<IdentityRole>(context));
 
             const string xabikosName = "c.karypidis@niposoftware.com";
             const string rutgerName = "r.dejong@niposoftware.com";
@@ -196,9 +159,9 @@ namespace WorldCup.Models.Identity
 
         }
 
-        private void InitializeUsers()
+        private void InitializeUsers(ApplicationDbContext context)
         {
-            var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
             const string password = "Pa$$w0rd12";
 

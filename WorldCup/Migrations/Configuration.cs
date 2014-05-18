@@ -81,7 +81,7 @@ namespace WorldCup.Migrations
 
                 new Match{HomeTeamId = "mex", AwayTeamId = "cmr", State = state, Stage = MatchStage.GroupA, Date = new DateTime(2014,6,13, 16,0,0)},
                 new Match{HomeTeamId = "esp", AwayTeamId = "ned", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,13, 19,0,0)},
-                new Match{HomeTeamId = "chi", AwayTeamId = "aus", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,13, 21,0,0)},
+                new Match{HomeTeamId = "chi", AwayTeamId = "aus", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,13, 22,0,0)},
                 
                 new Match{HomeTeamId = "col", AwayTeamId = "gre", State = state, Stage = MatchStage.GroupC, Date = new DateTime(2014,6,14, 16,0,0)},
                 new Match{HomeTeamId = "uru", AwayTeamId = "crc", State = state, Stage = MatchStage.GroupD, Date = new DateTime(2014,6,14, 19,0,0)},

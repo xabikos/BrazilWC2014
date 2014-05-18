@@ -28,7 +28,7 @@ namespace WorldCup.Controllers
         {
             get { return _context ?? (_context = HttpContext.GetOwinContext().Get<ApplicationDbContext>()); }
         }
-
+        /*
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // http://afana.me/post/aspnet-mvc-internationalization-date-time.aspx
@@ -48,6 +48,6 @@ namespace WorldCup.Controllers
 
             base.OnActionExecuting(filterContext);
         }
-
+        */
     }
 }

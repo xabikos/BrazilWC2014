@@ -20,7 +20,7 @@
         columns.Add()
             .Encoded(false)
             .Sanitized(false)
-            .RenderValueAs(m => m.Date.Add((TimeSpan)ViewBag.TimeZoneOffset).ToString("dd/MM/yyyy HH:mm"))
+            .RenderValueAs(m => Html.Partial("_LocalizableDateTime", m.Date))
             .Titled("Date")
             .SetWidth(20);
         columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);

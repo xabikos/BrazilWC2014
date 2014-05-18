@@ -799,7 +799,6 @@
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
-    <Content Include="webjobs.wpp.targets" />
     <Content Include="Views\Shared\_FlaggedTeam.cshtml" />
     <Content Include="Views\AdminMatches\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_DateTime.cshtml" />
@@ -826,10 +825,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StatisticsUpdater\StatisticsUpdater.csproj">
-      <Project>{27A13F05-75A2-4F68-9148-04DBA69BFDD3}</Project>
-      <Name>StatisticsUpdater</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WorldCup.Common\WorldCup.Common.csproj">
       <Project>{fdb4ef49-fb1f-4acd-830d-b5fbeed3adcf}</Project>
       <Name>WorldCup.Common</Name>

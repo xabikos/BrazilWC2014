@@ -61,5 +61,17 @@ namespace WorldCup.Controllers
             return View();
         }
 
+        public JsonResult RaisedMoney()
+        {
+            var latestRaisedMoney = Context.RaisedMoney.OrderByDescending(rm => rm.Date).Take(5).ToList();
+            latestRaisedMoney.Reverse();
+
+            return new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = latestRaisedMoney.Select(rm => new { date = rm.Date.ToString("M"), amount = rm.Amount })
+            };
+        }
+
     }
 }

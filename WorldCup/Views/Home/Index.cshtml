@@ -118,30 +118,39 @@
                 toastr.error(data.statusText);
             }
         });
+        $.ajax({
+            url: '/Home/RaisedMoney',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                updateRaisedMoneyChart(data);
+            },
+            error: function (data) {
+                toastr.error(data.statusText);
+            }
+        });
     });
 
-    var currentRaisedMoneySource = [
-    {
-        date: "2 June",
-        amount: 20
-    },
-    {
-        date: "3 June",
-        amount: 60
-    },
-    {
-        date: "4 June",
-        amount: 70
-    },
-    {
-        date: "5 June",
-        amount: 90
-    },
-    {
-        date: "6 June",
-        amount: 120
+    var updateRaisedMoneyChart = function(data) {
+        $("#unicefChart").dxChart({
+            tooltip: {
+                enabled: true
+            },
+            dataSource: data,
+            legend: {
+                horizontalAlignment: 'center',
+                verticalAlignment: 'bottom'
+            },
+            series: {
+                argumentField: "date",
+                valueField: "amount",
+                name: "Money raised (in euro)",
+                type: "bar",
+                color: '#28b62c'
+            }
+        });
     }
-    ];
 
     var updateTopFiveChart = function (data) {
 
@@ -165,27 +174,9 @@
         });
     }
 
-    $("#unicefChart").dxChart({
-        tooltip: {
-            enabled: true
-        },
-        dataSource: currentRaisedMoneySource,
-        legend: {
-            horizontalAlignment: 'center',
-            verticalAlignment: 'bottom'
-        },
-        series: {
-            argumentField: "date",
-            valueField: "amount",
-            name: "Money raised (in euro)",
-            type: "bar",
-            color: '#28b62c'
-        }
-    });
-
     var now = moment();
     var kickOff = moment([2014, 5, 13]),
-        daysRemaining = kickOff.diff(now, 'days')
+        daysRemaining = kickOff.diff(now, 'days');
 
     $("#days-remaining").text(daysRemaining);
 

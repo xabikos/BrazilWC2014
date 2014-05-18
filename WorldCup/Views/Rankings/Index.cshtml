@@ -108,22 +108,4 @@
             series: data.users
         });
     }
-
-    $("#unicefChart").dxChart({
-        tooltip: {
-            enabled: true
-        },
-        dataSource: currentRaisedMoneySource,
-        legend: {
-            horizontalAlignment: 'center',
-            verticalAlignment: 'bottom'
-        },
-        series: {
-            argumentField: "date",
-            valueField: "amount",
-            name: "Money raised (in euro)",
-            type: "bar",
-            color: '#28b62c'
-        }
-    });
 </script>

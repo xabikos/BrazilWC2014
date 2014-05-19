@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AdminGeneralController.cs" />
     <Compile Include="Controllers\PredictionsController.cs" />
     <Compile Include="Controllers\RankingsController.cs" />
+    <Compile Include="Controllers\UserResultsController.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\MatchExtensions.cs" />
     <Compile Include="Extensions\MatchResultExtensions.cs" />
@@ -820,6 +821,7 @@
     <Content Include="Views\Predictions\_TeamFlag.cshtml" />
     <Content Include="Views\AdminGeneral\RaisedMoney.cshtml" />
     <Content Include="Views\Shared\_LocalizableDateTime.cshtml" />
+    <Content Include="Views\UserResults\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

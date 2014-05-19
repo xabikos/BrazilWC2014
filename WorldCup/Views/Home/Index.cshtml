@@ -40,7 +40,7 @@
             columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
         })
 
-        Check your <a href="/Results">personal page</a> for a more detailed view.
+        Check your @Html.ActionLink("personal page", "Index", "UserResults") for a more detailed view.
     </div>
     <div class="col-md-6">
         <h1>Your predictions</h1>

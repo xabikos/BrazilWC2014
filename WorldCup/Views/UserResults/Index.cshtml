@@ -1,0 +1,22 @@
+﻿@using GridMvc.Html
+
+@model IList<WorldCup.Models.UserMatchModel>
+
+@{
+    ViewBag.Title = "Rankings";
+}
+
+<div class="page-header">
+    <h1>Your results</h1>
+</div>
+
+@Html.Grid(Model).Named("userLatestResults").Columns(columns =>
+        {
+            columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(lr => Html.Partial("_LocalizableDateTime", lr.Date))
+                .Titled("Date").SetWidth(30);
+            columns.Add(ur => ur.Match).Titled("Match").SetWidth(60);
+            columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
+        })

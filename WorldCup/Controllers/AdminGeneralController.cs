@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using WorldCup.Common;
 using WorldCup.Common.Entities;
 
 namespace WorldCup.Controllers
@@ -42,13 +45,13 @@ namespace WorldCup.Controllers
             return RedirectToAction("RaisedMoney");
         }
 
-        public async Task<ActionResult> Parameters()
+        public async Task<ActionResult> SystemParameters()
         {
             return View(await Context.SystemParameters.SingleOrDefaultAsync() ?? new SystemParameters());
         }
 
         [HttpPost]
-        public async Task<ActionResult> Parameters(SystemParameters model)
+        public async Task<ActionResult> SystemParameters(SystemParameters model)
         {
             if (!ModelState.IsValid)
             {
@@ -86,6 +89,48 @@ namespace WorldCup.Controllers
             await Context.SaveChangesAsync();
 
             TempData[UserSavedSuccessfullyKey] = "You successfully saved the values";
+
+            return RedirectToAction("SystemParameters");
+        }
+
+        public async Task<ActionResult> Parameters()
+        {
+            var savedParameters = await Context.Parameters.ToListAsync();
+            var model =
+                PredefinedParameters.Parameters.Select(
+                    ep =>
+                        new Parameter
+                        {
+                            Name = ep,
+                            Value =
+                                savedParameters.Any(sp => sp.Name == ep)
+                                    ? savedParameters.First(sp => sp.Name == ep).Value
+                                    : string.Empty
+                        });
+            return View(model.ToList());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Parameters(IEnumerable<Parameter> model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var savedParameters = await Context.Parameters.ToListAsync();
+            //First execution
+            if (savedParameters.Count == 0)
+            {
+                Context.Parameters.AddRange(model);
+            }
+            // Update the existing values
+            else
+            {
+                savedParameters.ForEach(sp => sp.Value = model.First(p => p.Name == sp.Name).Value);
+            }
+
+            await Context.SaveChangesAsync();
 
             return RedirectToAction("Parameters");
         }

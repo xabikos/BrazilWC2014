@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using WorldCup.Common;
 using WorldCup.Common.Entities;
 using WorldCup.Models;
 
@@ -41,8 +43,20 @@ namespace WorldCup.Controllers
                     .ToList();
             }
 
+            var savedParameters = await Context.Parameters.ToListAsync();
+
             var model = new HomeViewModel
             {
+                Logo = savedParameters.Any(p => p.Name == PredefinedParameters.ApplicationLogo)
+                    ? savedParameters.First(p => p.Name == PredefinedParameters.ApplicationLogo).Value
+                    : string.Empty,
+                LogoText = savedParameters.Any(p => p.Name == PredefinedParameters.ApplicationLogoText)
+                    ? savedParameters.First(p => p.Name == PredefinedParameters.ApplicationLogoText).Value
+                    : string.Empty,
+                IntroductionText =
+                    savedParameters.Any(p => p.Name == PredefinedParameters.IntroductionText)
+                        ? savedParameters.First(p => p.Name == PredefinedParameters.IntroductionText).Value
+                        : "Please enter an introduction text",
                 UserLatestResults = matches,
                 UserPredictionMatches = predictions,
                 UpcomingMatches = Context.Matches.OrderBy(m => m.Date).Take(5).ToList()

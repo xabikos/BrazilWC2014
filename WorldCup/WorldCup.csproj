@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201405181302193_InitialCreate.Designer.cs">
       <DependentUpon>201405181302193_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405192111075_AddParameters.cs" />
+    <Compile Include="Migrations\201405192111075_AddParameters.Designer.cs">
+      <DependentUpon>201405192111075_AddParameters.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationDbContext.cs" />
@@ -812,7 +816,7 @@
     <Content Include="Views\Predictions\Index.cshtml" />
     <Content Include="Views\Predictions\MatchPrediction.cshtml" />
     <Content Include="Views\Predictions\LongRunningPredictions.cshtml" />
-    <Content Include="Views\AdminGeneral\Parameters.cshtml" />
+    <Content Include="Views\AdminGeneral\SystemParameters.cshtml" />
     <Content Include="Views\Home\UserNotConfirmed.cshtml" />
     <Content Include="Views\Rankings\_FlaggedTeam.cshtml" />
     <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
@@ -822,6 +826,8 @@
     <Content Include="Views\AdminGeneral\RaisedMoney.cshtml" />
     <Content Include="Views\Shared\_LocalizableDateTime.cshtml" />
     <Content Include="Views\UserResults\Index.cshtml" />
+    <Content Include="Views\AdminGeneral\Parameters.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Parameter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -841,6 +847,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201405181302193_InitialCreate.resx">
       <DependentUpon>201405181302193_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405192111075_AddParameters.resx">
+      <DependentUpon>201405192111075_AddParameters.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

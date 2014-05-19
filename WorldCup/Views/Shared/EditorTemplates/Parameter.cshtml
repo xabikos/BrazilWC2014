@@ -1,0 +1,9 @@
+﻿@using WorldCup.Extensions
+@model WorldCup.Common.Entities.Parameter
+           
+<div class="form-group">
+    <label>@Model.Name</label>
+    @Html.HiddenFor(m=>m.Name)
+    @Html.BootstrapEditorFor(m => m.Value)
+    @Html.ValidationMessageFor(m => m.Value)
+</div>

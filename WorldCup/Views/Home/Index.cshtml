@@ -7,10 +7,10 @@
 
 <div class="jumbotron">
     <div class="row">
-        <div class="col-xs-4 col-md-2"><img src="/Content/images/pool.logo.png" class="img-responsive" alt="Unicef logo"></div>
+        <div class="col-xs-4 col-md-2"><img src=@string.Format("/Content/images/{0}", Model.Logo) class="img-responsive" alt="Unicef logo"></div>
         <div class="col-xs-8 col-md-10">
             <h3>
-                NIPO World Cup 2014 Pool<br>
+                @Model.LogoText<br>
                 <small>for UNICEF</small>
             </h3>
             <p class="text-right"><span class="label label-danger" id="days-remaining"></span> days remaining</p>
@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-md-6">
         <h1>Introduction</h1>
-        <p>Welcome to the NIPO UNICEF World Cup Pool. The minimum amount to take part in this pool is €10,-. Please note that all the proceeds will go to UNICEF. But what is there to win then, apart from ever lasting glory? Well, it's actually a really nice dinner on the roof of an Amsterdam building, with a very special - foreign - cook. How to win? Check the <a href="/Home/Rules">rules</a>.</p>
+        <p>@Model.IntroductionText Check the @Html.ActionLink("rules", "Rules", "Home").</p>
         <h1>Current ranking</h1>
         <p>After every match the scores will be updated as soon as possible. </p>
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>

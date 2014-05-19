@@ -6,6 +6,11 @@ namespace WorldCup.Models
 {
     public class HomeViewModel
     {
+        public string Logo { get; set; }
+        public string LogoText { get; set; } 
+
+        public string IntroductionText { get; set; } 
+
         /// <summary>
         /// List that contains the latest sign in user results
         /// </summary>

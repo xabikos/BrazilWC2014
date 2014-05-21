@@ -12,55 +12,164 @@
     </h2>
 </div>
 
-@using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new {role = "form"}))
+<p>Before the championship starts, you will need to predict which teams will advance to the next rounds. As soon as the tournament begins, these values will not be editable anymore.</p>
+<hr>
+@using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new { role = "form" }))
 {
-    <div class='col-md-6'>
-        <div class="form-group">
-            @Html.LabelFor(m => m.SecondStageTeamsIds)
-            @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
-            @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
+    <div class="row form-group">
+        <div class="col-md-5 text-right">
+            @Html.LabelFor(m => m.SecondStageTeamsIds, new { @class = "control-label" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.QuarterFinalTeamsIds)
+        <div class="col-md-5">
+            @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
+        </div>
+        <div class="col-md-2">
+        @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-5 text-right">
+            @Html.LabelFor(m => m.QuarterFinalTeamsIds, new { @class = "control-label" })
+        </div>
+        <div class="col-md-5">
             @Html.BootstrapListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), "Select eight teams")
+        </div>
+        <div class="col-md-2">
             @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
         </div>
     </div>
-    <div class='col-md-6'>
-        <div class="form-group">
-            @Html.LabelFor(m => m.SemiFinalTeamsIds)
-            @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
+    <div class="row form-group">
+        <div class="col-md-5 text-right">
+            @Html.LabelFor(m => m.SemiFinalTeamsIds, new { @class = "control-label" })
+        </div>
+        <div class="col-md-5">
+           @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
+        </div>
+        <div class="col-md-2">
             @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.SmallFinalTeamsIds)
+    </div>
+    <div class="row form-group">
+        <div class="col-md-5 text-right">
+            @Html.LabelFor(m => m.SmallFinalTeamsIds, new { @class = "control-label" })
+        </div>
+        <div class="col-md-5">
             @Html.BootstrapListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), "Select two teams")
+        </div>
+        <div class="col-md-2">
             @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.FinalTeamsIds)
-            @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
-            @Html.ValidationMessageFor(m => m.FinalTeamsIds)
+    </div>
+    <div class="row form-group">
+        <div class="col-md-5 text-right">
+            @Html.LabelFor(m => m.FinalTeamsIds, new { @class = "control-label" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.WinnerTeamId)
+        <div class="col-md-5">
+            @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
+        </div>
+        <div class="col-md-2">
+           @Html.ValidationMessageFor(m => m.FinalTeamsIds)
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-5 text-right">
+            @Html.LabelFor(m => m.WinnerTeamId, new { @class = "control-label" })
+        </div>
+        <div class="col-md-5">
             @{
-                var htmlAttributes = new Dictionary<string, object>
+    var htmlAttributes = new Dictionary<string, object>
                 {
                     {"class", "form-control"}
                 };
-                if (!ViewBag.IsLongRunningPredictionsEnabled)
-                {
-                    htmlAttributes.Add("disabled", "disabled");
-                }
+    if (!ViewBag.IsLongRunningPredictionsEnabled)
+    {
+        htmlAttributes.Add("disabled", "disabled");
+    }
             }
             @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
         </div>
+        <div class="col-md-2">
+            
+        </div>
     </div>
-
-    <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" :"")>Save</button>
+    <div class="row">
+        <div class="col-md-7 col-md-push-5"><button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button></div>
+    </div>
 }
 
 <script>
     $(".chosen-select").chosen();
 </script>
+
+<div class="page-header">
+    <h2>Long running predictions<br />
+    <small>Your selection of teams</small>
+    </h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4 text-right">
+        Teams advancing to the round of 16
+    </div>
+    <div class="col-md-6">
+        ARG BEL BRA CRC ENG FRA GER GRE ITA JPN NED SPA SUI POR USA URU
+    </div>
+    <div class="col-md-2">
+        20 points
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-right">
+        Teams advancing to the quarter final
+    </div>
+    <div class="col-md-6">
+        ARG BRA CRC FRA GER NED POR USA
+    </div>
+    <div class="col-md-2">
+        40 points
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-right">
+        Teams advancing to the semi final
+    </div>
+    <div class="col-md-6">
+        ARG BRA POR USA
+    </div>
+    <div class="col-md-2">
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-right">
+        Teams advancing to the third place match
+    </div>
+    <div class="col-md-6">
+        ARG USA
+    </div>
+    <div class="col-md-2">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-right">
+        Teams advancing to the final
+    </div>
+    <div class="col-md-6">
+        BRA POR
+    </div>
+    <div class="col-md-2">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-right">
+        Winner
+    </div>
+    <div class="col-md-6">
+        BRA
+    </div>
+    <div class="col-md-2">
+
+    </div>
+</div>

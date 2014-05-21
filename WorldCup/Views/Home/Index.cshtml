@@ -21,13 +21,12 @@
 <div class="row">
     <div class="col-md-6">
         <h1>Introduction</h1>
-        <p>@Model.IntroductionText Check the @Html.ActionLink("rules", "Rules", "Home").</p>
+        <p>@Model.IntroductionText Don't forget to check the @Html.ActionLink("rules", "Rules", "Home").</p>
         <h1>Current ranking</h1>
         <p>After every match the scores will be updated as soon as possible. </p>
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
         Check the <a href="/Rankings">rankings</a> for a complete overview.
         <h1>Your latest results</h1>
-        <p>Graphic with current rankings</p>
 
         @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
         {
@@ -44,7 +43,7 @@
     </div>
     <div class="col-md-6">
         <h1>Your predictions</h1>
-        <p>24 hours before a match is played, all preditions for that match will freeze. You will see your predictions of the coming match below.</p>
+        <p>At the start of the match, all preditions will freeze. You will see your predictions of the coming matches below.</p>
         @Html.Grid(Model.UserPredictionMatches).Named("matchesPredictions").Columns(columns =>
         {
             columns.Add()
@@ -73,12 +72,11 @@
                 .Titled("Away Team")
                 .SetWidth(30);
         }).Selectable(false)
-        <p>Check the <a href="/Predictions/1/2">predictions</a> of others for these matches.</p>
+        <p>Check the <a href="/Predictions/">predictions</a> of others for these matches.</p>
         <h1>Upcoming matches</h1>
         @Html.Grid(Model.UpcomingMatches).Named("upcomingMatches").Columns(columns =>
         {
             columns.Add(u => u.Id, true);
-            // columns.Add().RenderValueAs(u => "<button type='button' class='btn btn-primary' value='" + u.Id + "'>Predict</button>");
             columns.Add()
             .Encoded(false)
             .Sanitized(false)
@@ -99,11 +97,11 @@
                 .Titled("Away Team")
                 .SetWidth(25);
         })
-        <p>See the whole <a href="/Predictions">match schedule</a> and start predicting.</p>
+        <p>See the whole <a href="/Predictions">match schedule</a> and for your predictions.</p>
 
         <h2>Money raised</h2>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
-        See how you can make a <a href="/Contributions">contribution</a> to UNICEF and see <a href="http://www.unicef.com">where your money goes to</a>.
+        Check where <a href="http://www.unicef.com">your donation goes to</a>.
     </div>
 </div>
 

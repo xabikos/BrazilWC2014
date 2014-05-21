@@ -26,9 +26,11 @@
         <p>After every match the scores will be updated as soon as possible. </p>
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
         Check the <a href="/Rankings">rankings</a> for a complete overview.
-        <h1>Your latest results</h1>
+        @if (Request.IsAuthenticated)
+        {
+            <h1>Your latest results</h1>
 
-        @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
+            @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
         {
             columns.Add()
                 .Encoded(false)
@@ -39,12 +41,15 @@
             columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
         })
 
-        Check your @Html.ActionLink("personal page", "Index", "UserResults") for a more detailed view.
+            <p>Check your @Html.ActionLink("personal page", "Index", "UserResults") for a more detailed view.</p>
+        }
     </div>
     <div class="col-md-6">
-        <h1>Your predictions</h1>
-        <p>At the start of the match, all preditions will freeze. You will see your predictions of the coming matches below.</p>
-        @Html.Grid(Model.UserPredictionMatches).Named("matchesPredictions").Columns(columns =>
+        @if (Request.IsAuthenticated)
+        {
+            <h1>Your predictions</h1>
+            <p>At the start of the match, all preditions will freeze. You will see your predictions of the coming matches below.</p>
+            @Html.Grid(Model.UserPredictionMatches).Named("matchesPredictions").Columns(columns =>
         {
             columns.Add()
             .Encoded(false)
@@ -72,7 +77,12 @@
                 .Titled("Away Team")
                 .SetWidth(30);
         }).Selectable(false)
-        <p>Check the <a href="/Predictions/">predictions</a> of others for these matches.</p>
+            <p>Check the <a href="/Predictions/">predictions</a> of others for these matches.</p>
+        }
+        else
+        {
+            <p>Please log in to see your predictions.</p>
+        }
         <h1>Upcoming matches</h1>
         @Html.Grid(Model.UpcomingMatches).Named("upcomingMatches").Columns(columns =>
         {

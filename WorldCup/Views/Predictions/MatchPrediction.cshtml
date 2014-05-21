@@ -185,7 +185,28 @@
             buttonGroup.appendTo("#result-buttons");
             result.remove();
         }
+
+        // Check for unsaved changes
+        $(":submit").click(function () {
+            formModification = false;
+        });
+
+        var unloadPreventor = function () {
+            if (formModification === true) {
+                return "Warning: You may have unsaved changes on this page. Press cancel and then the 'Save' button at the bottom of this page before leaving.";
+            }
+        }
+ 
+        $(window).bind('beforeunload', unloadPreventor);
+   
+        formModification = false;
+
+        $('form *').change(function () {
+            formModification = true;
+        });       
+
     });
+
 </script>
 
 

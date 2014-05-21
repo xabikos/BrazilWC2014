@@ -90,7 +90,55 @@ namespace WorldCup.Migrations
                 new Match{HomeTeamId = "civ", AwayTeamId = "jpn", State = state, Stage = MatchStage.GroupC, Date = new DateTime(2014,6,15, 1,0,0)},
                 new Match{HomeTeamId = "sui", AwayTeamId = "ecu", State = state, Stage = MatchStage.GroupE, Date = new DateTime(2014,6,15, 16,0,0)},
                 new Match{HomeTeamId = "fra", AwayTeamId = "hon", State = state, Stage = MatchStage.GroupE, Date = new DateTime(2014,6,15, 19,0,0)},
-                new Match{HomeTeamId = "arg", AwayTeamId = "bih", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,15, 22,0,0)}
+                new Match{HomeTeamId = "arg", AwayTeamId = "bih", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,15, 22,0,0)},
+
+                new Match{HomeTeamId = "ger", AwayTeamId = "por", State = state, Stage = MatchStage.GroupG, Date = new DateTime(2014,6,16, 16,0,0)},
+                new Match{HomeTeamId = "irn", AwayTeamId = "nga", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,16, 19,0,0)},
+                new Match{HomeTeamId = "gha", AwayTeamId = "usa", State = state, Stage = MatchStage.GroupG, Date = new DateTime(2014,6,16, 22,0,0)},
+
+                new Match{HomeTeamId = "bel", AwayTeamId = "alg", State = state, Stage = MatchStage.GroupH, Date = new DateTime(2014,6,17, 16,0,0)},
+                new Match{HomeTeamId = "bra", AwayTeamId = "mex", State = state, Stage = MatchStage.GroupA, Date = new DateTime(2014,6,17, 19,0,0)},
+                new Match{HomeTeamId = "rus", AwayTeamId = "kor", State = state, Stage = MatchStage.GroupH, Date = new DateTime(2014,6,17, 22,0,0)},
+
+                new Match{HomeTeamId = "aus", AwayTeamId = "ned", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,18, 16,0,0)},
+                new Match{HomeTeamId = "spa", AwayTeamId = "chi", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,18, 19,0,0)},
+                new Match{HomeTeamId = "cmr", AwayTeamId = "cro", State = state, Stage = MatchStage.GroupA, Date = new DateTime(2014,6,18, 22,0,0)},
+
+                new Match{HomeTeamId = "col", AwayTeamId = "civ", State = state, Stage = MatchStage.GroupC, Date = new DateTime(2014,6,19, 16,0,0)},
+                new Match{HomeTeamId = "uru", AwayTeamId = "eng", State = state, Stage = MatchStage.GroupD, Date = new DateTime(2014,6,19, 19,0,0)},
+                new Match{HomeTeamId = "jpn", AwayTeamId = "gre", State = state, Stage = MatchStage.GroupC, Date = new DateTime(2014,6,19, 22,0,0)},
+
+                new Match{HomeTeamId = "ita", AwayTeamId = "crc", State = state, Stage = MatchStage.GroupD, Date = new DateTime(2014,6,20, 16,0,0)},
+                new Match{HomeTeamId = "sui", AwayTeamId = "fra", State = state, Stage = MatchStage.GroupE, Date = new DateTime(2014,6,20, 19,0,0)},
+                new Match{HomeTeamId = "hon", AwayTeamId = "ecu", State = state, Stage = MatchStage.GroupE, Date = new DateTime(2014,6,20, 22,0,0)},
+
+                new Match{HomeTeamId = "arg", AwayTeamId = "irn", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,21, 16,0,0)},
+                new Match{HomeTeamId = "ger", AwayTeamId = "gha", State = state, Stage = MatchStage.GroupG, Date = new DateTime(2014,6,21, 19,0,0)},
+                new Match{HomeTeamId = "nga", AwayTeamId = "bih", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,21, 22,0,0)},
+
+                new Match{HomeTeamId = "bel", AwayTeamId = "rus", State = state, Stage = MatchStage.GroupH, Date = new DateTime(2014,6,22, 16,0,0)},
+                new Match{HomeTeamId = "kor", AwayTeamId = "alg", State = state, Stage = MatchStage.GroupH, Date = new DateTime(2014,6,22, 19,0,0)},
+                new Match{HomeTeamId = "usa", AwayTeamId = "por", State = state, Stage = MatchStage.GroupG, Date = new DateTime(2014,6,22, 22,0,0)},
+
+                new Match{HomeTeamId = "ned", AwayTeamId = "chi", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,23, 16,0,0)},
+                new Match{HomeTeamId = "aus", AwayTeamId = "spa", State = state, Stage = MatchStage.GroupB, Date = new DateTime(2014,6,23, 16,0,0)},
+                new Match{HomeTeamId = "cmr", AwayTeamId = "bra", State = state, Stage = MatchStage.GroupA, Date = new DateTime(2014,6,23, 20,0,0)},
+                new Match{HomeTeamId = "cro", AwayTeamId = "mex", State = state, Stage = MatchStage.GroupA, Date = new DateTime(2014,6,23, 20,0,0)},
+
+                new Match{HomeTeamId = "ita", AwayTeamId = "uru", State = state, Stage = MatchStage.GroupD, Date = new DateTime(2014,6,24, 16,0,0)},
+                new Match{HomeTeamId = "crc", AwayTeamId = "eng", State = state, Stage = MatchStage.GroupD, Date = new DateTime(2014,6,24, 16,0,0)},
+                new Match{HomeTeamId = "jpn", AwayTeamId = "col", State = state, Stage = MatchStage.GroupC, Date = new DateTime(2014,6,24, 20,0,0)},
+                new Match{HomeTeamId = "gre", AwayTeamId = "civ", State = state, Stage = MatchStage.GroupC, Date = new DateTime(2014,6,24, 20,0,0)},
+
+                new Match{HomeTeamId = "nig", AwayTeamId = "arg", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,25, 16,0,0)},
+                new Match{HomeTeamId = "bih", AwayTeamId = "irn", State = state, Stage = MatchStage.GroupF, Date = new DateTime(2014,6,25, 16,0,0)},
+                new Match{HomeTeamId = "hon", AwayTeamId = "sui", State = state, Stage = MatchStage.GroupE, Date = new DateTime(2014,6,25, 20,0,0)},
+                new Match{HomeTeamId = "ecu", AwayTeamId = "fra", State = state, Stage = MatchStage.GroupE, Date = new DateTime(2014,6,25, 20,0,0)},
+
+                new Match{HomeTeamId = "por", AwayTeamId = "gha", State = state, Stage = MatchStage.GroupG, Date = new DateTime(2014,6,26, 16,0,0)},
+                new Match{HomeTeamId = "usa", AwayTeamId = "ger", State = state, Stage = MatchStage.GroupG, Date = new DateTime(2014,6,26, 16,0,0)},
+                new Match{HomeTeamId = "kor", AwayTeamId = "bel", State = state, Stage = MatchStage.GroupH, Date = new DateTime(2014,6,26, 20,0,0)},
+                new Match{HomeTeamId = "alg", AwayTeamId = "rus", State = state, Stage = MatchStage.GroupH, Date = new DateTime(2014,6,26, 20,0,0)}
             };
 
             context.Matches.AddRange(matches);

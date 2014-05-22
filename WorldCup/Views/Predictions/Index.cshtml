@@ -9,6 +9,7 @@
 <div class="page-header">
     <h1>Group phase predictions</h1>
 </div>
+<p>In this overview all the matches in the championship will be displayed. Just before the match starts, you will be able to change your prediction. After the match has started, an overview will be made available on which you can see what others predicted.</p>
 
 @{
     var matchesUserHasDonePredictions = (List<int>)ViewBag.UserPredictions;
@@ -43,3 +44,6 @@
             .Titled("Away Team")
             .SetWidth(30);
     }).Sortable().WithPaging(10)
+
+<hr />
+<p>Your predictions are also available as a @Html.ActionLink("printable overview", "UserPredictions", "Reports", null, new { target = "_blank" }).</p>

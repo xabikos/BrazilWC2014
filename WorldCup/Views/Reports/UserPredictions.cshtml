@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    var imagePath = Server.MapPath("~/Content/images") + "\\" + ViewBag.LogoSource;
 }
 
 <!DOCTYPE html>
@@ -9,26 +10,57 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>UserPredictions</title>
+    <title>User Predictions</title>
 </head>
 <body>
-    <div> 
-        @Model.FullName
-    </div>
-
     <table>
         <tr>
-            <th>Date</th>
-            <th>Match</th>            
+            <td><img src="@imagePath" width="200" /></td>
+            <td>
+                <h1>User predictions</h1>
+                <p>@Model.FullName</p>
+            </td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+    <hr />
+    <p>&nbsp;</p>
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Yellow cards</th>
+            <th>Red cards</th>
         </tr>
         @foreach (var item in Model.MatchPredictions)
         {
             <tr>
-                <td>@item.Match.Date</td>
-                <td>@item.Match.HomeTeam.Name - @item.Match.AwayTeam.Name</td>                
+                <td width="35%" align="right">@item.Match.HomeTeam.Name</td>
+                <td width="10%" align="center" nowrap>(@item.Match.HomeTeamHalfTimeGoals - @item.Match.AwayTeamHalfTimeGoals)<br /><strong>@item.Match.HomeTeamFullTimeGoals - @item.Match.AwayTeamFullTimeGoals</strong></td>
+                <td width="35%">@item.Match.AwayTeam.Name</td>
+                <td width="10%">@item.Match.YellowCards</td>
+                <td width="10%">@item.Match.RedCards</td>
+            </tr>
+            <tr>
+                <td colspan="5">&nbsp;</td>
             </tr>
         }
     </table>
-
+    <p>&nbsp;</p>
+    <hr />
+    <p>&nbsp;</p>
+    <table>
+        <tr>
+            <td>Teams going to the round of 16</td>
+            @if (Model.LongRunningPrediction != null) {
+                <td>@Model.LongRunningPrediction.SecondStageTeamsIds</td>
+            }
+            else
+            {
+                <td>You have not yet selected any teams.</td>
+            }
+        </tr>
+    </table>
 </body>
 </html>

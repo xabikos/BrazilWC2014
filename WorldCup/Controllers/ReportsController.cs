@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using WorldCup.Models.Reports;
 using Microsoft.AspNet.Identity;
+using WorldCup.Common;
 
 namespace WorldCup.Controllers
 {
@@ -16,9 +16,9 @@ namespace WorldCup.Controllers
         // GET: Reports
         public async Task<ActionResult> UserPredictions()
         {
-            var model = new UserPredictionsReportsModel();
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            ViewBag.LogoSource = Context.Parameters.Single(p => p.Name == PredefinedParameters.ApplicationLogo).Value; ;
 
             return new PdfActionResult(user);
         }

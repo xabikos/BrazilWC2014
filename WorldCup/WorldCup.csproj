@@ -229,7 +229,6 @@
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\Identity\RegisterViewModel.cs" />
     <Compile Include="Models\Rankings\UserRankingViewModel.cs" />
-    <Compile Include="Models\Reports\UserPredictionsReportsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Attributes\UserConfirmedFilterAttribute.cs" />

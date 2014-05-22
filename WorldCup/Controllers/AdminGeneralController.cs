@@ -128,6 +128,9 @@ namespace WorldCup.Controllers
             else
             {
                 savedParameters.ForEach(sp => sp.Value = model.First(p => p.Name == sp.Name).Value);
+                // Possible new parameters added after the first execution of the app
+                var newParameters = model.Except(savedParameters, new ParametersComparer());
+                Context.Parameters.AddRange(newParameters);
             }
 
             await Context.SaveChangesAsync();
@@ -136,4 +139,18 @@ namespace WorldCup.Controllers
         }
 
     }
+
+    class ParametersComparer : IEqualityComparer<Parameter>
+    {
+        public bool Equals(Parameter x, Parameter y)
+        {
+            return x.Name == y.Name;
+        }
+
+        public int GetHashCode(Parameter obj)
+        {
+            return obj.Name.GetHashCode() + obj.Value.GetHashCode();
+        }
+    }
+
 }

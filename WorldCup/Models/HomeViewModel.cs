@@ -29,6 +29,7 @@ namespace WorldCup.Models
 
     public class UserMatchModel
     {
+        public int MatchId { get; set; }
         public DateTime Date { get; set; }
         public string Match { get; set; }
         public int Points { get; set; }

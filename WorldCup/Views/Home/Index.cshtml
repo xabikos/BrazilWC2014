@@ -37,7 +37,12 @@
                 .Sanitized(false)
                 .RenderValueAs(lr => Html.Partial("_LocalizableDateTime", lr.Date))
                 .Titled("Date").SetWidth(30);
-            columns.Add(ur => ur.Match).Titled("Match").SetWidth(60);
+            columns.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(ur => Html.ActionLink(ur.Match, "MatchPrediction", "Predictions", new { id = ur.MatchId }, null))
+                .Titled("Match")
+                .SetWidth(60);
             columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
         })
 

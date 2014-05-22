@@ -29,6 +29,7 @@ namespace WorldCup.Controllers
                         mp =>
                             new UserMatchModel
                             {
+                                MatchId = mp.MatchId,
                                 Date = mp.Match.Date,
                                 Match = mp.Match.HomeTeam.Name + " vs " + mp.Match.AwayTeam.Name,
                                 Points =

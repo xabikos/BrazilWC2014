@@ -61,8 +61,8 @@ namespace WorldCup.Controllers
 
             // The date that tournament is finished
             //var today = DateTime.Now > new DateTime(2014,7,13) ? new DateTime(2014,7,13) : DateTime.Now;
-            var today = new DateTime(2014, 6, 14);
-            for(int i = -4; i <= 0; i++)
+            var today = new DateTime(2014, 6, 30);
+            for(int i = -15; i <= 0; i++)
             {
                 var userInfo = new Dictionary<string, object>();
 

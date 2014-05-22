@@ -4,10 +4,13 @@
     ViewBag.Title = "Admin Rankings";
 }
 
-Trigger update of user rankings for each match and for long running predictions
-<br/>
-@Html.ActionLink("Update match rankings", "UpdateMatchRankings", null, new { @class = "btn btn-primary" })
-@Html.ActionLink("Update long running rankings", "UpdateLongRunningRankings", null, new { @class = "btn btn-primary" })
-
+<div class="page-header">
+    <h1>Update rankings<br />
+    <small>Calculate current scores</small></h1>
+</div>
+<p>Use the buttons below calculate the current scores. Only matches which are marked as <i>finalized</i> will be affected. This operation cannot be undone.</p>
+<hr />  
+@Html.ActionLink("Update match rankings", "UpdateMatchRankings", null, new { @class = "btn btn-warning" })
+@Html.ActionLink("Update long running rankings", "UpdateLongRunningRankings", null, new { @class = "btn btn-warning" })
 <br/>
 <div>@Model</div>

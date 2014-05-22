@@ -23,7 +23,6 @@
 </div>
 
 <hr class="divider" />
-
 @using (Html.BeginForm("MatchPrediction", "Predictions", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
     @Html.HiddenFor(m => m.MatchPredictionId)
@@ -47,9 +46,9 @@
         <div class="form-group">
 
             <div class="col-xs-6 col-md-4 text-right"><label class="control-label">Half time score</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)</div>
             <div class="visible-lg col-md-1 text-center"><label class="text-center">-</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals)</div>
             <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)</div>
 
         </div>
@@ -61,9 +60,9 @@
         <div class="form-group">
 
             <div class="col-xs-6 col-md-4 text-right"><label class="control-label">Full time score</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals)</div>
             <div class="visible-lg col-md-1 text-center"><label class="control-label">-</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)</div>
             <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</div>
 
         </div>
@@ -71,27 +70,14 @@
     </div>
     
     <div class="row">
-
         <div class="col-xs-6 col-md-4 text-right">
             @Html.LabelFor(m => m.Result, "Winner", new { @class = "control-label" })
         </div>
-
         <div class="col-xs-6 col-md-5" id="result-buttons">
-            @{
-                var htmlAttributes = new Dictionary<string, object>
-                {
-                    {"class", "form-control"}
-                };
-                if (!ViewBag.IsMatchPredictionsEnabled)
-                {
-                    htmlAttributes.Add("disabled", "disabled");
-                }
-            }
-            @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), htmlAttributes)
+            @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), new {@class = "form-control"})
         </div>
 
         <div class="visible-lg col-md-3"></div>
-            
     </div>
     
     <hr class="divider" />
@@ -104,7 +90,7 @@
                 @Html.LabelFor(m => m.YellowCards, "Total yellow cards", new { @class = "control-label" })
             </div>
             <div class="visible-lg col-md-2"></div>
-            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.YellowCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.YellowCards)</div>
             <div class="visible-lg col-md-2"></div>
             <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.YellowCards)</div>
 
@@ -120,7 +106,7 @@
                 @Html.LabelFor(m => m.RedCards, "Total red cards", new { @class = "control-label" })
             </div>
             <div class="visible-lg col-md-2"></div>
-            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.RedCards, (bool)ViewBag.IsMatchPredictionsEnabled)</div>
+            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.RedCards)</div>
             <div class="visible-lg col-md-2"></div>
             <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.RedCards)</div>
 
@@ -137,7 +123,7 @@
     </div>
 
     <div class="hidden-xs hidden-sm text-center">
-        <button type="submit" class="btn btn-success btn-lg" @(!(bool)ViewBag.IsMatchPredictionsEnabled ? "disabled=disabled" : "")>Save</button>
+        <button type="submit" class="btn btn-success btn-lg">Save</button>
     </div>
 }
 &nbsp;
@@ -196,11 +182,11 @@
             if (formModification === true) {
                 return "Warning: You may have unsaved changes on this page. Press cancel and then the 'Save' button at the bottom of this page before leaving.";
             }
-        }
+        };
  
         $(window).bind('beforeunload', unloadPreventor);
    
-        formModification = false;
+        var formModification = false;
 
         $('form *').change(function () {
             formModification = true;
@@ -209,64 +195,3 @@
     });
 
 </script>
-
-
-<hr class="divider" />
-
-<div class="page-header">
-    <h2>Prediction overview<br />
-    <small>Brazil vs Croatia</small></h2>
-</div>
-<table class="table table-condensed">
-    <tr>
-        <th class="col-sm-4"></th>
-        <th class="col-sm-2">Your prediction</th>
-        <th class="col-sm-2">Final result</th>
-        <th class="col-sm-4"></th>
-    </tr>
-    <tr>
-        <td class="col-sm-4 text-right"><b>Half time score</b></td>
-        <td class="col-sm-2">0 - 0</td>
-        <td class="col-sm-2">1 - 0</td>
-        <td class="col-sm-4"></td>
-    </tr>
-    <tr>
-        <td class="col-sm-4 text-right"><b>Full time score</b></td>
-        <td class="col-sm-2">2 - 0</td>
-        <td class="col-sm-2">3 - 0</td>
-        <td class="col-sm-4"></td>
-    </tr>
-    <tr>
-        <td class="col-sm-4 text-right"><b>Winner</b></td>
-        <td class="col-sm-2">Brazil</td>
-        <td class="col-sm-2">Brazil</td>
-        <td class="col-sm-4"></td>
-    </tr>
-    <tr>
-        <td class="col-sm-4 text-right"><b>Yellow cards</b></td>
-        <td class="col-sm-2">4</td>
-        <td class="col-sm-2">2</td>
-        <td class="col-sm-4"></td>
-    </tr>
-    <tr>
-        <td class="col-sm-4 text-right"><b>Red cards</b></td>
-        <td class="col-sm-2">0</td>
-        <td class="col-sm-2">0</td>
-        <td class="col-sm-4"></td>
-    </tr>
-</table>
-<p><i>Sorted by first name?</i></p>
-<table class="table table-striped">
-    <tr>
-        <th class="col-sm-6">Name</th>
-        <th class="col-sm-4">Score</th>
-        <th class="col-sm-1">Yellow</th>
-        <th class="col-sm-1">Red</th>
-    </tr>
-    <tr>
-        <td>Babis Karypidis</td>
-        <td>(1 - 0) <strong>3 - 0</strong></td>
-        <td>3</td>
-        <td>0</td>
-    </tr>
-</table>

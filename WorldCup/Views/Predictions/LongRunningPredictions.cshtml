@@ -16,97 +16,145 @@
 <hr>
 @using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new { role = "form" }))
 {
-    <div class="row form-group">
-        <div class="col-md-5 text-right">
-            @Html.LabelFor(m => m.SecondStageTeamsIds, new { @class = "control-label" })
+    <div class="form-horizontal">
+        <div class="row form-group">
+            <div class="col-md-5 text-right">
+                @Html.LabelFor(m => m.SecondStageTeamsIds, new { @class = "control-label" })
+            </div>
+            <div class="col-md-5">
+                @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
+                &nbsp;<span class="label"></span>
+            </div>
+            <div class="col-md-2">
+                @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
+            </div>
         </div>
-        <div class="col-md-5">
-            @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
+        <div class="row form-group">
+            <div class="col-md-5 text-right">
+                @Html.LabelFor(m => m.QuarterFinalTeamsIds, new { @class = "control-label" })
+            </div>
+            <div class="col-md-5">
+                @Html.BootstrapListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), "Select eight teams")
+                &nbsp;<span class="label"></span>
+            </div>
+            <div class="col-md-2">
+                @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
+            </div>
         </div>
-        <div class="col-md-2">
-        @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
+        <div class="row form-group">
+            <div class="col-md-5 text-right">
+                @Html.LabelFor(m => m.SemiFinalTeamsIds, new { @class = "control-label" })
+            </div>
+            <div class="col-md-5">
+                @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
+                &nbsp;<span class="label"></span>
+            </div>
+            <div class="col-md-2">
+                @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
+            </div>
         </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-5 text-right">
-            @Html.LabelFor(m => m.QuarterFinalTeamsIds, new { @class = "control-label" })
+        <div class="row form-group">
+            <div class="col-md-5 text-right">
+                @Html.LabelFor(m => m.SmallFinalTeamsIds, new { @class = "control-label" })
+            </div>
+            <div class="col-md-5">
+                @Html.BootstrapListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), "Select two teams")
+                &nbsp;<span class="label"></span>
+            </div>
+            <div class="col-md-2">
+                @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
+            </div>
         </div>
-        <div class="col-md-5">
-            @Html.BootstrapListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), "Select eight teams")
+        <div class="row form-group">
+            <div class="col-md-5 text-right">
+                @Html.LabelFor(m => m.FinalTeamsIds, new { @class = "control-label" })
+            </div>
+            <div class="col-md-5">
+                @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
+                &nbsp;<span class="label"></span>
+            </div>
+            <div class="col-md-2">
+                @Html.ValidationMessageFor(m => m.FinalTeamsIds)
+            </div>
         </div>
-        <div class="col-md-2">
-            @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-5 text-right">
-            @Html.LabelFor(m => m.SemiFinalTeamsIds, new { @class = "control-label" })
-        </div>
-        <div class="col-md-5">
-           @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
-        </div>
-        <div class="col-md-2">
-            @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-5 text-right">
-            @Html.LabelFor(m => m.SmallFinalTeamsIds, new { @class = "control-label" })
-        </div>
-        <div class="col-md-5">
-            @Html.BootstrapListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), "Select two teams")
-        </div>
-        <div class="col-md-2">
-            @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-5 text-right">
-            @Html.LabelFor(m => m.FinalTeamsIds, new { @class = "control-label" })
-        </div>
-        <div class="col-md-5">
-            @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
-        </div>
-        <div class="col-md-2">
-           @Html.ValidationMessageFor(m => m.FinalTeamsIds)
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-5 text-right">
-            @Html.LabelFor(m => m.WinnerTeamId, new { @class = "control-label" })
-        </div>
-        <div class="col-md-5">
-            @{
+        <div class="row form-group">
+            <div class="col-md-5 text-right">
+                @Html.LabelFor(m => m.WinnerTeamId, new { @class = "control-label" })
+            </div>
+            <div class="col-md-5">
+                @{
     var htmlAttributes = new Dictionary<string, object>
                 {
-                    {"class", "form-control"}
+                    {"class", "form-control chosen-select"}
                 };
     if (!ViewBag.IsLongRunningPredictionsEnabled)
     {
         htmlAttributes.Add("disabled", "disabled");
     }
-            }
-            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
+                }
+                @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
+            </div>
+            <div class="col-md-2">
+
+            </div>
         </div>
-        <div class="col-md-2">
-            
+        <div class="row">
+            <div class="col-md-7 col-md-push-5"><button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button></div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-7 col-md-push-5"><button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button></div>
     </div>
 }
-
 <script>
     $(".chosen-select").chosen();
-</script>
 
+    $(function () {
+
+        $("select").each(function (index, element) {
+
+            var selectedItems = $(":selected", this).length,
+                targetValue = $(this).data("val-maxlength-max");
+
+            if (selectedItems == targetValue) {
+                var newClass = "label-success";
+            }
+            if (selectedItems > targetValue) {
+                var newClass = "label-danger";
+            }
+            if (selectedItems < targetValue) {
+                var newClass = "label-default";
+            }
+
+            $(this).closest("div").find(".label").removeClass("label-default label-success label-danger").addClass(newClass).text(selectedItems + " of " + targetValue + " selected");
+
+        });
+
+        $("select").on("change", function () {
+
+            var selectedItems = $(":selected", this).length,
+                targetValue = $(this).data("val-maxlength-max");
+
+            if (selectedItems == targetValue) {
+                var newClass = "label-success";
+            }
+            if (selectedItems > targetValue) {
+                var newClass = "label-danger";
+            }
+            if (selectedItems < targetValue) {
+                var newClass = "label-default";
+            }
+
+            $(this).closest("div").find(".label").removeClass("label-default label-success label-danger").addClass(newClass).text(selectedItems + " of " + targetValue + " selected");
+
+        });
+
+    });
+
+</script>
 <div class="page-header">
-    <h2>Long running predictions<br />
-    <small>Your selection of teams</small>
+    <h2>
+        Long running predictions<br />
+        <small>Your selection of teams</small>
     </h2>
 </div>
-
 <div class="row">
     <div class="col-md-4 text-right">
         Teams advancing to the round of 16
@@ -137,7 +185,7 @@
         ARG BRA POR USA
     </div>
     <div class="col-md-2">
-        
+
     </div>
 </div>
 <div class="row">
@@ -148,7 +196,6 @@
         ARG USA
     </div>
     <div class="col-md-2">
-
     </div>
 </div>
 <div class="row">
@@ -159,7 +206,6 @@
         BRA POR
     </div>
     <div class="col-md-2">
-
     </div>
 </div>
 <div class="row">
@@ -170,6 +216,5 @@
         BRA
     </div>
     <div class="col-md-2">
-
     </div>
 </div>

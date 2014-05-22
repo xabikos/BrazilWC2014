@@ -5,7 +5,10 @@
 
 @model IQueryable<WorldCup.Common.Entities.Match>
 
-<h2>Upcoming matches</h2>
+<div class="page-header">
+    <h1>Match schedule<br />
+    <small>Add and edit all match details</small></h1>
+</div>
 
 @Html.ActionLink("Add new match", "Add", null, new {@class = "btn btn-primary"})
 

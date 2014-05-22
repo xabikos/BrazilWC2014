@@ -1,0 +1,34 @@
+﻿@model WorldCup.Common.Entities.ApplicationUser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserPredictions</title>
+</head>
+<body>
+    <div> 
+        @Model.FullName
+    </div>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Match</th>            
+        </tr>
+        @foreach (var item in Model.MatchPredictions)
+        {
+            <tr>
+                <td>@item.Match.Date</td>
+                <td>@item.Match.HomeTeam.Name - @item.Match.AwayTeam.Name</td>                
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

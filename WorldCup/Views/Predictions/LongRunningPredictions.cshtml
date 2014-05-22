@@ -13,6 +13,7 @@
 </div>
 
 <p>Before the championship starts, you will need to predict which teams will advance to the next rounds. As soon as the tournament begins, these values will not be editable anymore.</p>
+<p>There are <span class="label label-danger" id="days-remaining"></span> days remaining.</p>
 <hr>
 @using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new { role = "form" }))
 {
@@ -108,6 +109,14 @@
 
     $(function () {
 
+        /* Show number of days remaining */
+        var now = moment();
+        var kickOff = moment([2014, 5, 13]),
+            daysRemaining = kickOff.diff(now, 'days');
+
+        $("#days-remaining").text(daysRemaining);
+
+        /* Populate labels behind dropdowns */
         $("select").each(function (index, element) {
 
             var selectedItems = $(":selected", this).length,

@@ -18,7 +18,8 @@ namespace WorldCup.Controllers
         {
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            ViewBag.LogoSource = Context.Parameters.Single(p => p.Name == PredefinedParameters.ApplicationLogo).Value; ;
+            ViewBag.LogoSource = Context.Parameters.Single(p => p.Name == PredefinedParameters.ApplicationLogo).Value;
+            ViewBag.ApplicationName = Context.Parameters.Single(p => p.Name == PredefinedParameters.ApplicationLogoText).Value;
 
             return new PdfActionResult(user);
         }

@@ -15,10 +15,11 @@
 <body>
     <table>
         <tr>
-            <td><img src="@imagePath" width="200" /></td>
+            <td><img src="@imagePath" height="100" /></td>
+            <td>&nbsp;&nbsp;</td>
             <td>
-                <h1>User predictions</h1>
-                <p>@Model.FullName</p>
+                <h1>@ViewBag.ApplicationName</h1>
+                <p style="color: #333;">Predictions overview: @Model.FullName</p>
             </td>
         </tr>
     </table>
@@ -37,10 +38,10 @@
         {
             <tr>
                 <td width="35%" align="right">@item.Match.HomeTeam.Name</td>
-                <td width="10%" align="center" nowrap>(@item.Match.HomeTeamHalfTimeGoals - @item.Match.AwayTeamHalfTimeGoals)<br /><strong>@item.Match.HomeTeamFullTimeGoals - @item.Match.AwayTeamFullTimeGoals</strong></td>
+                <td width="10%" align="center" nowrap>(@item.HomeTeamHalfTimeGoals - @item.AwayTeamHalfTimeGoals)<br /><strong>@item.HomeTeamFullTimeGoals - @item.AwayTeamFullTimeGoals</strong></td>
                 <td width="35%">@item.Match.AwayTeam.Name</td>
-                <td width="10%">@item.Match.YellowCards</td>
-                <td width="10%">@item.Match.RedCards</td>
+                <td width="10%">@item.YellowCards</td>
+                <td width="10%">@item.RedCards</td>
             </tr>
             <tr>
                 <td colspan="5">&nbsp;</td>

@@ -4,99 +4,178 @@
 @{
     ViewBag.Title = "System configuration";
 }
+<div class="page-header">
+    <h1>
+        System parameters<br />
+        <small>Change the score factors</small>
+    </h1>
+</div>
+<p>This page contains the score factors which are used to calculate the rankings. If necessary these values can be changed before the tournament starts.</p>
 
-@using (Html.BeginForm("SystemParameters", "AdminGeneral", FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm("SystemParameters", "AdminGeneral", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
-    @Html.HiddenFor(m=>m.Id)
-    <div class="row">
+    @Html.HiddenFor(m => m.Id)
 
-        <div class='col-md-4'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.GroupHalfTimeScoreFactor)
-                @Html.BootstrapEditorFor(m => m.GroupHalfTimeScoreFactor)
-                @Html.ValidationMessageFor(m => m.GroupHalfTimeScoreFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.GroupFullTimeScoreFactor)
-                @Html.BootstrapEditorFor(m => m.GroupFullTimeScoreFactor)
-                @Html.ValidationMessageFor(m => m.GroupFullTimeScoreFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.GroupYellowCardsNumberFactor)
-                @Html.BootstrapEditorFor(m => m.GroupYellowCardsNumberFactor)
-                @Html.ValidationMessageFor(m => m.GroupYellowCardsNumberFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.GroupRedCardsNumberFactor)
-                @Html.BootstrapEditorFor(m => m.GroupRedCardsNumberFactor)
-                @Html.ValidationMessageFor(m => m.GroupRedCardsNumberFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.GroupWinnerFactor)
-                @Html.BootstrapEditorFor(m => m.GroupWinnerFactor)
-                @Html.ValidationMessageFor(m => m.GroupWinnerFactor)
-            </div>
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-9">
+            <h3>Group phase score factors</h3>
         </div>
-        <div class='col-md-4'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FinalsHalfTimeScoreFactor)
-                @Html.BootstrapEditorFor(m => m.FinalsHalfTimeScoreFactor)
-                @Html.ValidationMessageFor(m => m.FinalsHalfTimeScoreFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FinalsFullTimeScoreFactor)
-                @Html.BootstrapEditorFor(m => m.FinalsFullTimeScoreFactor)
-                @Html.ValidationMessageFor(m => m.FinalsFullTimeScoreFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FinalsYellowCardsNumberFactor)
-                @Html.BootstrapEditorFor(m => m.FinalsYellowCardsNumberFactor)
-                @Html.ValidationMessageFor(m => m.FinalsYellowCardsNumberFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FinalsRedCardsNumberFactor)
-                @Html.BootstrapEditorFor(m => m.FinalsRedCardsNumberFactor)
-                @Html.ValidationMessageFor(m => m.FinalsRedCardsNumberFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FinalsWinnerFactor)
-                @Html.BootstrapEditorFor(m => m.FinalsWinnerFactor)
-                @Html.ValidationMessageFor(m => m.FinalsWinnerFactor)
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupHalfTimeScoreFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.GroupHalfTimeScoreFactor)
         </div>
-        <div class='col-md-4'>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Round16TeamsFactor)
-                @Html.BootstrapEditorFor(m => m.Round16TeamsFactor)
-                @Html.ValidationMessageFor(m => m.Round16TeamsFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.QuarterFinalTeamsFactor)
-                @Html.BootstrapEditorFor(m => m.QuarterFinalTeamsFactor)
-                @Html.ValidationMessageFor(m => m.QuarterFinalTeamsFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.SemiFinalTeamsFactor)
-                @Html.BootstrapEditorFor(m => m.SemiFinalTeamsFactor)
-                @Html.ValidationMessageFor(m => m.SemiFinalTeamsFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.SmallFinalTeamsFactor)
-                @Html.BootstrapEditorFor(m => m.SmallFinalTeamsFactor)
-                @Html.ValidationMessageFor(m => m.SmallFinalTeamsFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.FinalTeamsFactor)
-                @Html.BootstrapEditorFor(m => m.FinalTeamsFactor)
-                @Html.ValidationMessageFor(m => m.FinalTeamsFactor)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.WinnerTeamFactor)
-                @Html.BootstrapEditorFor(m => m.WinnerTeamFactor)
-                @Html.ValidationMessageFor(m => m.WinnerTeamFactor)
-            </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.GroupHalfTimeScoreFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupFullTimeScoreFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.GroupFullTimeScoreFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.GroupFullTimeScoreFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupYellowCardsNumberFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.GroupYellowCardsNumberFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.GroupYellowCardsNumberFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupRedCardsNumberFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.GroupRedCardsNumberFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.GroupRedCardsNumberFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupWinnerFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.GroupWinnerFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.GroupWinnerFactor)
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-9">
+            <h3>Final phase score factors</h3>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FinalsHalfTimeScoreFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.FinalsHalfTimeScoreFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.FinalsHalfTimeScoreFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FinalsFullTimeScoreFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.FinalsFullTimeScoreFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.FinalsFullTimeScoreFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FinalsYellowCardsNumberFactor, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-3">
+                @Html.BootstrapEditorFor(m => m.FinalsYellowCardsNumberFactor)
+            </div>
+            <div class="col-sm-6">
+                @Html.ValidationMessageFor(m => m.FinalsYellowCardsNumberFactor)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.FinalsRedCardsNumberFactor, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-3">
+                @Html.BootstrapEditorFor(m => m.FinalsRedCardsNumberFactor)
+            </div>
+            <div class="col-sm-6">
+                @Html.ValidationMessageFor(m => m.FinalsRedCardsNumberFactor)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.FinalsWinnerFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.FinalsWinnerFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.FinalsWinnerFactor)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-9">
+            <h3>Long term predictions score factors</h3>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Round16TeamsFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.Round16TeamsFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.Round16TeamsFactor)
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.QuarterFinalTeamsFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+        @Html.BootstrapEditorFor(m => m.QuarterFinalTeamsFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.QuarterFinalTeamsFactor)
+        </div>
+    </div>
+        <div class="form-group">
+        @Html.LabelFor(m => m.SemiFinalTeamsFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+        @Html.BootstrapEditorFor(m => m.SemiFinalTeamsFactor)
+        </div>
+        <div class="col-sm-6">
+        @Html.ValidationMessageFor(m => m.SemiFinalTeamsFactor)
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.SmallFinalTeamsFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+        @Html.BootstrapEditorFor(m => m.SmallFinalTeamsFactor)
+        </div>
+        <div class="col-sm-6">
+        @Html.ValidationMessageFor(m => m.SmallFinalTeamsFactor)
+        </div>
+    </div>
+        <div class="form-group">
+        @Html.LabelFor(m => m.FinalTeamsFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+        @Html.BootstrapEditorFor(m => m.FinalTeamsFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.FinalTeamsFactor)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.WinnerTeamFactor, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-3">
+            @Html.BootstrapEditorFor(m => m.WinnerTeamFactor)
+        </div>
+        <div class="col-sm-6">
+            @Html.ValidationMessageFor(m => m.WinnerTeamFactor)
+        </div>
+    </div>
+    <div class="col-sm-offset-3 col-sm-9"><button type="submit" class="btn btn-primary">Save</button></div>
+    
 }

@@ -14,10 +14,14 @@ namespace WorldCup.Extensions
         {
             var items = new List<object>
             {
-                new {Id = 0, Name = match.HomeTeam.Name},
-                new {Id = 1, Name = "Draw"},
-                new {Id = 2, Name = match.AwayTeam.Name}
+                new {Id = 0, match.HomeTeam.Name},
+                new {Id = 2, match.AwayTeam.Name}
             };
+
+            // Add the draw item only for group stage matches
+            // In all other matches a winner should exists
+            if(match.IsGroupStage())
+                items.Insert(1, (new {Id = 1, Name = "Draw"}));
 
             return new SelectList(items, "Id", "Name", matchResult);
         }

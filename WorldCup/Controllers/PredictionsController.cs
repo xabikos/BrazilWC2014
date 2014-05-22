@@ -48,18 +48,23 @@ namespace WorldCup.Controllers
         {
             var match = await Context.Matches.SingleAsync(m => m.Id == model.MatchId);
 
+            // Check if the match prediction still applies
+            if (DateTime.UtcNow > match.Date || match.State != MatchState.VisibleForPredictions)
+            {
+                return View("TimeOverpassed");
+            }
+
+            if(!match.IsGroupStage() && model.Result == MatchResult.Draw)
+            {
+                ModelState.AddModelError("InvalidResult", "You are not allowes to select Draw as result for a non Group match");
+            }
+
             if(!ModelState.IsValid)
             {
                 PrepareViewBag(model.MatchId, match);
                 model.Match = match;
                 
                 return View(model);
-            }
-
-            // Check if the match prediction still applies
-            if (DateTime.UtcNow > match.Date || match.State != MatchState.VisibleForPredictions)
-            {
-                return View("TimeOverpassed");
             }
             
             var applicationUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());

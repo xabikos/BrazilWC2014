@@ -10,7 +10,7 @@ namespace WorldCup.Controllers
     {
         public ActionResult Index()
         {
-            var model = from user in Context.Users.ToList()
+            var model = from user in UserManager.ConfirmedUsers.ToList()
                 let matchPoints = user.MatchPoints.Sum(m => m.Points)
                 let longRunningPoints = user.LongRunningPoints != null
                     ? (user.LongRunningPoints.SecondStagePoints +
@@ -45,7 +45,7 @@ namespace WorldCup.Controllers
 
         public JsonResult TopUsersInfo(int numberOfUsers)
         {
-            var topTenUsers = (from user in Context.Users
+            var topTenUsers = (from user in UserManager.ConfirmedUsers
                 let userPoints = user.MatchPoints.Sum(m => m.Points)
                                  + ( user.LongRunningPoints.SecondStagePoints +
                                        user.LongRunningPoints.QuarterFinalPoints +

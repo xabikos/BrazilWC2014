@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Web;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using WorldCup.Common.DataAccess;
 using WorldCup.Common.Entities;
 using WorldCup.Migrations;

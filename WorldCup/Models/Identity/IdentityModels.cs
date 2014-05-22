@@ -57,6 +57,11 @@ namespace WorldCup.Models.Identity
             }
         }
 
+        public IQueryable<ApplicationUser> ConfirmedUsers
+        {
+            get { return AllUsers.Where(u => u.EmailConfirmed); }
+        }
+
         public async Task<ApplicationUser> ChangeUserStatus(string userId, bool activateUser)
         {
             var user = await FindByIdAsync(userId);

@@ -25,7 +25,6 @@ namespace WorldCup.Migrations
             if (context.Teams.Any()) return;
 
             InitializeAdmins(context);
-            InitializeUsers(context);
             InitializeTeams(context);
             InitializeMatches(context);
         }
@@ -205,53 +204,6 @@ namespace WorldCup.Migrations
                 userManager.AddToRole(rutgerUser.Id, role.Name);
             }
 
-        }
-
-        private void InitializeUsers(ApplicationDbContext context)
-        {
-            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-
-            const string password = "Pa$$w0rd12";
-
-            var user = new ApplicationUser
-            {
-                UserName = "h.tuncer@niposoftware.com",
-                Email = "h.tuncer@niposoftware.com",
-                FirstName = "Hakan",
-                LastName = "Tuncer"
-            };
-            userManager.Create(user, password);
-            userManager.SetLockoutEnabled(user.Id, false);
-
-            user = new ApplicationUser
-            {
-                UserName = "p.lieverest@niposoftware.com",
-                Email = "p.lieverest@niposoftware.com",
-                FirstName = "Paul",
-                LastName = "Lieverest"
-            };
-            userManager.Create(user, password);
-            userManager.SetLockoutEnabled(user.Id, false);
-
-            user = new ApplicationUser
-            {
-                UserName = "i.metin@niposoftware.com",
-                Email = "i.metin@niposoftware.com",
-                FirstName = "Irfan",
-                LastName = "Metin"
-            };
-            userManager.Create(user, password);
-            userManager.SetLockoutEnabled(user.Id, false);
-
-            user = new ApplicationUser
-            {
-                UserName = "m.rijsk@niposoftware.com",
-                Email = "m.rijsk@niposoftware.com",
-                FirstName = "Martin",
-                LastName = "Rijsk"
-            };
-            userManager.Create(user, password);
-            userManager.SetLockoutEnabled(user.Id, false);
         }
 
     }

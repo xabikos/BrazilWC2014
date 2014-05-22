@@ -25,7 +25,7 @@
         <h1>Current ranking</h1>
         <p>After every match the scores will be updated as soon as possible. </p>
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
-        Check the <a href="/Rankings">rankings</a> for a complete overview.
+        <p>&nbsp;<br />Check the @Html.ActionLink("rankings", "Index", "Rankings") for a complete overview.</p>
         @if (Request.IsAuthenticated)
         {
             <h1>Your latest results</h1>
@@ -46,7 +46,7 @@
             columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
         }).Selectable(false)
 
-            <p>Check your @Html.ActionLink("personal page", "Index", "UserResults") for a more detailed view.</p>
+            <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for a more detailed view.</p>
         }
     </div>
     <div class="col-md-6">
@@ -82,10 +82,10 @@
                 .Titled("Away Team")
                 .SetWidth(30);
         }).Selectable(false)
-            <p>Check the <a href="/Predictions/">predictions</a> of others for these matches.</p>
         }
         else
         {
+            <h1>Your predictions</h1>
             <p>Please log in to see your predictions.</p>
         }
         <h1>Upcoming matches</h1>
@@ -112,11 +112,14 @@
                 .Titled("Away Team")
                 .SetWidth(25);
         })
-        <p>See the whole <a href="/Predictions">match schedule</a> and for your predictions.</p>
+        @if (Request.IsAuthenticated)
+        {
+            <p>&nbsp;<br />See the whole <a href="/Predictions">match schedule</a> and for your predictions.</p>
+        }
 
-        <h2>Money raised</h2>
+        <h1>Money raised</h1>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
-        Check where <a href="http://www.unicef.com">your donation goes to</a>.
+        <p>&nbsp;<br />Check where <a href="http://www.unicef.com">your donation goes to</a>.</p>
     </div>
 </div>
 
@@ -162,7 +165,7 @@
             series: {
                 argumentField: "date",
                 valueField: "amount",
-                name: "Money raised (in euro)",
+                name: "Money raised",
                 type: "bar",
                 color: '#28b62c'
             }
@@ -173,7 +176,7 @@
 
         $("#rankingChart").dxChart({
             title: {
-                text: 'Current top 5 (last update: 12 May)'
+                text: 'Current top 5'
             },
             legend: {
                 horizontalAlignment: 'center',

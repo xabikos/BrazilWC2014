@@ -9,6 +9,7 @@ namespace WorldCup.Common
         public const string ApplicationLogo = "ApplicationLogo";
         public const string ApplicationLogoText = "ApplicationLogoText";
         public const string IntroductionText = "IntroductionText";
+        public const string UnicefChampion = "UnicefChampion";
 
 // ReSharper disable once InconsistentNaming
         private static readonly List<string> _parameters = new List<string>
@@ -16,8 +17,10 @@ namespace WorldCup.Common
             NavigationBrandText,
             ApplicationLogo,
             ApplicationLogoText,
-            IntroductionText
+            IntroductionText,
+            UnicefChampion
         };
+
         public static IEnumerable<string> Parameters
         {
             get { return _parameters; }

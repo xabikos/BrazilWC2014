@@ -68,6 +68,7 @@ namespace WorldCup.Controllers
 
         public ActionResult Rules()
         {
+            ViewBag.UnicefChampion = Context.Parameters.Single(p => p.Name == PredefinedParameters.UnicefChampion).Value;
             return View();
         }
 

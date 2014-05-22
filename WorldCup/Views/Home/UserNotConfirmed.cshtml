@@ -1,9 +1,10 @@
 ﻿@{
     ViewBag.Title = "You are not confirmed yet";
+    ViewBag.UnicefChampion = WorldCup.Common.PredefinedParameters.UnicefChampion;
 }
 <div class="page-header">
     <h2>Too bad!</h2>
 </div>
-<p>Currently, you are not allowed to make any predictions yet. Please pay Rutger first in order to compete.</p>
+<p>Currently, you are not allowed to make any predictions yet. Please pay @ViewBag.UnicefChampion first in order to compete.</p>
 
 @Html.ActionLink("Back to home page", "Index", "Home", new {@class = "btn btn-primary"})

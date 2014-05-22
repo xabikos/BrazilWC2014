@@ -6,11 +6,14 @@
 }
 
 <div class="page-header">
-    <h2>
+    <h1>
         Long running predictions<br />
         <small>Select the teams that advanced to the next round(s)</small>
-    </h2>
+    </h1>
 </div>
+
+<p>As soon as the teams advancing to the next rounds are available, you can enter them here. After you saved the values, you can calculate the rankings.</p>
+<hr />
 
 @using (Html.BeginForm("LongRunningResults", "AdminLongRunningResults", FormMethod.Post, new { role = "form" }))
 {

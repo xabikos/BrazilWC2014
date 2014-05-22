@@ -45,7 +45,7 @@ namespace WorldCup.Controllers
 
         public JsonResult TopUsersInfo(int numberOfUsers)
         {
-            var topTenUsers = (from user in UserManager.ConfirmedUsers
+            var topUsers = (from user in UserManager.ConfirmedUsers
                 let userPoints = user.MatchPoints.Sum(m => m.Points)
                                  + ( user.LongRunningPoints.SecondStagePoints +
                                        user.LongRunningPoints.QuarterFinalPoints +
@@ -69,7 +69,7 @@ namespace WorldCup.Controllers
                 var date = today.AddDays(i);
                 userInfo.Add("date", date.ToString("M"));
 
-                foreach(var user in topTenUsers)
+                foreach(var user in topUsers)
                 {
                     userInfo.Add(user.Id, user.GetPointsForDate(date));
                 }
@@ -81,7 +81,7 @@ namespace WorldCup.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Data = new
                 {
-                    users = topTenUsers.Select(u => new {name = u.FullName, valueField = u.Id}).ToList(),
+                    users = topUsers.Select(u => new {name = u.FullName, valueField = u.Id}).ToList(),
                     rankings = usersInfoPerDate
                 }
             };

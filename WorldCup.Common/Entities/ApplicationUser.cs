@@ -30,39 +30,15 @@ namespace WorldCup.Common.Entities
             var result = 0;
             result += MatchPoints.Where(m => m.Match.Date <= date).Sum(mp => mp.Points);
 
-            if(LongRunningPoints != null)
-            {
-                // First stage date ended so second stage teams are known
-                if(date > new DateTime(2014, 6, 26))
-                {
-                    result += LongRunningPoints.SecondStagePoints;
-                }
+            if (LongRunningPoints == null) 
+                return result;
 
-                // Second stage date ended so quarter final teams are known 
-                if (date > new DateTime(2014, 7, 1))
-                {
-                    result += LongRunningPoints.QuarterFinalPoints;
-                }
-
-                // Quarter final date ended so semi final teams are known
-                if (date > new DateTime(2014, 7, 5))
-                {
-                    result += LongRunningPoints.SemiFinalPoints;
-                }
-
-                // Semi final date ended so small final and final teams are known
-                if (date > new DateTime(2014, 7, 9))
-                {
-                    result += LongRunningPoints.SmallFinalPoints;
-                    result += LongRunningPoints.FinalPoints;
-                }
-
-                // Tournament ended so winner is known
-                if(date > new DateTime(2014, 7, 13))
-                {
-                    result += LongRunningPoints.WinnerPoints;
-                }
-            }
+            result += LongRunningPoints.SecondStagePoints;
+            result += LongRunningPoints.QuarterFinalPoints;
+            result += LongRunningPoints.SemiFinalPoints;
+            result += LongRunningPoints.SmallFinalPoints;
+            result += LongRunningPoints.FinalPoints;
+            result += LongRunningPoints.WinnerPoints;
 
             return result;
         }

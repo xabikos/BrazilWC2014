@@ -228,6 +228,7 @@
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\Identity\RegisterViewModel.cs" />
+    <Compile Include="Models\Predictions\PredictionInfoModel.cs" />
     <Compile Include="Models\Rankings\UserRankingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -832,13 +833,14 @@
     <Content Include="Views\Predictions\TimeOverpassed.cshtml" />
     <Content Include="Views\AdminRankins\Index.cshtml" />
     <Content Include="Views\AdminLongRunningResults\LongRunningResults.cshtml" />
-    <Content Include="Views\Predictions\_TeamFlag.cshtml" />
     <Content Include="Views\AdminGeneral\RaisedMoney.cshtml" />
     <Content Include="Views\Shared\_LocalizableDateTime.cshtml" />
     <Content Include="Views\UserResults\Index.cshtml" />
     <Content Include="Views\AdminGeneral\Parameters.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Parameter.cshtml" />
     <Content Include="Views\Reports\UserPredictions.cshtml" />
+    <Content Include="Views\Predictions\MatchPredictionInfo.cshtml" />
+    <Content Include="Views\Predictions\_TeamFlag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

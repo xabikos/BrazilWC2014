@@ -26,5 +26,13 @@ namespace WorldCup.Extensions
             return new SelectList(items, "Id", "Name", matchResult);
         }
 
+        public static string WinnerTeamName(this MatchResult matchResult, Match match)
+        {
+            if (matchResult == MatchResult.Home)
+                return match.HomeTeam.Name;
+
+            return matchResult == MatchResult.Away ? match.AwayTeam.Name : "Draw";
+        }
+
     }
 }

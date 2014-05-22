@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using WorldCup.Attributes;
 using WorldCup.Common.Entities;
 using WorldCup.Extensions;
+using WorldCup.Models.Predictions;
 
 namespace WorldCup.Controllers
 {
@@ -28,16 +29,29 @@ namespace WorldCup.Controllers
             return View(Context.Matches.Where(m => m.State != MatchState.Created).OrderBy(m => m.Date));
         }
 
+        /// <summary>
+        /// Based on the match date returns either a view to enter predictions 
+        /// or a view that contains an overview of the user prediction if exists  
+        /// </summary>
         public async Task<ViewResult> MatchPrediction(int id)
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             // match prediction is null the first time
-            var matchPrediction = user.MatchPredictions.SingleOrDefault(mp => mp.MatchId == id) ?? new MatchPrediction();
             var match = await Context.Matches.SingleAsync(m => m.Id == id && m.State != MatchState.Created);
+            var matchPrediction = user.MatchPredictions.SingleOrDefault(mp => mp.MatchId == id) ?? new MatchPrediction();
+
+            PrepareViewBag(match);
+
+            // In case the match has started then return the info view
+            if (DateTime.UtcNow > match.Date)
+            {
+                var model = GetPredictionInfoModel(matchPrediction, match);
+
+                return View("MatchPredictionInfo", model);
+            }
+
             matchPrediction.Match = match;
             matchPrediction.MatchId = match.Id;
-
-            PrepareViewBag(id, match);
 
             return View(matchPrediction);
         }
@@ -56,12 +70,12 @@ namespace WorldCup.Controllers
 
             if(!match.IsGroupStage() && model.Result == MatchResult.Draw)
             {
-                ModelState.AddModelError("InvalidResult", "You are not allowes to select Draw as result for a non Group match");
+                ModelState.AddModelError("InvalidResult", "You are not allowed to select Draw as result for a non Group match");
             }
 
             if(!ModelState.IsValid)
             {
-                PrepareViewBag(model.MatchId, match);
+                PrepareViewBag(match);
                 model.Match = match;
                 
                 return View(model);
@@ -144,18 +158,72 @@ namespace WorldCup.Controllers
             return RedirectToAction("LongRunningPredictions");
         }
 
-        private void PrepareViewBag(int id, Match match)
+        private void PrepareViewBag(Match match)
         {
-            ViewBag.IsMatchPredictionsEnabled = DateTime.UtcNow < match.Date;
-
             var matchesIds = Context.Matches.OrderBy(m => m.Date)
                 .Where(m=>m.State != MatchState.Created)
                 .Select(m => m.Id)
                 .ToList()
-                .FindSandwichedItem(m => m == id)
+                .FindSandwichedItem(m => m == match.Id)
                 .ToList();
-            ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : id;
-            ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : id;
+            ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : match.Id;
+            ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : match.Id;
+        }
+
+        /// <summary>
+        /// Creates and returns a model for match prediction overview when the match has started
+        /// and it's not longer available for predictions
+        /// </summary>
+        /// <remarks>
+        /// We have to pass as arguments both prediction and match because if the user has not done any prediction
+        /// we might still want to show the match results
+        /// </remarks>
+        private PredictionInfoModel GetPredictionInfoModel(MatchPrediction matchPrediction, Match match)
+        {
+            var model = new PredictionInfoModel();
+            // Check if the user has done a prediction for the match
+            if (matchPrediction.Match != null)
+            {
+                model.UserPredictionInfo = new UserPredictionInfo
+                {
+                    HalfTimeScore = string.Format("{0} - {1}",
+                        matchPrediction.HomeTeamHalfTimeGoals, matchPrediction.AwayTeamHalfTimeGoals),
+                    FullTimeScore = string.Format("{0} - {1}",
+                        matchPrediction.HomeTeamFullTimeGoals, matchPrediction.AwayTeamFullTimeGoals),
+                    Winner = matchPrediction.Result.WinnerTeamName(match),
+                    YellowCards = matchPrediction.YellowCards,
+                    RedCards = matchPrediction.RedCards
+                };
+            }
+
+            model.HomeTeamName = match.HomeTeam.Name;
+            model.AwayTeamName = match.AwayTeam.Name;
+            model.FinalResultsUpdated = match.State == MatchState.Finalized;
+            model.HalfTimeScoreResult = string.Format("{0} - {1}", match.HomeTeamHalfTimeGoals,
+                match.AwayTeamHalfTimeGoals);
+            model.FullTimeScoreResult = string.Format("{0} - {1}", match.HomeTeamFullTimeGoals,
+                match.AwayTeamFullTimeGoals);
+            model.WinnerResult = match.Result.WinnerTeamName(match);
+            model.YellowCardsResult = match.YellowCards;
+            model.RedCardsResult = match.RedCards;
+
+            var currentUserId = User.Identity.GetUserId();
+
+            model.UsersPredictions =
+                UserManager.ConfirmedUsers.Where(u => u.Id != currentUserId).SelectMany(
+                    u => u.MatchPredictions.Where(mp => mp.MatchId == match.Id).Select(mp => new UserPredictionInfo
+                    {
+                        UserName = u.FirstName + " " + u.LastName,
+                        HalfTimeScore = mp.HomeTeamHalfTimeGoals + " - " + mp.AwayTeamHalfTimeGoals,
+                        FullTimeScore = mp.HomeTeamFullTimeGoals + " - " + mp.AwayTeamFullTimeGoals,
+                        Winner = mp.Result == MatchResult.Home
+                            ? mp.Match.HomeTeam.Name
+                            : mp.Result == MatchResult.Away ? mp.Match.AwayTeam.Name : "Draw",
+                        YellowCards = mp.YellowCards,
+                        RedCards = mp.RedCards
+                    }).OrderBy(upi => upi.UserName)).ToList();
+
+            return model;
         }
 
     }

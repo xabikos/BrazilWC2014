@@ -1,0 +1,94 @@
+﻿@using GridMvc.Html
+@model WorldCup.Models.Predictions.PredictionInfoModel
+
+@{
+    ViewBag.Title = string.Format("{0} vs {1} predictions", Model.HomeTeamName, Model.AwayTeamName);
+}
+
+
+<div class="page-header">
+    <h2>
+        Prediction overview<br />
+        <small>Brazil vs Croatia</small>
+    </h2>
+</div>
+@if (Model.UserPredictionInfo != null)
+{
+    <table class="table table-condensed">
+        <tr>
+            <th class="col-sm-4"></th>
+            <th class="col-sm-2">Your prediction</th>
+            <th class="col-sm-2">Final result @if (!Model.FinalResultsUpdated)
+                                              {
+                                                  <span>The results has not been updated yet</span>
+                                              }</th>
+            <th class="col-sm-4"></th>
+        </tr>
+        <tr>
+            <td class="col-sm-4 text-right"><b>Half time score</b></td>
+            <td class="col-sm-2">@Model.UserPredictionInfo.HalfTimeScore</td>
+            <td class="col-sm-2">@Model.HalfTimeScoreResult</td>
+            <td class="col-sm-4"></td>
+        </tr>
+        <tr>
+            <td class="col-sm-4 text-right"><b>Full time score</b></td>
+            <td class="col-sm-2">@Model.UserPredictionInfo.FullTimeScore</td>
+            <td class="col-sm-2">@Model.FullTimeScoreResult</td>
+            <td class="col-sm-4"></td>
+        </tr>
+        <tr>
+            <td class="col-sm-4 text-right"><b>Winner</b></td>
+            <td class="col-sm-2">@Model.UserPredictionInfo.Winner</td>
+            <td class="col-sm-2">@Model.WinnerResult</td>
+            <td class="col-sm-4"></td>
+        </tr>
+        <tr>
+            <td class="col-sm-4 text-right"><b>Yellow cards</b></td>
+            <td class="col-sm-2">@Model.UserPredictionInfo.YellowCards</td>
+            <td class="col-sm-2">@Model.YellowCardsResult</td>
+            <td class="col-sm-4"></td>
+        </tr>
+        <tr>
+            <td class="col-sm-4 text-right"><b>Red cards</b></td>
+            <td class="col-sm-2">@Model.UserPredictionInfo.RedCards</td>
+            <td class="col-sm-2">@Model.RedCardsResult</td>
+            <td class="col-sm-4"></td>
+        </tr>
+    </table>
+}
+else
+{
+    //TODO Maybe it would be useful to show the final result even if the user has not done a prediction
+    <div>
+        Unfortunately you have not done any prediction for this match. You can only see the others users predictions
+    </div>
+}
+&nbsp;
+<div class="visible-xs visible-sm">
+    <div class="btn-group btn-group-justified">
+        @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+        @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
+        @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+    </div>
+</div>
+<div class="hidden-xs hidden-sm">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="btn-group btn-group-justified">
+                @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+                @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
+                @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+            </div>
+        </div>
+    </div>
+</div>
+&nbsp;
+@Html.Grid(Model.UsersPredictions).Named("usersPredictions").Columns(columns =>
+    {
+        columns.Add(upi=>upi.UserName).Titled("Name").SetWidth(40);
+        columns.Add(upi => upi.HalfTimeScore).Titled("Half Time Score").SetWidth(10);
+        columns.Add(upi => upi.FullTimeScore).Titled("Full Time Score").SetWidth(10);
+        columns.Add(upi => upi.Winner).Titled("Winner").SetWidth(20);
+        columns.Add(upi => upi.YellowCards).Titled("Yellow Cards").SetWidth(10);
+        columns.Add(upi => upi.RedCards).Titled("Red Cards").SetWidth(10);
+    }).Sortable().WithPaging(40)

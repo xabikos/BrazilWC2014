@@ -28,101 +28,59 @@
     @Html.HiddenFor(m => m.MatchPredictionId)
     @Html.HiddenFor(m => m.MatchId)
 
-    <div class="row">
-
-        <div class="col-xs-6 col-md-4"></div>
-        <div class="col-xs-3 col-md-2 text-center">
-            @Html.Partial("_TeamFlag", new[] { Model.Match.HomeTeam.Code, Model.Match.HomeTeam.Name })
-        </div>
-        <div class="col-xs-1 visible-lg"></div>
-        <div class="col-xs-3 col-md-2 text-center">
-            @Html.Partial("_TeamFlag", new[] { Model.Match.AwayTeam.Code, Model.Match.AwayTeam.Name })
-        </div>
-        <div class="visible-lg col-md-3"></div>
+    <div class="form-group">
+        <div class="col-xs-offset-6 col-md-offset-4 col-xs-3 col-md-2 text-center">@Html.Partial("_TeamFlag", new[] { Model.Match.HomeTeam.Code, Model.Match.HomeTeam.Name })</div>
+        <div class="col-xs-3 col-md-offset-1 col-md-2 text-center">@Html.Partial("_TeamFlag", new[] { Model.Match.AwayTeam.Code, Model.Match.AwayTeam.Name })</div>
+        <div class="hidden-xs col-md-3"></div>
     </div>
     
-    <div class="row">
+    <div class="form-group">
+        <label class="col-xs-6 col-md-4 control-label">Half time score</label>
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)</div>
+        <div class="hidden-xs hidden-sm col-md-1 text-center">-</div>
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals)</div>
+        <div class="col-xs-12 col-md-3"><span class="help-block">@Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)</span></div>
+    </div>
 
-        <div class="form-group">
-
-            <div class="col-xs-6 col-md-4 text-right"><label class="control-label">Half time score</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)</div>
-            <div class="visible-lg col-md-1 text-center"><label class="text-center">-</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamHalfTimeGoals)</div>
-            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamHalfTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamHalfTimeGoals)</div>
-
-        </div>
-
-     </div>
-    
-    <div class="row">
-
-        <div class="form-group">
-
-            <div class="col-xs-6 col-md-4 text-right"><label class="control-label">Full time score</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals)</div>
-            <div class="visible-lg col-md-1 text-center"><label class="control-label">-</label></div>
-            <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)</div>
-            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</div>
-
-        </div>
-
+    <div class="form-group">
+        <label class="col-xs-6 col-md-4 control-label">Full time score</label>
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamFullTimeGoals)</div>
+        <div class="hidden-xs hidden-sm col-md-1 text-center"><label class="control-label">-</label></div>
+        <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)</div>
+        <div class="col-xs-12 col-md-3"><span class="help-block">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</span></div>
     </div>
     
-    <div class="row">
-        <div class="col-xs-6 col-md-4 text-right">
-            @Html.LabelFor(m => m.Result, "Winner", new { @class = "control-label" })
-        </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Result, "Winner", new { @class = "col-xs-6 col-md-4 control-label" })
         <div class="col-xs-6 col-md-5" id="result-buttons">
-            @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), new {@class = "form-control"})
+            @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model.Match), new { @class = "form-control" })
         </div>
-
-        <div class="visible-lg col-md-3"></div>
+        <div class="hidden-xs col-md-3"></div>
+    </div>
+    
+        <hr class="divider" />
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.YellowCards, "Total yellow cards", new { @class = "col-xs-6 col-md-4 control-label" })
+        <div class="col-xs-6 col-md-1 col-md-offset-2 text-center">@Html.BootstrapEditorFor(m => m.YellowCards)</div>
+        <div class="col-xs-12 col-md-3 col-md-offset-2"><span class="help-block">@Html.ValidationMessageFor(m => m.YellowCards)</span></div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.RedCards, "Total red cards", new { @class = "col-xs-6 col-md-4 control-label" })
+        <div class="col-xs-6 col-md-1 col-md-offset-2 text-center">@Html.BootstrapEditorFor(m => m.RedCards)</div>
+        <div class="col-xs-12 col-md-3 col-md-offset-2"><span class="help-block">@Html.ValidationMessageFor(m => m.RedCards)</span></div>
     </div>
     
     <hr class="divider" />
-    
-    <div class="row">
 
-        <div class="form-group">
-
-            <div class="col-xs-6 col-md-4 text-right">
-                @Html.LabelFor(m => m.YellowCards, "Total yellow cards", new { @class = "control-label" })
-            </div>
-            <div class="visible-lg col-md-2"></div>
-            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.YellowCards)</div>
-            <div class="visible-lg col-md-2"></div>
-            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.YellowCards)</div>
-
-        </div>
-
-    </div>
-    
-    <div class="row">
-
-        <div class="form-group">
-
-            <div class="col-xs-6 col-md-4 text-right">
-                @Html.LabelFor(m => m.RedCards, "Total red cards", new { @class = "control-label" })
-            </div>
-            <div class="visible-lg col-md-2"></div>
-            <div class="col-xs-6 col-md-1">@Html.BootstrapEditorFor(m => m.RedCards)</div>
-            <div class="visible-lg col-md-2"></div>
-            <div class="col-xs-12 col-md-3">@Html.ValidationMessageFor(m => m.RedCards)</div>
-
-        </div>
-
-    </div>
-    
-    <p></p>
-    
     <div class="btn-group btn-group-justified visible-xs visible-sm">
         <div class="btn-group">
             <button type="submit" class="btn btn-success">Save</button>
         </div>
     </div>
 
-    <div class="hidden-xs hidden-sm text-center">
+    <div class="hidden-xs hidden-sm text-center col-md-offset-1">
         <button type="submit" class="btn btn-success btn-lg">Save</button>
     </div>
 }
@@ -136,7 +94,7 @@
 </div>
 <div class="hidden-xs hidden-sm">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-5 col-md-offset-4">
             <div class="btn-group btn-group-justified">
                 @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
                 @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
@@ -183,14 +141,14 @@
                 return "Warning: You may have unsaved changes on this page. Press cancel and then the 'Save' button at the bottom of this page before leaving.";
             }
         };
- 
+
         $(window).bind('beforeunload', unloadPreventor);
-   
+
         var formModification = false;
 
         $('form *').change(function () {
             formModification = true;
-        });       
+        });
 
     });
 

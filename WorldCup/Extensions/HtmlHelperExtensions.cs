@@ -15,7 +15,7 @@ namespace WorldCup.Extensions
             Expression<Func<TModel, TValue>> expression, bool isEnabled = true)
         {
             return isEnabled
-                ? html.EditorFor(expression, new {htmlAttributes = new {@class = "form-control"}})
+                ? html.EditorFor(expression, new {htmlAttributes = new {@class = "form-control", min = 0 }})
                 : html.EditorFor(expression, new {htmlAttributes = new {@class = "form-control", disabled = "disabled"}});
         }
 

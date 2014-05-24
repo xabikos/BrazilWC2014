@@ -11,7 +11,7 @@
         <div class="col-xs-8 col-md-10">
             <h3>
                 @Model.LogoText<br>
-                <small>for UNICEF</small>
+                <small>for our UNICEF project Brighter Futures</small>
             </h3>
             <p class="text-right"><span class="label label-danger" id="days-remaining"></span> days remaining</p>
         </div>
@@ -22,8 +22,8 @@
     <div class="col-md-6">
         <h1>Introduction</h1>
         <p>@Model.IntroductionText Don't forget to check the @Html.ActionLink("rules", "Rules", "Home").</p>
-        <h1>Current ranking</h1>
-        <p>After every match the scores will be updated as soon as possible. </p>
+        <h1>Current ranking</h1>    
+        <p>After every match the scores will be updated as soon as possible. Check out the top 5 in the chart below.</p>
         <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
         <p>&nbsp;<br />Check the @Html.ActionLink("rankings", "Index", "Rankings") for a complete overview.</p>
         @if (Request.IsAuthenticated)
@@ -119,7 +119,7 @@
 
         <h1>Money raised</h1>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
-        <p>&nbsp;<br />Check where <a href="http://www.unicef.com">your donation goes to</a>.</p>
+        <p>&nbsp;<br />Check where <a href="http://www.unicef.org.uk/UNICEFs-Work/Our-supporters/Organisations/Corporate-partners/Kantar/">your donation goes to</a>.</p>
     </div>
 </div>
 

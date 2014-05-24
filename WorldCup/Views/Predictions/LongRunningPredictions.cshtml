@@ -8,82 +8,71 @@
 <div class="page-header">
     <h2>
         Long running predictions<br />
-        <small>Select the teams advancing to the next round(s)</small>
+        <small>Select the teams playing in the knockout stage</small>
     </h2>
 </div>
 
-<p>Before the championship starts, you will need to predict which teams will advance to the next rounds. As soon as the tournament begins, these values will not be editable anymore.</p>
+<p>Before the championship starts, you will need to predict which teams will play the knockout stage. As soon as the tournament begins, these values will not be editable anymore. The selections are free for every round, i.e. they are not limited to the selection you've made in the round before. For more information on the long running prediction, check the @Html.ActionLink("rules", "Rules", "Home").</p>
 <p>There are <span class="label label-danger" id="days-remaining"></span> days remaining.</p>
 <hr>
-@using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm("LongRunningPredictions", "Predictions", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
-    <div class="form-horizontal">
-        <div class="row form-group">
-            <div class="col-md-5 text-right">
-                @Html.LabelFor(m => m.SecondStageTeamsIds, new { @class = "control-label" })
-            </div>
-            <div class="col-md-5">
-                @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
-                &nbsp;<span class="label"></span>
-            </div>
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
-            </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.SecondStageTeamsIds, new { @class = "col-sm-5 control-label" })
+        <div class="col-sm-5">
+            @Html.BootstrapListBoxFor(m => m.SecondStageTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SecondStageTeamsIds), "Select sixteen teams")
+            &nbsp;<span class="label"></span>
         </div>
-        <div class="row form-group">
-            <div class="col-md-5 text-right">
-                @Html.LabelFor(m => m.QuarterFinalTeamsIds, new { @class = "control-label" })
-            </div>
-            <div class="col-md-5">
-                @Html.BootstrapListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), "Select eight teams")
-                &nbsp;<span class="label"></span>
-            </div>
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
-            </div>
+        <div class="col-md-2">
+            @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
         </div>
-        <div class="row form-group">
-            <div class="col-md-5 text-right">
-                @Html.LabelFor(m => m.SemiFinalTeamsIds, new { @class = "control-label" })
-            </div>
-            <div class="col-md-5">
-                @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
-                &nbsp;<span class="label"></span>
-            </div>
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.QuarterFinalTeamsIds, new { @class = "col-sm-5 control-label" })
+        <div class="col-sm-5">
+            @Html.BootstrapListBoxFor(m => m.QuarterFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.QuarterFinalTeamsIds), "Select eight teams")
+            &nbsp;<span class="label"></span>
         </div>
-        <div class="row form-group">
-            <div class="col-md-5 text-right">
-                @Html.LabelFor(m => m.SmallFinalTeamsIds, new { @class = "control-label" })
-            </div>
-            <div class="col-md-5">
-                @Html.BootstrapListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), "Select two teams")
-                &nbsp;<span class="label"></span>
-            </div>
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
-            </div>
+        <div class="col-md-2">
+            @Html.ValidationMessageFor(m => m.QuarterFinalTeamsIds)
         </div>
-        <div class="row form-group">
-            <div class="col-md-5 text-right">
-                @Html.LabelFor(m => m.FinalTeamsIds, new { @class = "control-label" })
-            </div>
-            <div class="col-md-5">
-                @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
-                &nbsp;<span class="label"></span>
-            </div>
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(m => m.FinalTeamsIds)
-            </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.SemiFinalTeamsIds, new { @class = "col-sm-5 control-label" })
+        <div class="col-sm-5">
+            @Html.BootstrapListBoxFor(m => m.SemiFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SemiFinalTeamsIds), "Select four teams")
+            &nbsp;<span class="label"></span>
         </div>
-        <div class="row form-group">
-            <div class="col-md-5 text-right">
-                @Html.LabelFor(m => m.WinnerTeamId, new { @class = "control-label" })
-            </div>
-            <div class="col-md-5">
-                @{
+        <div class="col-md-2">
+            @Html.ValidationMessageFor(m => m.SemiFinalTeamsIds)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SmallFinalTeamsIds, new { @class = "col-sm-5 control-label" })
+        <div class="col-sm-5">
+            @Html.BootstrapListBoxFor(m => m.SmallFinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.SmallFinalTeamsIds), "Select two teams")
+            &nbsp;<span class="label"></span>
+        </div>
+        <div class="col-md-2">
+            @Html.ValidationMessageFor(m => m.SmallFinalTeamsIds)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FinalTeamsIds, new { @class = "col-sm-5 control-label" })
+        <div class="col-sm-5">
+            @Html.BootstrapListBoxFor(m => m.FinalTeamsIds, new MultiSelectList(ViewBag.Teams, "Id", "Name", Model.FinalTeamsIds), "Select two teams")
+            &nbsp;<span class="label"></span>
+        </div>
+        <div class="col-md-2">
+            @Html.ValidationMessageFor(m => m.FinalTeamsIds)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.WinnerTeamId, new { @class = "col-sm-5 control-label" })
+        <div class="col-sm-5">
+            @{
     var htmlAttributes = new Dictionary<string, object>
                 {
                     {"class", "form-control chosen-select"}
@@ -92,15 +81,16 @@
     {
         htmlAttributes.Add("disabled", "disabled");
     }
-                }
-                @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
-            </div>
-            <div class="col-md-2">
-
-            </div>
+            }
+            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
         </div>
-        <div class="row">
-            <div class="col-md-7 col-md-push-5"><button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button></div>
+        <div class="col-md-2">
+            @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-7">
+            <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button>
         </div>
     </div>
 }

@@ -37,7 +37,7 @@ namespace WorldCup.Common.Entities
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the round of 16
         /// </summary>
-        [Display(Name = "Select the teams that will advanced to the round of 16")]
+        [Display(Name = "Select the teams that will advance to the round of 16")]
         [MaxLength(16, ErrorMessage = "You are allowed to select at most 16 teams")]
         public string[] SecondStageTeamsIds { get; set; }
 
@@ -54,7 +54,7 @@ namespace WorldCup.Common.Entities
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the quarter final
         /// </summary>
-        [Display(Name = "Select the teams that will advanced to the Quarter finals")]
+        [Display(Name = "Select the teams that will advance to the quarter finals")]
         [MaxLength(8, ErrorMessage = "You are allowed to select at most 8 teams")]
         public string[] QuarterFinalTeamsIds { get; set; }
 
@@ -71,7 +71,7 @@ namespace WorldCup.Common.Entities
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the semi final
         /// </summary>
-        [Display(Name = "Select the teams that will advanced to the Semi finals")]
+        [Display(Name = "Select the teams that will advance to the semi finals")]
         [MaxLength(4, ErrorMessage = "You are allowed to select at most 4 teams")]
         public string[] SemiFinalTeamsIds { get; set; }
 
@@ -88,7 +88,7 @@ namespace WorldCup.Common.Entities
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the small final (3rd place match)
         /// </summary>
-        [Display(Name = "Select the teams that will advanced to the match for the third place")]
+        [Display(Name = "Select the teams that will advance to the match for the third place")]
         [MaxLength(2, ErrorMessage = "You are allowed to select at most 2 teams")]
         public string[] SmallFinalTeamsIds { get; set; }
 
@@ -105,14 +105,14 @@ namespace WorldCup.Common.Entities
         /// <summary>
         /// Contains the Ids for user's prediction about the teams that will advanced to the final
         /// </summary>
-        [Display(Name = "Select the teams that will advanced to the Final")]
+        [Display(Name = "Select the teams that will play the final")]
         [MaxLength(2, ErrorMessage = "You are allowed to select at most 2 teams")]
         public string[] FinalTeamsIds { get; set; }
 
         /// <summary>
         /// The id of the team that will win the competition
         /// </summary>
-        [Display(Name = "Select the team that will win the competition")]
+        [Display(Name = "Select the team that will win the world cup")]
         public string WinnerTeamId { get; set; }
         
         /// <summary>

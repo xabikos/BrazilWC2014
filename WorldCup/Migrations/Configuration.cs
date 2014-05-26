@@ -73,7 +73,7 @@ namespace WorldCup.Migrations
 
         private void InitializeMatches(ApplicationDbContext context)
         {
-            const MatchState state = MatchState.Created;
+            const MatchState state = MatchState.VisibleForPredictions;
             var matches = new List<Match>
             {
                 new Match{HomeTeamId = "bra", AwayTeamId = "cro", State = state, Stage = MatchStage.GroupA, Date = new DateTime(2014,6,12, 20,0,0)},

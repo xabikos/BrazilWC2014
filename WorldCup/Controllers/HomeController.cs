@@ -70,6 +70,7 @@ namespace WorldCup.Controllers
         {
             ViewBag.UnicefChampion = Context.Parameters.Single(p => p.Name == PredefinedParameters.UnicefChampion).Value;
             ViewBag.PlayingFee = Context.Parameters.Single(p => p.Name == PredefinedParameters.PlayingFee).Value;
+            ViewBag.PrizePoolDistribution = Context.Parameters.Single(p => p.Name == PredefinedParameters.PrizePoolDistribution).Value;
             return View();
         }
 
@@ -83,7 +84,6 @@ namespace WorldCup.Controllers
         {
             var latestRaisedMoney = Context.RaisedMoney.OrderByDescending(rm => rm.Date).Take(5).ToList();
             latestRaisedMoney.Reverse();
-
             var totalAmount = Context.RaisedMoney.ToList().Sum(rm => rm.Amount);
 
             return new JsonResult

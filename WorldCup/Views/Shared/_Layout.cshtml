@@ -60,7 +60,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - NIPO Software - UNICEF</p>
+            <p style ="display: inline-block">&copy; @DateTime.Now.Year - NIPO Software - UNICEF</pstyle>
+            @{
+                if(!string.IsNullOrEmpty(ViewBag.LastUpdateTime))
+                {
+                    <p style="float: right">Last Update - <span id="lastUpdateTime" class="date-localize">@ViewBag.LastUpdateTime</span></p>
+                }
+                else
+                {
+                    <p style="float: right">There is no update in the system so far</p>
+                }
+}
+            
         </footer>
     </div>
     @RenderSection("scripts", required: false)
@@ -73,8 +84,8 @@
 
             // localize all the dates that contained in a span with class date-localize and have as textContent the date in UTC
             $.map($(".date-localize"), function (element) {
-                var locaDate = moment.utc(element.textContent, "M/D/YYYY h:mm:ss A").local().format("DD/MM/YYYY HH:mm");
-                element.textContent = locaDate;
+                var localDate = moment.utc(element.textContent, "M/D/YYYY h:mm:ss A").local().format("DD/MM/YYYY HH:mm");
+                element.textContent = localDate;
             });
 
             // Show the success message when saved

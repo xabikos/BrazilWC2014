@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using WorldCup.Common;
 using WorldCup.Common.Entities;
 using WorldCup.Extensions;
 
@@ -42,6 +43,9 @@ namespace WorldCup.Controllers
             }
 
             await Context.SaveChangesAsync();
+
+            await UpdateLastUpdateTime();
+
             return View("Index", model: "You successfully update all match rankings");
         }
 
@@ -112,6 +116,8 @@ namespace WorldCup.Controllers
             }
 
             await Context.SaveChangesAsync();
+
+            await UpdateLastUpdateTime();
 
             return View("Index", model: "You successfully update long running rankings");
         }
@@ -213,6 +219,26 @@ namespace WorldCup.Controllers
         }
 
         #endregion
+
+        private async Task UpdateLastUpdateTime()
+        {
+            var parameter = await Context.Parameters.FirstOrDefaultAsync(p => p.Name == PredefinedParameters.LastUpdateTime);
+            // First update in the app
+            if (parameter == null)
+            {
+                Context.Parameters.Add(new Parameter
+                {
+                    Name = PredefinedParameters.LastUpdateTime,
+                    Value = DateTime.UtcNow.ToString()
+                });
+            }
+            else
+            {
+                parameter.Value = DateTime.UtcNow.ToString();
+            }
+
+            await Context.SaveChangesAsync();
+        }
 
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
+using WorldCup.Common;
 using WorldCup.Models.Identity;
 
 namespace WorldCup.Controllers
@@ -28,6 +30,19 @@ namespace WorldCup.Controllers
         {
             get { return _context ?? (_context = HttpContext.GetOwinContext().Get<ApplicationDbContext>()); }
         }
-        
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var lastUpdateTime = Session["LastUpdateTime"] as string;
+            if(string.IsNullOrEmpty(lastUpdateTime) && Context.Parameters.Any(p=>p.Name == PredefinedParameters.LastUpdateTime))
+            {
+                lastUpdateTime = Context.Parameters.First(p => p.Name == PredefinedParameters.LastUpdateTime).Value;
+            }
+
+            ViewBag.LastUpdateTime = lastUpdateTime;
+
+            base.OnActionExecuting(filterContext);
+        }
+
     }
 }

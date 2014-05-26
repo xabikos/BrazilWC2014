@@ -99,7 +99,7 @@ namespace WorldCup.Controllers
         {
             var savedParameters = await Context.Parameters.ToListAsync();
             var model =
-                PredefinedParameters.Parameters.Select(
+                PredefinedParameters.Parameters.Where(p=>p != PredefinedParameters.LastUpdateTime).Select(
                     ep =>
                         new Parameter
                         {

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WorldCup.Common.Entities;
 using WorldCup.Models.Identity;
@@ -13,28 +12,14 @@ using WorldCup.Models.Identity;
 namespace WorldCup.Controllers
 {
     [Authorize]
-    public class AccountController : Controller 
+    public class AccountController : ControllerBase 
     {
-        private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager)
+        public AccountController(ApplicationUserManager userManager) : base(userManager)
         {
-            UserManager = userManager;
-        }
-
-        public ApplicationUserManager UserManager {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
         }
 
         //

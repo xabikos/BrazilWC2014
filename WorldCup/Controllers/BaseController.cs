@@ -12,8 +12,19 @@ namespace WorldCup.Controllers
     {
 
         private ApplicationUserManager _userManager;
+        const string Navigationbrand = "NavigationBrand";
 
         protected string UserSavedSuccessfullyKey = "UserSavedSuccessfully";
+
+        public ControllerBase()
+        {
+            
+        }
+
+        public ControllerBase(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
+        }
 
         protected ApplicationUserManager UserManager
         {
@@ -21,6 +32,10 @@ namespace WorldCup.Controllers
             {
                 return _userManager ??
                        (_userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>());
+            }
+            set
+            {
+                _userManager = value;
             }
         }
 
@@ -33,16 +48,31 @@ namespace WorldCup.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            
+            var navigationBrand = Session[Navigationbrand] as string;
             var lastUpdateTime = Session["LastUpdateTime"] as string;
-            if(string.IsNullOrEmpty(lastUpdateTime) && Context.Parameters.Any(p=>p.Name == PredefinedParameters.LastUpdateTime))
+
+            if(filterContext.HttpContext.Session != null && filterContext.HttpContext.Session.IsNewSession)
             {
-                if(filterContext.HttpContext.Session != null && filterContext.HttpContext.Session.IsNewSession)
+                // Check if navigation brand is filled and fill it
+                if(string.IsNullOrEmpty(navigationBrand) &&
+                   Context.Parameters.Any(p => p.Name == PredefinedParameters.NavigationBrandText))
                 {
-                    lastUpdateTime = Context.Parameters.First(p => p.Name == PredefinedParameters.LastUpdateTime).Value;
+                    navigationBrand =
+                        Context.Parameters.First(p => p.Name == PredefinedParameters.NavigationBrandText).Value;
+                    Session[Navigationbrand] = navigationBrand;
+                }
+                // Check if last update time is filled and fill it
+                if(string.IsNullOrEmpty(lastUpdateTime) &&
+                   Context.Parameters.Any(p => p.Name == PredefinedParameters.LastUpdateTime))
+                {
+                    lastUpdateTime =
+                        Context.Parameters.First(p => p.Name == PredefinedParameters.LastUpdateTime).Value;
                     Session["LastUpdateTime"] = lastUpdateTime;
                 }
             }
 
+            ViewBag.NavigationBrand = navigationBrand;
             ViewBag.LastUpdateTime = lastUpdateTime;
 
             base.OnActionExecuting(filterContext);

@@ -129,7 +129,9 @@ namespace WorldCup.Controllers
             // Update the existing values
             else
             {
-                savedParameters.ForEach(sp => sp.Value = model.First(p => p.Name == sp.Name).Value);
+                // Don't try to update the last update time parameter
+                savedParameters.Where(sp => sp.Name != PredefinedParameters.LastUpdateTime).ToList()
+                    .ForEach(sp => sp.Value = model.First(p => p.Name == sp.Name).Value);
                 // Possible new parameters added after the first execution of the app
                 var newParameters = model.Except(savedParameters, new ParametersComparer());
                 Context.Parameters.AddRange(newParameters);

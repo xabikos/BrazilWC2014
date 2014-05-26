@@ -17,7 +17,6 @@
 <div class="row">
     
         <h2>Current ranking</h2>
-        <p>Graphic with current rankings</p>
     @Html.Grid(Model).Named("rankings").Columns(columns =>
     {
         columns.Add(ur => ur.Postion).Titled("#").SetWidth(10);

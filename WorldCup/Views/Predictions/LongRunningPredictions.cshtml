@@ -73,14 +73,14 @@
         @Html.LabelFor(m => m.WinnerTeamId, new { @class = "col-sm-5 control-label" })
         <div class="col-sm-5">
             @{
-    var htmlAttributes = new Dictionary<string, object>
+                var htmlAttributes = new Dictionary<string, object>
                 {
                     {"class", "form-control chosen-select"}
                 };
-    if (!ViewBag.IsLongRunningPredictionsEnabled)
-    {
-        htmlAttributes.Add("disabled", "disabled");
-    }
+                if(!ViewBag.IsLongRunningPredictionsEnabled)
+                {
+                    htmlAttributes.Add("disabled", "disabled");
+                }
             }
             @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
         </div>

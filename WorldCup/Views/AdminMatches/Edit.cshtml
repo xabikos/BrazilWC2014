@@ -87,14 +87,14 @@
         @Html.LabelFor(m => m.Result, "Final result*", new { @class = "col-sm-3 control-label" })
         <div class="col-sm-3">
             @{
-    var htmlAttributes = new Dictionary<string, object>
-                    {
+                var htmlAttributes = new Dictionary<string, object>
+                {
                     {"class", "form-control"}
-                    };
-    if (Model.State == MatchState.Finalized)
-    {
-        htmlAttributes.Add("disabled", "disabled");
-    }
+                };
+                if(Model.State == MatchState.Finalized)
+                {
+                    htmlAttributes.Add("disabled", "disabled");
+                }
             }
             @Html.DropDownListFor(m => m.Result, Model.Result.ToSelectList(Model), htmlAttributes)
         </div>
@@ -129,8 +129,27 @@
     </div>
 }
 &nbsp;
+@{
+    object previousMatchHtmlAttributes, nextMatchHtmlAttributes;
+    if (Model.Id != ViewBag.PreviousMatchId)
+    {
+        previousMatchHtmlAttributes = new { @class = "btn btn-info btn-group" };
+    }
+    else
+    {
+        previousMatchHtmlAttributes = new { @class = "btn btn-info btn-group", disabled = "disabled" };
+    }
+    if (Model.Id != ViewBag.NextMatchId)
+    {
+        nextMatchHtmlAttributes = new { @class = "btn btn-info btn-group" };
+    }
+    else
+    {
+        nextMatchHtmlAttributes = new { @class = "btn btn-info btn-group", disabled = "disabled" };
+    }
+}
 <div class="btn-group btn-group-justified">
-    @Html.ActionLink("Previous match", "Edit", "AdminMatches", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Previous match", "Edit", "AdminMatches", new { id = ViewBag.PreviousMatchId }, previousMatchHtmlAttributes)
     @Html.ActionLink("Back to list", "Index", "AdminMatches", new { @class = "btn btn-info btn-group" })
-    @Html.ActionLink("Next match", "Edit", "AdminMatches", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+    @Html.ActionLink("Next match", "Edit", "AdminMatches", new { id = ViewBag.NextMatchId }, nextMatchHtmlAttributes)
 </div>

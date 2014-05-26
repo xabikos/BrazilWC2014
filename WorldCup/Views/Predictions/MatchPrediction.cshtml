@@ -85,20 +85,39 @@
     </div>
 }
 &nbsp;
+@{
+    object previousMatchHtmlAttributes, nextMatchHtmlAttributes;
+    if(Model.MatchId != ViewBag.PreviousMatchId)
+    {
+        previousMatchHtmlAttributes = new {@class = "btn btn-info btn-group"};
+    }
+    else
+    {
+        previousMatchHtmlAttributes = new {@class = "btn btn-info btn-group", disabled = "disabled"};
+    }
+    if(Model.MatchId != ViewBag.NextMatchId)
+    {
+        nextMatchHtmlAttributes = new {@class = "btn btn-info btn-group"};
+    }
+    else
+    {
+        nextMatchHtmlAttributes = new {@class = "btn btn-info btn-group", disabled = "disabled"};
+    }
+}
 <div class="visible-xs visible-sm">
     <div class="btn-group btn-group-justified">
-        @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+        @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, previousMatchHtmlAttributes)
         @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
-        @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+        @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, nextMatchHtmlAttributes)
     </div>
 </div>
 <div class="hidden-xs hidden-sm">
     <div class="row">
         <div class="col-md-5 col-md-offset-4">
             <div class="btn-group btn-group-justified">
-                @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, new { @class = "btn btn-info btn-group" })
+                @Html.ActionLink("Previous match", "MatchPrediction", "Predictions", new { id = ViewBag.PreviousMatchId }, previousMatchHtmlAttributes)
                 @Html.ActionLink("Back to list", "Index", "Predictions", new { @class = "btn btn-info btn-group" })
-                @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, new { @class = "btn btn-info btn-group" })
+                @Html.ActionLink("Next match", "MatchPrediction", "Predictions", new { id = ViewBag.NextMatchId }, nextMatchHtmlAttributes)
             </div>
         </div>
     </div>

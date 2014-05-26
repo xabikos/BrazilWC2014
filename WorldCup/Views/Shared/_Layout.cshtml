@@ -60,17 +60,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p style ="display: inline-block">&copy; @DateTime.Now.Year - NIPO Software - UNICEF</pstyle>
+            <p style ="display: inline-block">&copy; @DateTime.Now.Year - NIPO Software - UNICEF</p>
             @{
                 if(!string.IsNullOrEmpty(ViewBag.LastUpdateTime))
                 {
                     <p style="float: right">Last Update - <span id="lastUpdateTime" class="date-localize">@ViewBag.LastUpdateTime</span></p>
                 }
-                else
-                {
-                    <p style="float: right">There is no update in the system so far</p>
-                }
-}
+            }
             
         </footer>
     </div>

@@ -9,7 +9,7 @@
 <div class="page-header">
     <h2>
         Prediction overview<br />
-        <small>Brazil vs Croatia</small>
+        <small>@Model.HomeTeamName vs @Model.AwayTeamName</small>
     </h2>
 </div>
 @if (Model.UserPredictionInfo != null)
@@ -18,11 +18,11 @@
         <tr>
             <th class="col-sm-4"></th>
             <th class="col-sm-2">Your prediction</th>
-            <th class="col-sm-2">Final result @if (!Model.FinalResultsUpdated)
-                                              {
-                                                  <span>The results has not been updated yet</span>
-                                              }</th>
-            <th class="col-sm-4"></th>
+            <th class="col-sm-2">Final result</th>
+            <th class="col-sm-4">@if (!Model.FinalResultsUpdated)
+            {
+                <span>(the results have not been updated yet)</span>
+            }</th>
         </tr>
         <tr>
             <td class="col-sm-4 text-right"><b>Half time score</b></td>

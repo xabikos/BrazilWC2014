@@ -46,7 +46,7 @@ namespace WorldCup.Controllers
         public JsonResult TopUsersInfo(int numberOfUsers)
         {
             var topUsers = (from user in UserManager.ConfirmedUsers
-                let userPoints = user.MatchPoints.Sum(m => m.Points)
+                let userPoints = user.MatchPoints.Sum(m => m.Points) 
                                  + ( user.LongRunningPoints.SecondStagePoints +
                                        user.LongRunningPoints.QuarterFinalPoints +
                                        user.LongRunningPoints.SemiFinalPoints +
@@ -60,8 +60,7 @@ namespace WorldCup.Controllers
             var usersInfoPerDate = new List<Dictionary<string, object>>();
 
             // The date that tournament is finished
-            //var today = DateTime.Now > new DateTime(2014,7,13) ? new DateTime(2014,7,13) : DateTime.Now;
-            var today = new DateTime(2014, 6, 14);
+            var today = DateTime.Now > new DateTime(2014,7,13) ? new DateTime(2014,7,13) : DateTime.Now;
             for(int i = -4; i <= 0; i++)
             {
                 var userInfo = new Dictionary<string, object>();

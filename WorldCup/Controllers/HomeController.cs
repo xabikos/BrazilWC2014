@@ -69,11 +69,13 @@ namespace WorldCup.Controllers
         public ActionResult Rules()
         {
             ViewBag.UnicefChampion = Context.Parameters.Single(p => p.Name == PredefinedParameters.UnicefChampion).Value;
+            ViewBag.PlayingFee = Context.Parameters.Single(p => p.Name == PredefinedParameters.PlayingFee).Value;
             return View();
         }
 
         public ActionResult UserNotConfirmed()
         {
+            ViewBag.PlayingFee = Context.Parameters.Single(p => p.Name == PredefinedParameters.PlayingFee).Value;
             return View();
         }
 

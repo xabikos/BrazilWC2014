@@ -10,6 +10,7 @@ namespace WorldCup.Common
         public const string ApplicationLogoText = "ApplicationLogoText";
         public const string IntroductionText = "IntroductionText";
         public const string UnicefChampion = "UnicefChampion";
+        public const string PlayingFee = "PlayingFee";
 
 // ReSharper disable once InconsistentNaming
         private static readonly List<string> _parameters = new List<string>
@@ -18,7 +19,8 @@ namespace WorldCup.Common
             ApplicationLogo,
             ApplicationLogoText,
             IntroductionText,
-            UnicefChampion
+            UnicefChampion,
+            PlayingFee
         };
 
         public static IEnumerable<string> Parameters

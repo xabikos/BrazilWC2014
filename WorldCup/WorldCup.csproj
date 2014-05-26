@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201405192111075_AddParameters.Designer.cs">
       <DependentUpon>201405192111075_AddParameters.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405261344084_AddUserRegistrationDate.cs" />
+    <Compile Include="Migrations\201405261344084_AddUserRegistrationDate.Designer.cs">
+      <DependentUpon>201405261344084_AddUserRegistrationDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationDbContext.cs" />
@@ -863,6 +867,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405192111075_AddParameters.resx">
       <DependentUpon>201405192111075_AddParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405261344084_AddUserRegistrationDate.resx">
+      <DependentUpon>201405261344084_AddUserRegistrationDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

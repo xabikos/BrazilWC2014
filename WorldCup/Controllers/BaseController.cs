@@ -36,7 +36,11 @@ namespace WorldCup.Controllers
             var lastUpdateTime = Session["LastUpdateTime"] as string;
             if(string.IsNullOrEmpty(lastUpdateTime) && Context.Parameters.Any(p=>p.Name == PredefinedParameters.LastUpdateTime))
             {
-                lastUpdateTime = Context.Parameters.First(p => p.Name == PredefinedParameters.LastUpdateTime).Value;
+                if(filterContext.HttpContext.Session != null && filterContext.HttpContext.Session.IsNewSession)
+                {
+                    lastUpdateTime = Context.Parameters.First(p => p.Name == PredefinedParameters.LastUpdateTime).Value;
+                    Session["LastUpdateTime"] = lastUpdateTime;
+                }
             }
 
             ViewBag.LastUpdateTime = lastUpdateTime;

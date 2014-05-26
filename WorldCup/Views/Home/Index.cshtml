@@ -46,7 +46,7 @@
             columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
         }).Selectable(false)
 
-            <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for a more detailed view.</p>
+            <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
         }
     </div>
     <div class="col-md-6">
@@ -171,7 +171,7 @@
                 color: '#28b62c'
             }
         });
-        $('#totalMoney').text("The total amount of money is " + data.totalAmount);
+        $('#totalMoney').text("Currently, " + data.totalAmount + " is raised for our UNICEF project Brighter Futures.");
     }
 
     var updateTopFiveChart = function (data) {

@@ -15,19 +15,20 @@ namespace WorldCup.Controllers
         {
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
-            var matches = user.MatchPredictions //.Where(mp => mp.Match.Date < DateTime.UtcNow) TODO uncomment this part
-                .OrderByDescending(mp => mp.Match.Date)
+            var matches = user.MatchPredictions.Where(mp => mp.Match.Date < DateTime.UtcNow)
+                .OrderByDescending(mp => mp.Match.Date).ToList()
                 .Select(
                     mp =>
                         new UserMatchModel
                         {
+                            MatchId = mp.MatchId,
                             Date = mp.Match.Date,
                             Match = mp.Match.HomeTeam.Name + " vs " + mp.Match.AwayTeam.Name,
                             Points =
                                 user.MatchPoints.Count(mpoint => mpoint.MatchId == mp.MatchId) != 0
                                     ? user.MatchPoints.Single(mpoint => mpoint.MatchId == mp.MatchId).Points
                                     : 0
-                        }).ToList();
+                        });
 
             return View(matches);
         }

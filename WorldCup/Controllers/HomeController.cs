@@ -22,7 +22,7 @@ namespace WorldCup.Controllers
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
-                matches = user.MatchPredictions //.Where(mp => mp.Match.Date < DateTime.UtcNow) TODO uncomment this part
+                matches = user.MatchPredictions.Where(mp => mp.Match.Date < DateTime.UtcNow)
                     .OrderByDescending(mp => mp.Match.Date)
                     .Take(5)
                     .Select(

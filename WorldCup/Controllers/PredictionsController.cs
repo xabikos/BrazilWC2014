@@ -111,6 +111,12 @@ namespace WorldCup.Controllers
         {
             ViewBag.Teams = Context.Teams.OrderBy(t=>t.Name);
             ViewBag.IsLongRunningPredictionsEnabled = DateTime.UtcNow < _firstMatchDate;
+
+            // In case the tournament has started
+            if (DateTime.UtcNow > new DateTime(2014, 06, 12, 20, 0,0))
+            {
+                return View("LongRunningPredictionsInfo");
+            }
             
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             return View(user.LongRunningPrediction ?? new LongRunningPrediction());

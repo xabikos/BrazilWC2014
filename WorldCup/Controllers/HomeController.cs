@@ -84,10 +84,17 @@ namespace WorldCup.Controllers
             var latestRaisedMoney = Context.RaisedMoney.OrderByDescending(rm => rm.Date).Take(5).ToList();
             latestRaisedMoney.Reverse();
 
+            var totalAmount = Context.RaisedMoney.Sum(rm => rm.Amount);
+
             return new JsonResult
             {
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                Data = latestRaisedMoney.Select(rm => new { date = rm.Date.ToString("M"), amount = rm.Amount })
+                Data =
+                    new
+                    {
+                        latestRaisedMoney = latestRaisedMoney.Select(rm => new {date = rm.Date.ToString("M"), amount = rm.Amount}),
+                        totalAmount
+                    }
             };
         }
 

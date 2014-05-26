@@ -22,32 +22,42 @@
     <div class="col-md-6">
         <h1>Introduction</h1>
         <p>@Model.IntroductionText Don't forget to check the @Html.ActionLink("rules", "Rules", "Home").</p>
-        <h1>Current ranking</h1>    
-        <p>After every match the scores will be updated as soon as possible. Check out the top 5 in the chart below.</p>
-        <div id="rankingChart" style="max-width:700px;height: 300px;"></div>
-        <p>&nbsp;<br />Check the @Html.ActionLink("rankings", "Index", "Rankings") for a complete overview.</p>
-        @if (Request.IsAuthenticated)
+        
+        @*Show the grid only if tournament has started*@
+        @if (DateTime.UtcNow > new DateTime(2014, 6, 12, 20, 0, 0))
         {
-            <h1>Your latest results</h1>
+            <h1>Current ranking</h1>
+            <p>After every match the scores will be updated as soon as possible. Check out the top 5 in the chart below.</p>
+            <div id="rankingChart" style="max-width: 700px; height: 300px;"></div>
+            <p>&nbsp;<br />Check the @Html.ActionLink("rankings", "Index", "Rankings") for a complete overview.</p>
 
-            @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
-        {
-            columns.Add()
-                .Encoded(false)
-                .Sanitized(false)
-                .RenderValueAs(lr => Html.Partial("_LocalizableDateTime", lr.Date))
-                .Titled("Date").SetWidth(30);
-            columns.Add()
-                .Encoded(false)
-                .Sanitized(false)
-                .RenderValueAs(ur => Html.ActionLink(ur.Match, "MatchPrediction", "Predictions", new { id = ur.MatchId }, null))
-                .Titled("Match")
-                .SetWidth(60);
-            columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
-        }).Selectable(false)
+            if (Request.IsAuthenticated)
+             {
+                 <h1>Your latest results</h1>
 
-            <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
+                 Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
+                 {
+                     columns.Add()
+                         .Encoded(false)
+                         .Sanitized(false)
+                         .RenderValueAs(lr => Html.Partial("_LocalizableDateTime", lr.Date))
+                         .Titled("Date").SetWidth(30);
+                     columns.Add()
+                         .Encoded(false)
+                         .Sanitized(false)
+                         .RenderValueAs(ur => Html.ActionLink(ur.Match, "MatchPrediction", "Predictions", new {id = ur.MatchId}, null))
+                         .Titled("Match")
+                         .SetWidth(60);
+                     columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
+                 }).Selectable(false);
+
+                 <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
+             }
         }
+        
+        <h1>Latest register users</h1>
+        <p>The progress of the register users are listed below</p>
+        <div id="registeredUsersChart" style="max-width: 700px; height: 300px;"></div>
     </div>
     <div class="col-md-6">
         @if (Request.IsAuthenticated)
@@ -55,39 +65,40 @@
             <h1>Your predictions</h1>
             <p>At the start of the match, all preditions will freeze. You will see your predictions of the coming matches below.</p>
             @Html.Grid(Model.UserPredictionMatches).Named("matchesPredictions").Columns(columns =>
-        {
-            columns.Add()
-            .Encoded(false)
-            .Sanitized(false)
-            .RenderValueAs(mp => Html.Partial("_LocalizableDateTime", mp.Match.Date))
-            .Titled("Date")
-            .SetWidth(20);
-            columns.Add(mp => mp.Match.HomeTeam.Name)
-                .Encoded(false)
-                .Sanitized(false)
-                .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.HomeTeam.Name, mp.Match.HomeTeam.Code }))
-                .Titled("Home Team")
-                .SetWidth(30);
-            columns.Add()
-                .Encoded(false)
-                .Sanitized(false)
-                .RenderValueAs(mp => Html.ActionLink(string.Format("{0} - {1}", mp.HomeTeamFullTimeGoals, mp.AwayTeamFullTimeGoals),
-                    "MatchPrediction", "Predictions", new { id = mp.MatchId }, null))
-                .Titled("Score")
-                .SetWidth(20);
-            columns.Add(mp => mp.Match.AwayTeam.Name)
-                .Encoded(false)
-                .Sanitized(false)
-                .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.AwayTeam.Name, mp.Match.AwayTeam.Code }))
-                .Titled("Away Team")
-                .SetWidth(30);
-        }).Selectable(false)
+            {
+                columns.Add()
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(mp => Html.Partial("_LocalizableDateTime", mp.Match.Date))
+                    .Titled("Date")
+                    .SetWidth(20);
+                columns.Add(mp => mp.Match.HomeTeam.Name)
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] {mp.Match.HomeTeam.Name, mp.Match.HomeTeam.Code}))
+                    .Titled("Home Team")
+                    .SetWidth(30);
+                columns.Add()
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(mp => Html.ActionLink(string.Format("{0} - {1}", mp.HomeTeamFullTimeGoals, mp.AwayTeamFullTimeGoals),
+                        "MatchPrediction", "Predictions", new {id = mp.MatchId}, null))
+                    .Titled("Score")
+                    .SetWidth(20);
+                columns.Add(mp => mp.Match.AwayTeam.Name)
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] {mp.Match.AwayTeam.Name, mp.Match.AwayTeam.Code}))
+                    .Titled("Away Team")
+                    .SetWidth(30);
+            }).Selectable(false)
         }
         else
         {
             <h1>Your predictions</h1>
             <p>Please log in to see your predictions.</p>
         }
+
         <h1>Upcoming matches</h1>
         @Html.Grid(Model.UpcomingMatches).Named("upcomingMatches").Columns(columns =>
         {
@@ -111,7 +122,8 @@
                 .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.AwayTeam.Name, u.AwayTeam.Code }))
                 .Titled("Away Team")
                 .SetWidth(25);
-        })
+        }).Selectable(false);
+
         @if (Request.IsAuthenticated)
         {
             <p>&nbsp;<br />See the whole <a href="/Predictions">match schedule</a> and for your predictions.</p>
@@ -120,6 +132,7 @@
         <h1>Money raised</h1>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
         <p id="totalMoney"></p>
+
         <p>&nbsp;<br />Check where <a href="http://www.unicef.org.uk/UNICEFs-Work/Our-supporters/Organisations/Corporate-partners/Kantar/" target="_blank">your donation goes to</a>.</p>
     </div>
 </div>
@@ -151,7 +164,47 @@
                 toastr.error(data.statusText);
             }
         });
+        $.ajax({
+            url: '/Home/RegisteredUsers',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                updateRegisteredUsersChart(data);
+            },
+            error: function (data) {
+                toastr.error(data.statusText);
+            }
+        });
     });
+
+    var dataSource1 = [
+    { date: "22 June", users: 600,  },
+    { date: "23 June", users: 605, },
+    { date: "24 June", users: 656, },
+    { date: "25 June", users: 694, },
+    ];
+
+    var updateRegisteredUsersChart = function (data) {
+        $("#registeredUsersChart").dxChart({
+            title: {
+                text: 'Registered users number'
+            },
+            legend: {
+                horizontalAlignment: 'center',
+                verticalAlignment: 'bottom'
+            },
+            tooltip: {
+                enabled: true
+            },
+            dataSource: data,
+            series: {
+                argumentField: "date",
+                valueField: "users",
+                name: "Registered Users"
+            }
+        });
+    }
 
     var updateRaisedMoneyChart = function (data) {
         $("#unicefChart").dxChart({

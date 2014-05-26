@@ -13,15 +13,16 @@ namespace WorldCup.Controllers
 
         private ApplicationUserManager _userManager;
         const string Navigationbrand = "NavigationBrand";
+        const string Lastupdatetime = "LastUpdateTime";
 
         protected string UserSavedSuccessfullyKey = "UserSavedSuccessfully";
 
-        public ControllerBase()
+        protected ControllerBase()
         {
             
         }
 
-        public ControllerBase(ApplicationUserManager userManager)
+        protected ControllerBase(ApplicationUserManager userManager)
         {
             UserManager = userManager;
         }
@@ -50,7 +51,8 @@ namespace WorldCup.Controllers
         {
             
             var navigationBrand = Session[Navigationbrand] as string;
-            var lastUpdateTime = Session["LastUpdateTime"] as string;
+            
+            var lastUpdateTime = Session[Lastupdatetime] as string;
 
             if(filterContext.HttpContext.Session != null && filterContext.HttpContext.Session.IsNewSession)
             {
@@ -68,7 +70,7 @@ namespace WorldCup.Controllers
                 {
                     lastUpdateTime =
                         Context.Parameters.First(p => p.Name == PredefinedParameters.LastUpdateTime).Value;
-                    Session["LastUpdateTime"] = lastUpdateTime;
+                    Session[Lastupdatetime] = lastUpdateTime;
                 }
             }
 

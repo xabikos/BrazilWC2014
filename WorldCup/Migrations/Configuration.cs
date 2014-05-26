@@ -170,7 +170,8 @@ namespace WorldCup.Migrations
                     UserName = xabikosName,
                     Email = xabikosName,
                     FirstName = "Charalampos",
-                    LastName = "Karypidis"
+                    LastName = "Karypidis",
+                    RegistrationDate = DateTime.UtcNow
                 };
                 userManager.Create(xabikosUser, password);
                 userManager.SetLockoutEnabled(xabikosUser.Id, false);
@@ -191,7 +192,8 @@ namespace WorldCup.Migrations
                     UserName = rutgerName,
                     Email = rutgerName,
                     FirstName = "Rutger",
-                    LastName = "de Jong"
+                    LastName = "de Jong",
+                    RegistrationDate = DateTime.UtcNow
                 };
                 userManager.Create(rutgerUser, password);
                 userManager.SetLockoutEnabled(rutgerUser.Id, false);

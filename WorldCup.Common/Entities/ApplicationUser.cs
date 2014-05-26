@@ -14,6 +14,7 @@ namespace WorldCup.Common.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime RegistrationDate { get; set; }
         public virtual LongRunningPrediction LongRunningPrediction { get; set; }
         public virtual LongRunningPoints LongRunningPoints { get; set; }
 

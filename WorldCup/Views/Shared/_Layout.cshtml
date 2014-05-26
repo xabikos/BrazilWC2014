@@ -22,7 +22,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink((string)ViewBag.NavigationBrand, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @{ var navBarText = string.IsNullOrEmpty(ViewBag.NavigationBrand) ? "Please fill the value in parameters page" : (string) ViewBag.NavigationBrand; }
+                @Html.ActionLink(navBarText, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

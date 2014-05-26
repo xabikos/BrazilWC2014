@@ -845,6 +845,7 @@
     <Content Include="Views\Reports\UserPredictions.cshtml" />
     <Content Include="Views\Predictions\MatchPredictionInfo.cshtml" />
     <Content Include="Views\Predictions\_TeamFlag.cshtml" />
+    <Content Include="Views\Predictions\LongRunningPredictionsInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -113,6 +113,7 @@ namespace WorldCup.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public async Task<ActionResult> Parameters(IEnumerable<Parameter> model)
         {
             if (!ModelState.IsValid)

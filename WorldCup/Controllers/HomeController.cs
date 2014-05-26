@@ -70,6 +70,7 @@ namespace WorldCup.Controllers
         {
             ViewBag.UnicefChampion = Context.Parameters.Single(p => p.Name == PredefinedParameters.UnicefChampion).Value;
             ViewBag.PlayingFee = Context.Parameters.Single(p => p.Name == PredefinedParameters.PlayingFee).Value;
+            ViewBag.PrizePoolDistribution = Context.Parameters.Single(p => p.Name == PredefinedParameters.PrizePoolDistribution).Value;
             return View();
         }
 

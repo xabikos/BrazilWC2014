@@ -12,6 +12,7 @@ namespace WorldCup.Common
         public const string UnicefChampion = "UnicefChampion";
         public const string PlayingFee = "PlayingFee";
         public const string LastUpdateTime = "LastUpdateTime";
+        public const string PrizePoolDistribution = "PrizePoolDistribution";
 
 // ReSharper disable once InconsistentNaming
         private static readonly List<string> _parameters = new List<string>
@@ -22,7 +23,8 @@ namespace WorldCup.Common
             IntroductionText,
             UnicefChampion,
             PlayingFee,
-            LastUpdateTime
+            LastUpdateTime,
+            PrizePoolDistribution
         };
 
         public static IEnumerable<string> Parameters

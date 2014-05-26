@@ -14,6 +14,7 @@ namespace WorldCup.Controllers
     {
         public ActionResult RaisedMoney()
         {
+            ViewBag.MoneyPerDate = Context.RaisedMoney.ToList();
             return View(new RaisedMoney());
         }
 
@@ -22,6 +23,7 @@ namespace WorldCup.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.MoneyPerDate = Context.RaisedMoney.ToList();
                 return View(model);
             }
 

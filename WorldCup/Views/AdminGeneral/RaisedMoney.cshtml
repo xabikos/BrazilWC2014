@@ -1,14 +1,18 @@
-﻿@using WorldCup.Extensions
+﻿@using WorldCup.Common.Entities
+@using WorldCup.Extensions
 @model WorldCup.Common.Entities.RaisedMoney
 
 @{
     ViewBag.Title = "Raised Money";
+    var money = (List<RaisedMoney>)ViewBag.MoneyPerDate;
 }
 <div class="page-header">
     <h1>Raised money<br />
     <small>Update current amount</small>
     </h1>
 </div>
+
+<p>The total amount of money so far is @ViewBag.TotalMoney</p>
 
 <p>Use this page to manage the currently raised money. You may update this multiple times per day.</p>
 <hr />
@@ -34,6 +38,32 @@
         </div>
     </div>
 }
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Amount
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var entry in money)
+        {
+            <tr>
+                <td>
+                    @entry.Date
+                </td>
+                <td>
+                    @entry.Amount
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <script>
     $(function () {

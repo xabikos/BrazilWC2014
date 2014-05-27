@@ -35,6 +35,7 @@ namespace WorldCup.Models.Identity
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+            manager.EmailService = new EmailService();
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -94,4 +95,37 @@ namespace WorldCup.Models.Identity
         }
     }
 
+    public class EmailService : IIdentityMessageService
+    {
+        public Task SendAsync(IdentityMessage message)
+        {
+            // Credentials:
+            const string sendGridUserName = "azure_2fb983b3309cdd7c7b1c629885592912@azure.com";
+            const string sentFrom = "rutger.de.jong@niposoftweare.com";
+            const string sendGridPassword = "u8sf7nVMBH8E2yj";
+
+            // Configure the client:
+            var client = new System.Net.Mail.SmtpClient("smtp.sendgrid.net", Convert.ToInt32(587));
+
+            client.Port = 587;
+            client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+
+            // Create the credentials:
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(sendGridUserName,
+                sendGridPassword);
+
+            client.EnableSsl = true;
+            client.Credentials = credentials;
+
+            // Create the message:
+            var mail = new System.Net.Mail.MailMessage(sentFrom, message.Destination);
+
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+
+            // Send:
+            return client.SendMailAsync(mail);
+        }
+    }
 }

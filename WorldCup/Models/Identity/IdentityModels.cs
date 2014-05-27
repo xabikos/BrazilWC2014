@@ -101,7 +101,7 @@ namespace WorldCup.Models.Identity
         {
             // Credentials:
             const string sendGridUserName = "azure_2fb983b3309cdd7c7b1c629885592912@azure.com";
-            const string sentFrom = "rutger.de.jong@niposoftweare.com";
+            const string sentFrom = "R.de.Jong@niposoftware.com";
             const string sendGridPassword = "u8sf7nVMBH8E2yj";
 
             // Configure the client:
@@ -119,10 +119,11 @@ namespace WorldCup.Models.Identity
             client.Credentials = credentials;
 
             // Create the message:
-            var mail = new System.Net.Mail.MailMessage(sentFrom, message.Destination);
-
-            mail.Subject = message.Subject;
-            mail.Body = message.Body;
+            var mail = new System.Net.Mail.MailMessage(sentFrom, message.Destination)
+            {
+                Subject = message.Subject,
+                Body = message.Body
+            };
 
             // Send:
             return client.SendMailAsync(mail);

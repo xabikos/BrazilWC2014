@@ -49,7 +49,7 @@ namespace WorldCup
             //   appId: "",
             //   appSecret: "");
 
-            app.UseGoogleAuthentication();
+            //app.UseGoogleAuthentication();
         }
 
     }

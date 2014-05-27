@@ -56,7 +56,7 @@
         }
         
         <h1>Latest register users</h1>
-        <p>The progress of the register users are listed below</p>
+        <p>The progress of the register users is listed below.</p>
         <div id="registeredUsersChart" style="max-width: 700px; height: 300px;"></div>
     </div>
     <div class="col-md-6">
@@ -122,7 +122,7 @@
                 .RenderValueAs(u => Html.Partial("_FlaggedTeam", new[] { u.AwayTeam.Name, u.AwayTeam.Code }))
                 .Titled("Away Team")
                 .SetWidth(25);
-        }).Selectable(false);
+        }).Selectable(false)
 
         @if (Request.IsAuthenticated)
         {

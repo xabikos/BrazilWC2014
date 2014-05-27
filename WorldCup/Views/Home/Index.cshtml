@@ -14,6 +14,7 @@
                 <small>for our UNICEF project Brighter Futures</small>
             </h3>
             <p class="text-right"><span class="label label-danger" id="days-remaining"></span> days remaining</p>
+            <p class="text-right"><span class="label label-success" id="amount-raised"></span> currently raised</p>
         </div>
     </div>
 </div>
@@ -55,8 +56,8 @@
              }
         }
         
-        <h1>Latest register users</h1>
-        <p>The progress of the register users is listed below.</p>
+        <h1>Number of registered users</h1>
+        <p>The number of registered users is listed below.</p>
         <div id="registeredUsersChart" style="max-width: 700px; height: 300px;"></div>
     </div>
     <div class="col-md-6">
@@ -131,8 +132,6 @@
 
         <h1>Money raised</h1>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
-        <p id="totalMoney"></p>
-
         <p>&nbsp;<br />Check where <a href="http://www.unicef.org.uk/UNICEFs-Work/Our-supporters/Organisations/Corporate-partners/Kantar/" target="_blank">your donation goes to</a>.</p>
     </div>
 </div>
@@ -178,17 +177,10 @@
         });
     });
 
-    var dataSource1 = [
-    { date: "22 June", users: 600,  },
-    { date: "23 June", users: 605, },
-    { date: "24 June", users: 656, },
-    { date: "25 June", users: 694, },
-    ];
-
     var updateRegisteredUsersChart = function (data) {
         $("#registeredUsersChart").dxChart({
             title: {
-                text: 'Registered users number'
+                text: 'Registered users'
             },
             legend: {
                 horizontalAlignment: 'center',
@@ -201,7 +193,7 @@
             series: {
                 argumentField: "date",
                 valueField: "users",
-                name: "Registered Users"
+                name: "Registered users"
             }
         });
     }
@@ -224,7 +216,7 @@
                 color: '#28b62c'
             }
         });
-        $('#totalMoney').text("Currently, " + data.totalAmount + " is raised for our UNICEF project Brighter Futures.");
+        $("#amount-raised").text(data.totalAmount);
     }
 
     var updateTopFiveChart = function (data) {

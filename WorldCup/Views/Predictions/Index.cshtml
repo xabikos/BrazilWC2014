@@ -1,4 +1,5 @@
 ﻿@using GridMvc.Html
+@using WorldCup.Extensions
 
 @model IQueryable<WorldCup.Common.Entities.Match>
 
@@ -30,7 +31,12 @@
             .RenderValueAs(m => Html.Partial("_LocalizableDateTime", m.Date))
             .Titled("Date")
             .SetWidth(25);
-        columns.Add(m => m.Stage).Titled("Stage").SetWidth(5);
+        columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(m => m.Stage.DisplayName())
+            .Titled("Stage")
+            .SetWidth(5);
         columns.Add(m => m.HomeTeam.Name)
             .Encoded(false)
             .Sanitized(false)

@@ -1,4 +1,5 @@
 ﻿@using GridMvc.Html
+@using WorldCup.Extensions
 @model WorldCup.Models.HomeViewModel
 
 @{
@@ -23,7 +24,7 @@
     <div class="col-md-6">
         <h1>Introduction</h1>
         <p>@Model.IntroductionText Don't forget to check the @Html.ActionLink("rules", "Rules", "Home").</p>
-        
+
         @*Show the grid only if tournament has started*@
         @if (DateTime.UtcNow > new DateTime(2014, 6, 12, 20, 0, 0))
         {
@@ -33,29 +34,29 @@
             <p>&nbsp;<br />Check the @Html.ActionLink("rankings", "Index", "Rankings") for a complete overview.</p>
 
             if (Request.IsAuthenticated)
-             {
-                 <h1>Your latest results</h1>
+            {
+                <h1>Your latest results</h1>
 
-                 Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
-                 {
-                     columns.Add()
-                         .Encoded(false)
-                         .Sanitized(false)
-                         .RenderValueAs(lr => Html.Partial("_LocalizableDateTime", lr.Date))
-                         .Titled("Date").SetWidth(30);
-                     columns.Add()
-                         .Encoded(false)
-                         .Sanitized(false)
-                         .RenderValueAs(ur => Html.ActionLink(ur.Match, "MatchPrediction", "Predictions", new {id = ur.MatchId}, null))
-                         .Titled("Match")
-                         .SetWidth(60);
-                     columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
-                 }).Selectable(false);
+                Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
+                {
+                    columns.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .RenderValueAs(lr => Html.Partial("_LocalizableDateTime", lr.Date))
+                        .Titled("Date").SetWidth(30);
+                    columns.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .RenderValueAs(ur => Html.ActionLink(ur.Match, "MatchPrediction", "Predictions", new { id = ur.MatchId }, null))
+                        .Titled("Match")
+                        .SetWidth(60);
+                    columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
+                }).Selectable(false);
 
-                 <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
-             }
+                <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
+            }
         }
-        
+
         <h1>Number of registered users</h1>
         <p>The number of registered users is listed below.</p>
         <div id="registeredUsersChart" style="max-width: 700px; height: 300px;"></div>
@@ -76,20 +77,20 @@
                 columns.Add(mp => mp.Match.HomeTeam.Name)
                     .Encoded(false)
                     .Sanitized(false)
-                    .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] {mp.Match.HomeTeam.Name, mp.Match.HomeTeam.Code}))
+                    .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.HomeTeam.Name, mp.Match.HomeTeam.Code }))
                     .Titled("Home Team")
                     .SetWidth(30);
                 columns.Add()
                     .Encoded(false)
                     .Sanitized(false)
                     .RenderValueAs(mp => Html.ActionLink(string.Format("{0} - {1}", mp.HomeTeamFullTimeGoals, mp.AwayTeamFullTimeGoals),
-                        "MatchPrediction", "Predictions", new {id = mp.MatchId}, null))
+                        "MatchPrediction", "Predictions", new { id = mp.MatchId }, null))
                     .Titled("Score")
                     .SetWidth(20);
                 columns.Add(mp => mp.Match.AwayTeam.Name)
                     .Encoded(false)
                     .Sanitized(false)
-                    .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] {mp.Match.AwayTeam.Name, mp.Match.AwayTeam.Code}))
+                    .RenderValueAs(mp => Html.Partial("_FlaggedTeam", new[] { mp.Match.AwayTeam.Name, mp.Match.AwayTeam.Code }))
                     .Titled("Away Team")
                     .SetWidth(30);
             }).Selectable(false)
@@ -99,7 +100,7 @@
             <h1>Your predictions</h1>
             <p>Please log in to see your predictions.</p>
         }
-
+        
         <h1>Upcoming matches</h1>
         @Html.Grid(Model.UpcomingMatches).Named("upcomingMatches").Columns(columns =>
         {
@@ -110,7 +111,12 @@
             .RenderValueAs(m => Html.Partial("_LocalizableDateTime", m.Date))
             .Titled("Date")
             .SetWidth(35);
-            columns.Add(m => m.Stage).Titled("Stage").SetWidth(10);
+            columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(m => m.Stage.DisplayName())
+            .Titled("Stage")
+            .SetWidth(10);
             columns.Add(u => u.HomeTeam.Name)
                 .Encoded(false)
                 .Sanitized(false)

@@ -207,6 +207,7 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\UserResultsController.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\MatchExtensions.cs" />
     <Compile Include="Extensions\MatchResultExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />

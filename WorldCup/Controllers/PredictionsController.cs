@@ -114,13 +114,9 @@ namespace WorldCup.Controllers
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             
             // In case the tournament has started return the info view that doesn't allow edit the predictions
-            //if (DateTime.UtcNow > _firstMatchDate)
-            if (DateTime.UtcNow > new DateTime(2013,1,1))
-            {
-                return View("LongRunningPredictionsInfo", GetLongRunningPredictionsInfoModel(user));
-            }
-
-            return View(user.LongRunningPrediction ?? new LongRunningPrediction());
+            return DateTime.UtcNow > _firstMatchDate
+                ? View("LongRunningPredictionsInfo", GetLongRunningPredictionsInfoModel(user))
+                : View(user.LongRunningPrediction ?? new LongRunningPrediction());
         }
 
         [HttpPost]

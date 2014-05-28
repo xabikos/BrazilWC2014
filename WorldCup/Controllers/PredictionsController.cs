@@ -110,15 +110,16 @@ namespace WorldCup.Controllers
         public async Task<ActionResult> LongRunningPredictions()
         {
             ViewBag.Teams = Context.Teams.OrderBy(t=>t.Name);
-            ViewBag.IsLongRunningPredictionsEnabled = DateTime.UtcNow < _firstMatchDate;
-
-            // In case the tournament has started
-            if (DateTime.UtcNow > new DateTime(2014, 06, 12, 20, 0,0))
-            {
-                return View("LongRunningPredictionsInfo");
-            }
             
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            
+            // In case the tournament has started return the info view that doesn't allow edit the predictions
+            //if (DateTime.UtcNow > _firstMatchDate)
+            if (DateTime.UtcNow > new DateTime(2013,1,1))
+            {
+                return View("LongRunningPredictionsInfo", GetLongRunningPredictionsInfoModel(user));
+            }
+
             return View(user.LongRunningPrediction ?? new LongRunningPrediction());
         }
 
@@ -126,18 +127,16 @@ namespace WorldCup.Controllers
         [UserConfirmedFilter]
         public async Task<ActionResult> LongRunningPredictions(LongRunningPrediction model)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
-                ViewBag.IsLongRunningPredictionsEnabled = DateTime.UtcNow < _firstMatchDate;
-
-                return View(model);
-            }
-
             // Check if the long running prediction still applies
             if (DateTime.UtcNow > _firstMatchDate)
             {
                 return View("TimeOverpassed");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
+                return View(model);
             }
 
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -230,6 +229,41 @@ namespace WorldCup.Controllers
                     }).OrderBy(upi => upi.UserName)).ToList();
 
             return model;
+        }
+
+        private static LongRunningPredictionsInfoModel GetLongRunningPredictionsInfoModel(ApplicationUser user)
+        {
+            var result = new LongRunningPredictionsInfoModel();
+            
+            // In case the user has not done any long running prediction then return an empty model
+            if(user.LongRunningPrediction == null)
+            {
+                return result;
+            }
+
+            result.Round16Teams = user.LongRunningPrediction.GetSecondStageSelectedTeamsNames;
+            result.QuarterFinalTeams = user.LongRunningPrediction.GetQaurterFinalSelectedTeamsNames;
+            result.SemiFinalTeams = user.LongRunningPrediction.GetSemiFinalSelectedTeamsNames;
+            result.SmallFinalTeams = user.LongRunningPrediction.GetSmallFinalSelectedTeamsNames;
+            result.FinalTeams = user.LongRunningPrediction.GetFinalSelectedTeamsNames;
+            result.WinnerTeam = user.LongRunningPrediction.WinnerTeam != null
+                ? user.LongRunningPrediction.WinnerTeam.Name
+                : string.Empty;
+
+            // If there are no any calculations yet then return the result
+            if(user.LongRunningPoints == null)
+            {
+                return result;
+            }
+
+            result.Round16TeamsPoints = user.LongRunningPoints.SecondStagePoints;
+            result.QuarterFinalPoints = user.LongRunningPoints.QuarterFinalPoints;
+            result.SemiFinalPoints = user.LongRunningPoints.SemiFinalPoints;
+            result.SmallFinalPoints = user.LongRunningPoints.SmallFinalPoints;
+            result.FinalPoints = user.LongRunningPoints.FinalPoints;
+            result.WinnerPoints = user.LongRunningPoints.WinnerPoints;
+
+            return result;
         }
 
     }

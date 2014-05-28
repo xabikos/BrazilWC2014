@@ -72,17 +72,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.WinnerTeamId, new { @class = "col-sm-5 control-label" })
         <div class="col-sm-5">
-            @{
-                var htmlAttributes = new Dictionary<string, object>
-                {
-                    {"class", "form-control chosen-select"}
-                };
-                if(!ViewBag.IsLongRunningPredictionsEnabled)
-                {
-                    htmlAttributes.Add("disabled", "disabled");
-                }
-            }
-            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", htmlAttributes)
+            @Html.DropDownListFor(m => m.WinnerTeamId, new SelectList(ViewBag.Teams, "Id", "Name"), "Please select a team", new { @class = "form-control chosen-select" })
         </div>
         <div class="col-md-2">
             @Html.ValidationMessageFor(m => m.SecondStageTeamsIds)
@@ -90,7 +80,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-5 col-sm-7">
-            <button type="submit" class="btn btn-primary" @(!(bool)ViewBag.Islongrunningpredictionsenabled ? "disabled=disabled" : "")>Save</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </div>
 }

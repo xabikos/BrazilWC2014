@@ -211,7 +211,6 @@
     <Compile Include="Extensions\MatchExtensions.cs" />
     <Compile Include="Extensions\MatchResultExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +233,7 @@
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\Identity\RegisterViewModel.cs" />
+    <Compile Include="Models\Predictions\LongRunningPredictionsInfoModel.cs" />
     <Compile Include="Models\Predictions\PredictionInfoModel.cs" />
     <Compile Include="Models\Rankings\UserRankingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

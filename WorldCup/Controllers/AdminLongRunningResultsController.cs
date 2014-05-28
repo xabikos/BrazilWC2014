@@ -14,8 +14,7 @@ namespace WorldCup.Controllers
         public async Task<ActionResult> LongRunningResults()
         {
             ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
-            ViewBag.IsLongRunningPredictionsEnabled = true;
-
+            
             var longRunningPredictionsResult = await Context.LongRunningResults.FirstOrDefaultAsync();
 
             return View(longRunningPredictionsResult ?? new LongRunningResults());
@@ -27,7 +26,6 @@ namespace WorldCup.Controllers
             if(!ModelState.IsValid)
             {
                 ViewBag.Teams = Context.Teams.OrderBy(t => t.Name);
-                ViewBag.IsLongRunningPredictionsEnabled = true;
                 return View(model);
             }
 

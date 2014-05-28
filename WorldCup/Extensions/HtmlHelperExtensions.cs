@@ -31,11 +31,6 @@ namespace WorldCup.Extensions
                 {"data-Placeholder", dataPlaceholder}
             };
 
-            if (!(bool)htmlHelper.ViewBag.IsLongRunningPredictionsEnabled)
-            {
-                attributes.Add("disabled", "disabled");
-            }
-            
             return htmlHelper.ListBoxFor(expression, selectList, attributes);
         }
 

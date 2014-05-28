@@ -1,4 +1,6 @@
-﻿@{
+﻿@model WorldCup.Models.Predictions.LongRunningPredictionsInfoModel
+
+@{
     ViewBag.Title = "Long running predictions info";
 }
 
@@ -13,10 +15,10 @@
         Teams advancing to the round of 16
     </div>
     <div class="col-md-6">
-        ARG BEL BRA CRC ENG FRA GER GRE ITA JPN NED SPA SUI POR USA URU
+        @Model.Round16Teams
     </div>
     <div class="col-md-2">
-        20 points
+        @Model.Round16TeamsPoints points
     </div>
 </div>
 <div class="row">
@@ -24,10 +26,10 @@
         Teams advancing to the quarter final
     </div>
     <div class="col-md-6">
-        ARG BRA CRC FRA GER NED POR USA
+        @Model.QuarterFinalTeams
     </div>
     <div class="col-md-2">
-        40 points
+        @Model.QuarterFinalPoints points
     </div>
 </div>
 <div class="row">
@@ -35,10 +37,10 @@
         Teams advancing to the semi final
     </div>
     <div class="col-md-6">
-        ARG BRA POR USA
+        @Model.SemiFinalTeams
     </div>
     <div class="col-md-2">
-
+        @Model.SemiFinalPoints points
     </div>
 </div>
 <div class="row">
@@ -46,9 +48,10 @@
         Teams advancing to the third place match
     </div>
     <div class="col-md-6">
-        ARG USA
+        @Model.SmallFinalTeams
     </div>
     <div class="col-md-2">
+        @Model.SmallFinalPoints points
     </div>
 </div>
 <div class="row">
@@ -56,9 +59,10 @@
         Teams advancing to the final
     </div>
     <div class="col-md-6">
-        BRA POR
+        @Model.FinalTeams
     </div>
     <div class="col-md-2">
+        @Model.FinalPoints points
     </div>
 </div>
 <div class="row">
@@ -66,8 +70,9 @@
         Winner
     </div>
     <div class="col-md-6">
-        BRA
+        @Model.WinnerTeam
     </div>
     <div class="col-md-2">
+        @Model.WinnerPoints points
     </div>
 </div>

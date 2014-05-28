@@ -1,5 +1,4 @@
-﻿@using WorldCup.Extensions
-@model WorldCup.Common.Entities.ApplicationUser
+﻿@model WorldCup.Common.Entities.ApplicationUser
 
 @{
     Layout = null;
@@ -55,7 +54,7 @@
         <tr>
             <td>Teams going to the round of 16:</td>
             @if (Model.LongRunningPrediction != null) {
-                <td>@string.Join(", ",Model.LongRunningPrediction.SecondStageTeamsIds.Where(s => !string.IsNullOrEmpty(s)).Select(s=>s.GetTeamName()))</td>
+                <td>@Model.LongRunningPrediction.GetSecondStageSelectedTeamsNames</td>
             }
             else
             {
@@ -66,7 +65,7 @@
             <td>Teams going to the Quarter-final:</td>
             @if (Model.LongRunningPrediction != null)
             {
-                <td>@string.Join(", ", Model.LongRunningPrediction.QuarterFinalTeamsIds.Where(s => !string.IsNullOrEmpty(s)).Select(s => s.GetTeamName()))</td>
+                <td>@Model.LongRunningPrediction.GetQaurterFinalSelectedTeamsNames</td>
             }
             else
             {

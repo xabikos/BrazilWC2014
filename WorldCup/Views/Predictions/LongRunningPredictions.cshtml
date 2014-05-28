@@ -94,6 +94,80 @@
         </div>
     </div>
 }
+@*
+<table style="border: 1px solid black">
+    <thead>
+        <tr>
+            <th>Group A</th>
+            <th>Group B</th>
+            <th>Group C</th>
+            <th>Group D</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Brazil</td>
+            <td>Croatia</td>
+            <td>Mexico</td>
+            <td>Cameroon</td>
+        </tr>
+        <tr>
+            <td>Spain</td>
+            <td>Netherlands</td>
+            <td>Chile</td>
+            <td>Australia</td>
+        </tr>
+        <tr>
+            <td>Colombia</td>
+            <td>Greece</td>
+            <td>Cote d'Ivore</td>
+            <td>Japan</td>
+        </tr>
+        <tr>
+            <td>Uruguay</td>
+            <td>Costa Rica</td>
+            <td>England</td>
+            <td>Italy</td>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>Group E</th>
+            <th>Group F</th>
+            <th>Group G</th>
+            <th>Group H</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Switzerland</td>
+            <td>Ecuador</td>
+            <td>France</td>
+            <td>Honduras</td>
+        </tr>
+        <tr>
+            <td>Argentina</td>
+            <td>Bosnia and Herzegovina</td>
+            <td>Iran</td>
+            <td>Nigeria</td>
+        </tr>
+        <tr>
+            <td>Germany</td>
+            <td>Portugal</td>
+            <td>Ghana</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>Belgium</td>
+            <td>Algeria</td>
+            <td>Russia</td>
+            <td>South Korea</td>
+        </tr>
+    </tbody>
+</table>*@
+
 <script>
     $(".chosen-select").chosen();
 
@@ -112,14 +186,15 @@
             var selectedItems = $(":selected", this).length,
                 targetValue = $(this).data("val-maxlength-max");
 
+            var newClass = "";
             if (selectedItems == targetValue) {
-                var newClass = "label-success";
+                newClass = "label-success";
             }
             if (selectedItems > targetValue) {
-                var newClass = "label-danger";
+                newClass = "label-danger";
             }
             if (selectedItems < targetValue) {
-                var newClass = "label-default";
+                newClass = "label-default";
             }
 
             $(this).closest("div").find(".label").removeClass("label-default label-success label-danger").addClass(newClass).text(selectedItems + " of " + targetValue + " selected");
@@ -131,14 +206,15 @@
             var selectedItems = $(":selected", this).length,
                 targetValue = $(this).data("val-maxlength-max");
 
+            var newClass = "";
             if (selectedItems == targetValue) {
-                var newClass = "label-success";
+                newClass = "label-success";
             }
             if (selectedItems > targetValue) {
-                var newClass = "label-danger";
+                newClass = "label-danger";
             }
             if (selectedItems < targetValue) {
-                var newClass = "label-default";
+                newClass = "label-default";
             }
 
             $(this).closest("div").find(".label").removeClass("label-default label-success label-danger").addClass(newClass).text(selectedItems + " of " + targetValue + " selected");

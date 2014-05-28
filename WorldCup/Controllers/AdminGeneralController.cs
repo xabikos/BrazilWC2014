@@ -140,6 +140,8 @@ namespace WorldCup.Controllers
 
             await Context.SaveChangesAsync();
 
+            TempData[UserSavedSuccessfullyKey] = "You successfully saved the system Parameters";
+
             return RedirectToAction("Parameters");
         }
 

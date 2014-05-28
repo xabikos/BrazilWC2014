@@ -18,7 +18,7 @@ namespace WorldCup.Controllers
             var matches = new List<UserMatchModel>();
             var predictions = new List<MatchPrediction>();
 
-            if (Request.IsAuthenticated)
+            if(Request.IsAuthenticated)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
@@ -70,7 +70,8 @@ namespace WorldCup.Controllers
         {
             ViewBag.UnicefChampion = Context.Parameters.Single(p => p.Name == PredefinedParameters.UnicefChampion).Value;
             ViewBag.PlayingFee = Context.Parameters.Single(p => p.Name == PredefinedParameters.PlayingFee).Value;
-            ViewBag.PrizePoolDistribution = Context.Parameters.Single(p => p.Name == PredefinedParameters.PrizePoolDistribution).Value;
+            ViewBag.PrizePoolDistribution =
+                Context.Parameters.Single(p => p.Name == PredefinedParameters.PrizePoolDistribution).Value;
             return View();
         }
 
@@ -94,7 +95,7 @@ namespace WorldCup.Controllers
                     total += r.Count();
                     return new {date = r.Key.ToString("M"), users = total};
                 });
-            
+
             return new JsonResult
             {
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
@@ -108,13 +109,19 @@ namespace WorldCup.Controllers
             latestRaisedMoney.Reverse();
             var totalAmount = Context.RaisedMoney.ToList().Sum(rm => rm.Amount);
 
+            var amount = 0;
+
             return new JsonResult
             {
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Data =
                     new
                     {
-                        latestRaisedMoney = latestRaisedMoney.Select(rm => new {date = rm.Date.ToString("M"), amount = rm.Amount}),
+                        latestRaisedMoney = latestRaisedMoney.Select(rm =>
+                        {
+                            amount += rm.Amount;
+                            return new {date = rm.Date.ToString("M"), amount};
+                        }),
                         totalAmount
                     }
             };

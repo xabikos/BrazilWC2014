@@ -14,7 +14,7 @@ namespace WorldCup.Controllers
     {
         public ActionResult RaisedMoney()
         {
-            ViewBag.MoneyPerDate = Context.RaisedMoney.ToList();
+            ViewBag.MoneyPerDate = Context.RaisedMoney.OrderBy(rm => rm.Date).ToList();
             return View(new RaisedMoney());
         }
 

@@ -105,7 +105,7 @@ namespace WorldCup.Controllers
                     longRunningResults.FinalTeamsIds.Intersect(user.LongRunningPrediction.FinalTeamsIds)
                         .Where(el => !string.IsNullOrEmpty(el));
                 user.LongRunningPoints.FinalPoints = correctFinalUserTeams.Count()*
-                                                     systemParameters.SmallFinalTeamsFactor;
+                                                     systemParameters.FinalTeamsFactor;
 
                 // Winner of tournament points
                 if(!string.IsNullOrEmpty(longRunningResults.WinnerTeamId) &&

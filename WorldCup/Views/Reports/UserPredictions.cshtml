@@ -1,8 +1,8 @@
-﻿@model WorldCup.Common.Entities.ApplicationUser
+﻿@using WorldCup.Extensions
+@model WorldCup.Common.Entities.ApplicationUser
 
 @{
     Layout = null;
-    var imagePath = Server.MapPath("~/Content/images") + "\\" + ViewBag.LogoSource;
 }
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
 <body>
     <table>
         <tr>
-            <td><img src="@imagePath" height="100" /></td>
+            <td><img src="@(Server.MapPath("~/Content/images") + "\\" + ViewBag.LogoSource)" height="100" /></td>
             <td>&nbsp;&nbsp;</td>
             <td>
                 <h1>@ViewBag.ApplicationName</h1>
@@ -53,9 +53,20 @@
     <p>&nbsp;</p>
     <table>
         <tr>
-            <td>Teams going to the round of 16</td>
+            <td>Teams going to the round of 16:</td>
             @if (Model.LongRunningPrediction != null) {
-                <td>@Model.LongRunningPrediction.SecondStageTeamsIds</td>
+                <td>@string.Join(", ",Model.LongRunningPrediction.SecondStageTeamsIds.Where(s => !string.IsNullOrEmpty(s)).Select(s=>s.GetTeamName()))</td>
+            }
+            else
+            {
+                <td>You have not yet selected any teams.</td>
+            }
+        </tr>
+        <tr>
+            <td>Teams going to the Quarter-final:</td>
+            @if (Model.LongRunningPrediction != null)
+            {
+                <td>@string.Join(", ", Model.LongRunningPrediction.QuarterFinalTeamsIds.Where(s => !string.IsNullOrEmpty(s)).Select(s => s.GetTeamName()))</td>
             }
             else
             {

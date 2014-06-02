@@ -53,7 +53,7 @@
         {
             <tr>
                 <td nowrap>
-                    <span class="date-localize">@entry.Date</span></td>
+                    <span class="local-date">@entry.Date</span></td>
                 <td width="100%">
                     @entry.Amount
                 </td>
@@ -66,7 +66,7 @@
     $(function () {
         $("#datetimepicker").data("DateTimePicker").setMinDate(new Date(2014, 5, 1));
 
-        $.map($(".date-localize"), function (element) {
+        $.map($(".local-date"), function (element) {
             var localDate = moment.utc(element.textContent, "M/D/YYYY h:mm:ss A").local().format("D MMMM YYYY");
             element.textContent = localDate;
         });

@@ -3,18 +3,16 @@
 @model WorldCup.Common.Entities.RaisedMoney
 
 @{
-    ViewBag.Title = "Raised Money";
+    ViewBag.Title = "Money raised";
     var money = (List<RaisedMoney>)ViewBag.MoneyPerDate;
 }
 <div class="page-header">
-    <h1>Raised money<br />
+    <h1>Money raised<br />
     <small>Update current amount</small>
     </h1>
 </div>
 
-<p>The total amount of money so far is @ViewBag.TotalMoney</p>
-
-<p>Use this page to manage the currently raised money. You may update this multiple times per day.</p>
+<p>Use this page to manage the currently raised money. You need to enter the amount of money that you've raised in total for the specified date. You may update this multiple times per day. For your convenience and to monitor progress, there is a table on the bottom of this page. Made a mistake yesterday? No problem. You are able to edit all dates.</p>
 <hr />
 @using (Html.BeginForm("RaisedMoney", "AdminGeneral", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
@@ -38,8 +36,8 @@
         </div>
     </div>
 }
-
-<table>
+<hr />  
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -54,10 +52,9 @@
         @foreach(var entry in money)
         {
             <tr>
-                <td>
-                    @entry.Date
-                </td>
-                <td>
+                <td nowrap>
+                    <span class="date-localize">@entry.Date</span></td>
+                <td width="100%">
                     @entry.Amount
                 </td>
             </tr>
@@ -67,6 +64,12 @@
 
 <script>
     $(function () {
-        $("#datetimepicker").data("DateTimePicker").setMinDate(new Date(2014, 4, 15));
+        $("#datetimepicker").data("DateTimePicker").setMinDate(new Date(2014, 5, 1));
+
+        $.map($(".date-localize"), function (element) {
+            var localDate = moment.utc(element.textContent, "M/D/YYYY h:mm:ss A").local().format("D MMMM YYYY");
+            element.textContent = localDate;
+        });
+
     });
 </script>

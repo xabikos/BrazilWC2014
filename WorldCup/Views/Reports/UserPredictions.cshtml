@@ -52,7 +52,7 @@
     <p>&nbsp;</p>
     <table>
         <tr>
-            <td>Teams going to the round of 16:</td>
+            <td nowrap>Teams going to the round of 16:</td>
             @if (Model.LongRunningPrediction != null) {
                 <td>@Model.LongRunningPrediction.GetSecondStageSelectedTeamsNames</td>
             }
@@ -62,7 +62,7 @@
             }
         </tr>
         <tr>
-            <td>Teams going to the Quarter-final:</td>
+            <td nowrap>Teams going to the Quarter-final:</td>
             @if (Model.LongRunningPrediction != null)
             {
                 <td>@Model.LongRunningPrediction.GetQaurterFinalSelectedTeamsNames</td>
@@ -70,6 +70,50 @@
             else
             {
                 <td>You have not yet selected any teams.</td>
+            }
+        </tr>
+        <tr>
+            <td nowrap>Teams going to the Semi-final:</td>
+            @if (Model.LongRunningPrediction != null)
+            {
+                <td>@Model.LongRunningPrediction.GetSemiFinalSelectedTeamsNames</td>
+            }
+            else
+            {
+                <td>You have not yet selected any teams.</td>
+            }
+        </tr>
+        <tr>
+            <td nowrap>Teams playing the 3rd place match:</td>
+            @if (Model.LongRunningPrediction != null)
+            {
+                <td>@Model.LongRunningPrediction.GetSmallFinalSelectedTeamsNames</td>
+            }
+            else
+            {
+                <td>You have not yet selected any teams.</td>
+            }
+        </tr>
+        <tr>
+            <td nowrap>Teams playing the final:</td>
+            @if (Model.LongRunningPrediction != null)
+            {
+                <td>@Model.LongRunningPrediction.GetFinalSelectedTeamsNames</td>
+            }
+            else
+            {
+                <td>You have not yet selected any teams.</td>
+            }
+        </tr>
+        <tr>
+            <td nowrap>World cup winner:</td>
+            @if (Model.LongRunningPrediction != null)
+            {
+                <td>@Model.LongRunningPrediction.WinnerTeam.Name</td>
+            }
+            else
+            {
+                <td>You have not yet selected any team.</td>
             }
         </tr>
     </table>

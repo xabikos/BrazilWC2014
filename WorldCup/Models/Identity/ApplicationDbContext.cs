@@ -34,6 +34,7 @@ namespace WorldCup.Models.Identity
             modelBuilder.Configurations.Add(new LongRunningPointsConfiguration());
             modelBuilder.Configurations.Add(new RaisedMoneyConfiguration());
             modelBuilder.Configurations.Add(new ParametersConfiguration());
+            modelBuilder.Configurations.Add(new SecondStageStatisticsConfiguration());
 
             modelBuilder.Entity<ApplicationUser>().Ignore(au => au.FullName);
 
@@ -49,6 +50,7 @@ namespace WorldCup.Models.Identity
         public DbSet<LongRunningResults> LongRunningResults { get; set; }
         public DbSet<RaisedMoney> RaisedMoney { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
+        //public DbSet<SecondStageStatistics> SecondStageStatistics { get; set; }
 
         #endregion
 

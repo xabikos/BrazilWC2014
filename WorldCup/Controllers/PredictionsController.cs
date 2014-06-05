@@ -114,7 +114,7 @@ namespace WorldCup.Controllers
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             
             // In case the tournament has started return the info view that doesn't allow edit the predictions
-            return DateTime.UtcNow > _firstMatchDate
+            return DateTime.UtcNow < _firstMatchDate
                 ? View("LongRunningPredictionsInfo", GetLongRunningPredictionsInfoModel(user))
                 : View(user.LongRunningPrediction ?? new LongRunningPrediction());
         }
@@ -157,6 +157,35 @@ namespace WorldCup.Controllers
             TempData[UserSavedSuccessfullyKey] = SuccesMatchPredictionSaved;
 
             return RedirectToAction("LongRunningPredictions");
+        }
+
+        public JsonResult LongRunningStatistics()
+        {
+            /*
+            var sql = @"create view SecondStageStatistics as
+                            select Teams.Code, count(Teams.Code) as Count
+                            from LongRunningPredictions, Teams
+                            where LongRunningPredictions.SecondStageTeams like '%' + Teams.Code + '%'
+                            group by Teams.Code";
+            sql = sql.Replace("'", "''");
+            Sql(string.Format("EXECUTE sp_executesql N'{0}'", sql));*/
+
+            var confirmedUsersCount = UserManager.AllUsers.Where(u => u.EmailConfirmed);
+
+            var round16Brazil =
+                UserManager.AllUsers.Select(u => u.LongRunningPrediction.SecondStageTeams).Count(s => s.Contains("bra"));
+
+            //var secondStagePredictions = Context.SecondStageStatistics.OfType<SecondStageStatistics>().ToList();
+
+            return new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data =
+                    new
+                    {
+                        
+                    }
+            };
         }
 
         private void PrepareViewBag(Match match)

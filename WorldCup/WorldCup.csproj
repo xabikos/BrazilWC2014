@@ -394,18 +394,6 @@
     </Content>
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\brazilworldcup2014 - Web Deploy.pubxml" />
-    <Content Include="Scripts\bootstrap-datetimepicker.min.js.map">
-      <DependentUpon>bootstrap-datetimepicker.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\gridmvc.min.js.map">
-      <DependentUpon>gridmvc.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\chosen.jquery.min.js.map">
-      <DependentUpon>chosen.jquery.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bootstrap.min.js.map">
-      <DependentUpon>bootstrap.min.js</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\chartjs-modules\dx.module-core.debug.js" />
     <Content Include="Scripts\chartjs-modules\dx.module-core.js" />
@@ -782,10 +770,6 @@
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
-    <Content Include="Scripts\jquery-2.1.0.min.map" />
-    <Content Include="Scripts\jquery-2.1.0.min.js.map">
-      <DependentUpon>jquery-2.1.0.min.js</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
@@ -845,7 +829,6 @@
     <Content Include="Views\AdminMatches\Index.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="Views\Shared\_FlaggedTeam.cshtml" />
     <Content Include="Views\AdminMatches\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_DateTime.cshtml" />
@@ -868,24 +851,6 @@
     <Content Include="Views\Predictions\MatchPredictionInfo.cshtml" />
     <Content Include="Views\Predictions\_TeamFlag.cshtml" />
     <Content Include="Views\Predictions\LongRunningPredictionsInfo.cshtml" />
-    <Content Include="Scripts\respond.min.js.map">
-      <DependentUpon>respond.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js.map">
-      <DependentUpon>jquery.validate.unobtrusive.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js.map">
-      <DependentUpon>respond.matchmedia.addListener.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\jquery.validate.min.js.map">
-      <DependentUpon>jquery.validate.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\moment.min.js.map">
-      <DependentUpon>moment.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\moment-with-langs.min.js.map">
-      <DependentUpon>moment-with-langs.min.js</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using WorldCup.Common;
 using WorldCup.Common.Entities;
@@ -84,7 +85,17 @@ namespace WorldCup.Controllers
         public JsonResult RegisteredUsers()
         {
             var total = 0;
-            var result = UserManager.AllUsers.Select(u => u.RegistrationDate).ToList()
+            var allUsers = UserManager.AllUsers.Select(u => u.RegistrationDate).ToList();
+
+            var latestUsers = allUsers.GroupBy(d => d.Date, a => a.Date)
+                .OrderBy(d => d.Key)
+                .Reverse()
+                .Take(6)
+                .Reverse();
+
+            allUsers.GroupBy(d => d.Date, a => a.Date).Except(latestUsers).ForEach(t => total += t.Count());
+            
+            var result = allUsers
                 .GroupBy(d => d.Date, a => a.Date)
                 .OrderBy(d => d.Key)
                 .Reverse()

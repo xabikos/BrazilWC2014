@@ -356,6 +356,7 @@
     <Content Include="Content\images\flags\usa.png" />
     <Content Include="Content\images\kantar.media.worldcup.logo.png" />
     <Content Include="Content\images\kantar.worldcup.logo.png" />
+    <Content Include="Content\images\kantarmedia.logo.png" />
     <Content Include="Content\images\pool.logo.png" />
     <Content Include="Content\images\tns.worldcup.logo.png" />
     <Content Include="Content\images\world-cup.png" />

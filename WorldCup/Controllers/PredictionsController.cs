@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using WebGrease.Css.Extensions;
 using WorldCup.Attributes;
 using WorldCup.Common.Entities;
 using WorldCup.Extensions;
@@ -161,31 +163,69 @@ namespace WorldCup.Controllers
 
         public JsonResult LongRunningStatistics()
         {
-            /*
-            var sql = @"create view SecondStageStatistics as
-                            select Teams.Code, count(Teams.Code) as Count
-                            from LongRunningPredictions, Teams
-                            where LongRunningPredictions.SecondStageTeams like '%' + Teams.Code + '%'
-                            group by Teams.Code";
-            sql = sql.Replace("'", "''");
-            Sql(string.Format("EXECUTE sp_executesql N'{0}'", sql));*/
-
-            var confirmedUsersCount = UserManager.AllUsers.Where(u => u.EmailConfirmed);
-
-            var round16Brazil =
-                UserManager.AllUsers.Select(u => u.LongRunningPrediction.SecondStageTeams).Count(s => s.Contains("bra"));
-
-            //var secondStagePredictions = Context.SecondStageStatistics.OfType<SecondStageStatistics>().ToList();
-
-            return new JsonResult
+            var confirmedUsersCount = UserManager.AllUsers.Count(u => u.EmailConfirmed);
+            if(confirmedUsersCount != 0)
             {
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                Data =
-                    new
-                    {
-                        
-                    }
-            };
+
+                var secondStageStatistics = new Dictionary<string, object>
+                {
+                    {"stage", "Round of 16"}
+                };
+                Context.SecondStageStatistics.ForEach(
+                    stat => secondStageStatistics.Add(stat.Code.ToLowerInvariant(), stat.Count*100/confirmedUsersCount));
+
+                var quarterFinalStatistics = new Dictionary<string, object>
+                {
+                    {"stage", "Quarter-finals"}
+                };
+                Context.QuarterFinalStatistics.ForEach(
+                    stat => quarterFinalStatistics.Add(stat.Code.ToLowerInvariant(), stat.Count*100/confirmedUsersCount));
+
+                var semiFinalStatistics = new Dictionary<string, object>
+                {
+                    {"stage", "Semi-finals"}
+                };
+                Context.SemiFinalStatistics.ForEach(
+                    stat => semiFinalStatistics.Add(stat.Code.ToLowerInvariant(), stat.Count*100/confirmedUsersCount));
+
+                var smallFinalStatistics = new Dictionary<string, object>
+                {
+                    {"stage", "3rd place match"}
+                };
+                Context.SmallFinalStatistics.ForEach(
+                    stat => smallFinalStatistics.Add(stat.Code.ToLowerInvariant(), stat.Count*100/confirmedUsersCount));
+
+                var finalStatistics = new Dictionary<string, object>
+                {
+                    {"stage", "Final"}
+                };
+                Context.FinalStatistics.ForEach(
+                    stat => finalStatistics.Add(stat.Code.ToLowerInvariant(), stat.Count*100/confirmedUsersCount));
+
+                var winnerStatistics = new Dictionary<string, object>
+                {
+                    {"stage", "Winner"}
+                };
+                Context.WinnerStatistics.ForEach(
+                    stat => winnerStatistics.Add(stat.Code.ToLowerInvariant(), stat.Count*100/confirmedUsersCount));
+
+                return new JsonResult
+                {
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    Data =
+                        new List<Dictionary<string, object>>
+                        {
+                            secondStageStatistics,
+                            quarterFinalStatistics,
+                            semiFinalStatistics,
+                            smallFinalStatistics,
+                            finalStatistics,
+                            winnerStatistics
+                        }
+                };
+            }
+            // no confirmed user yet
+            return null;
         }
 
         private void PrepareViewBag(Match match)

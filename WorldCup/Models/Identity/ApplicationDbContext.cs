@@ -35,6 +35,11 @@ namespace WorldCup.Models.Identity
             modelBuilder.Configurations.Add(new RaisedMoneyConfiguration());
             modelBuilder.Configurations.Add(new ParametersConfiguration());
             modelBuilder.Configurations.Add(new SecondStageStatisticsConfiguration());
+            modelBuilder.Configurations.Add(new QuarterFinalStatisticsConfiguration());
+            modelBuilder.Configurations.Add(new SemiFinalStatisticsConfiguration());
+            modelBuilder.Configurations.Add(new SmallFinalStatisticsConfiguration());
+            modelBuilder.Configurations.Add(new FinalStatisticsConfiguration());
+            modelBuilder.Configurations.Add(new WinnerStatisticsConfiguration());
 
             modelBuilder.Entity<ApplicationUser>().Ignore(au => au.FullName);
 
@@ -50,10 +55,14 @@ namespace WorldCup.Models.Identity
         public DbSet<LongRunningResults> LongRunningResults { get; set; }
         public DbSet<RaisedMoney> RaisedMoney { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
-        //public DbSet<SecondStageStatistics> SecondStageStatistics { get; set; }
+        public DbSet<SecondStageStatistics> SecondStageStatistics { get; set; }
+        public DbSet<QuarterFinalStatistics> QuarterFinalStatistics { get; set; }
+        public DbSet<SemiFinalStatistics> SemiFinalStatistics { get; set; }
+        public DbSet<SmallFinalStatistics> SmallFinalStatistics { get; set; }
+        public DbSet<FinalStatistics> FinalStatistics { get; set; }
+        public DbSet<WinnerStatistics> WinnerStatistics { get; set; }
 
         #endregion
 
     }
-
 }

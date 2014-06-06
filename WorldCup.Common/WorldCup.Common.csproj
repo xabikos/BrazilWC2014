@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\FinalStatisticsConfiguration.cs" />
     <Compile Include="DataAccess\LongRunningPointsConfiguration.cs" />
     <Compile Include="DataAccess\LongRunningPredictionConfiguration.cs" />
     <Compile Include="DataAccess\LongRunningResultsConfiguration.cs" />
@@ -68,10 +69,15 @@
     <Compile Include="DataAccess\MatchPointsConfiguration.cs" />
     <Compile Include="DataAccess\MatchPredictionConfiguration.cs" />
     <Compile Include="DataAccess\ParametersConfiguration.cs" />
+    <Compile Include="DataAccess\QuarterFinalStatisticsConfiguration.cs" />
     <Compile Include="DataAccess\RaisedMoneyConfiguration.cs" />
     <Compile Include="DataAccess\SecondStageStatisticsConfiguration.cs" />
+    <Compile Include="DataAccess\SemiFinalStatisticsConfiguration.cs" />
+    <Compile Include="DataAccess\SmallFinalStatisticsConfiguration.cs" />
     <Compile Include="DataAccess\SystemParametersConfiguration.cs" />
+    <Compile Include="DataAccess\WinnerStatisticsConfiguration.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\FinalStatistics.cs" />
     <Compile Include="Entities\LongRunningPoints.cs" />
     <Compile Include="Entities\LongRunningPrediction.cs" />
     <Compile Include="Entities\LongRunningResults.cs" />
@@ -81,12 +87,16 @@
     <Compile Include="Entities\MatchStage.cs" />
     <Compile Include="Entities\MatchState.cs" />
     <Compile Include="Entities\Parameter.cs" />
+    <Compile Include="Entities\QuarterFinalStatistics.cs" />
     <Compile Include="Entities\RaisedMoney.cs" />
     <Compile Include="Entities\SecondStageStatistics.cs" />
+    <Compile Include="Entities\SemiFinalStatistics.cs" />
+    <Compile Include="Entities\SmallFinalStatistics.cs" />
     <Compile Include="Entities\SystemParameters.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="DataAccess\FootballTeamConfiguration.cs" />
     <Compile Include="Entities\MatchPoints.cs" />
+    <Compile Include="Entities\WinnerStatistics.cs" />
     <Compile Include="PredefinedParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

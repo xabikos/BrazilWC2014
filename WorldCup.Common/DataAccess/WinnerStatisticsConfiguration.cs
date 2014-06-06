@@ -4,13 +4,13 @@ using WorldCup.Common.Entities;
 
 namespace WorldCup.Common.DataAccess
 {
-    public class SecondStageStatisticsConfiguration : EntityTypeConfiguration<SecondStageStatistics>
+    public class WinnerStatisticsConfiguration : EntityTypeConfiguration<WinnerStatistics>
     {
-        public SecondStageStatisticsConfiguration()
+        public WinnerStatisticsConfiguration()
         {
-            ToTable("SecondStageStatistics");
+            ToTable("WinnerStatistics");
             HasKey(t => t.Code);
         }
-
+    
     }
 }

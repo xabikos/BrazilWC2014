@@ -84,15 +84,6 @@
 <div id="roundOf16Container" style="height:500px; max-width:1100px; margin: 0 auto"></div>
 <script>
 
-    var dataSource1 = [
-       { stage: "Round of 16", bra: 85, cro: 80, mex: 79, cmr: 75, esp: 60, ned: 50, chi: 40, aus: 30 },
-       { stage: "Quarter-finals", bra: 83, cro: 77, mex: 79, cmr: 71, esp: 60, ned: 50, chi: 40, aus: 30 },
-       { stage: "Semi-finals", bra: 88, cro: 70, mex: 50, cmr: 34, esp: 60, ned: 50, chi: 40, aus: 30 },
-       { stage: "3rd place match", bra: 10, cro: 20, mex: 34, esp: 60, ned: 50, chi: 40, aus: 30 },
-       { stage: "Final", bra: 95, cro: 80, mex: 79, cmr: 75, esp: 60, ned: 50, chi: 40, aus: 30 },
-       { stage: "Winner", bra: 52, cro: 22, mex: 20, cmr: 8, esp: 60, ned: 50, chi: 40, aus: 30 }
-    ];
-
     var series = [
         { valueField: "bra", name: "Brazil" },
         { valueField: "cro", name: "Croatia" },
@@ -130,7 +121,7 @@
 
     window.setInterval(function () {
         updateStatisticsChart();
-    }, 5000);
+    }, 8000);
 
     var counter = 0;
     // The variable that is assigned through Ajax request and holds all the data from the server
@@ -145,7 +136,7 @@
         counter++;
 
         var data = {
-            source: dataSource1,
+            source: sourceFromServer,
             series: seriesToDisplay
         };
         updateChart(data);

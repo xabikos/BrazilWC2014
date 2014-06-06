@@ -85,21 +85,16 @@ namespace WorldCup.Controllers
         public JsonResult RegisteredUsers()
         {
             var total = 0;
-            var allUsers = UserManager.AllUsers.Select(u => u.RegistrationDate).ToList();
-
-            var latestUsers = allUsers.GroupBy(d => d.Date, a => a.Date)
+            var result = UserManager.AllUsers.Select(u => u.RegistrationDate).ToList()
+                .GroupBy(d => d.Date, a => a.Date)
                 .OrderBy(d => d.Key)
                 .Reverse()
                 .Take(6)
-                .Reverse().ToList();
-
-            allUsers.GroupBy(d => d.Date, a => a.Date).Except(latestUsers).ForEach(t => total += t.Count());
-
-            var result = latestUsers
+                .Reverse()
                 .Select(r =>
                 {
                     total += r.Count();
-                    return new {date = r.Key.ToString("M"), users = total};
+                    return new { date = r.Key.ToString("M"), users = total };
                 });
 
             return new JsonResult

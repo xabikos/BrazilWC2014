@@ -85,38 +85,38 @@
 <script>
 
     var series = [
-        { valueField: "bra", name: "Brazil" },
-        { valueField: "cro", name: "Croatia" },
-        { valueField: "mex", name: "Mexico" },
-        { valueField: "cmr", name: "Cameroon" },
-        { valueField: "esp", name: "Spain" },
-        { valueField: "ned", name: "Netherlands" },
-        { valueField: "chi", name: "Chile" },
-        { valueField: "aus", name: "Australia" },
-        { valueField: "col", name: "Colombia" },
-        { valueField: "gre", name: "Greece" },
-        { valueField: "civ", name: "Cote d'Ivore" },
-        { valueField: "jpn", name: "Japan" },
-        { valueField: "uru", name: "Uruguay" },
-        { valueField: "crc", name: "Costa Rica" },
-        { valueField: "eng", name: "England" },
-        { valueField: "ita", name: "Italy" },
-        { valueField: "sui", name: "Switzerland" },
-        { valueField: "ecu", name: "Ecuador" },
-        { valueField: "fra", name: "France" },
-        { valueField: "hon", name: "Honduras" },
-        { valueField: "arg", name: "Argentina" },
-        { valueField: "bih", name: "Bosnia-Herzegovina" },
-        { valueField: "irn", name: "Iran" },
-        { valueField: "nga", name: "Nigeria" },
-        { valueField: "ger", name: "Germany" },
-        { valueField: "por", name: "Portugal" },
-        { valueField: "gha", name: "Ghana" },
-        { valueField: "usa", name: "United States" },
-        { valueField: "bel", name: "Belgium" },
-        { valueField: "alg", name: "Algeria" },
-        { valueField: "rus", name: "Russia" },
-        { valueField: "kor", name: "South Korea" }
+        { valueField: "bra", name: "Brazil", color: "#428bca" },
+        { valueField: "cro", name: "Croatia", color: "#5cb85c" },
+        { valueField: "mex", name: "Mexico", color: "#5bc0de" },
+        { valueField: "cmr", name: "Cameroon", color: "#f0ad4e" },
+        { valueField: "esp", name: "Spain", color: "#428bca" },
+        { valueField: "ned", name: "Netherlands", color: "#5cb85c" },
+        { valueField: "chi", name: "Chile", color: "#5bc0de" },
+        { valueField: "aus", name: "Australia", color: "#f0ad4e" },
+        { valueField: "col", name: "Colombia", color: "#428bca" },
+        { valueField: "gre", name: "Greece", color: "#5cb85c" },
+        { valueField: "civ", name: "Cote d'Ivore", color: "#5bc0de" },
+        { valueField: "jpn", name: "Japan", color: "#f0ad4e" },
+        { valueField: "uru", name: "Uruguay", color: "#428bca" },
+        { valueField: "crc", name: "Costa Rica", color: "#5cb85c" },
+        { valueField: "eng", name: "England", color: "#5bc0de" },
+        { valueField: "ita", name: "Italy", color: "#f0ad4e" },
+        { valueField: "sui", name: "Switzerland", color: "#428bca" },
+        { valueField: "ecu", name: "Ecuador", color: "#5cb85c" },
+        { valueField: "fra", name: "France", color: "#5bc0de" },
+        { valueField: "hon", name: "Honduras", color: "#f0ad4e" },
+        { valueField: "arg", name: "Argentina", color: "#428bca" },
+        { valueField: "bih", name: "Bosnia-Herzegovina", color: "#5cb85c" },
+        { valueField: "irn", name: "Iran", color: "#5bc0de" },
+        { valueField: "nga", name: "Nigeria", color: "#f0ad4e" },
+        { valueField: "ger", name: "Germany", color: "#428bca" },
+        { valueField: "por", name: "Portugal", color: "#5cb85c" },
+        { valueField: "gha", name: "Ghana", color: "#5bc0de" },
+        { valueField: "usa", name: "United States", color: "#f0ad4e" },
+        { valueField: "bel", name: "Belgium", color: "#428bca" },
+        { valueField: "alg", name: "Algeria", color: "#5cb85c" },
+        { valueField: "rus", name: "Russia", color: "#5bc0de" },
+        { valueField: "kor", name: "South Korea", color: "#f0ad4e" }
     ];
 
     window.setInterval(function () {
@@ -166,7 +166,12 @@
                 customizeText: function () {
                     return this.seriesName + ": " + this.valueText + "%";
                 }
-            }
+            },
+            valueAxis: {
+                min: 0,
+                max: 100,
+                valueMarginsEnabled: false
+            },
         });
     }
 

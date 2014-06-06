@@ -91,16 +91,11 @@ namespace WorldCup.Controllers
                 .OrderBy(d => d.Key)
                 .Reverse()
                 .Take(6)
-                .Reverse();
+                .Reverse().ToList();
 
             allUsers.GroupBy(d => d.Date, a => a.Date).Except(latestUsers).ForEach(t => total += t.Count());
-            
-            var result = allUsers
-                .GroupBy(d => d.Date, a => a.Date)
-                .OrderBy(d => d.Key)
-                .Reverse()
-                .Take(6)
-                .Reverse()
+
+            var result = latestUsers
                 .Select(r =>
                 {
                     total += r.Count();

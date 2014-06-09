@@ -88,14 +88,14 @@ namespace WorldCup.Controllers
             var result = UserManager.AllUsers.Select(u => u.RegistrationDate).ToList()
                 .GroupBy(d => d.Date, a => a.Date)
                 .OrderBy(d => d.Key)
-                .Reverse()
-                .Take(6)
-                .Reverse()
                 .Select(r =>
                 {
                     total += r.Count();
-                    return new { date = r.Key.ToString("M"), users = total };
-                });
+                    return new {date = r.Key.ToString("M"), users = total};
+                })
+                .Reverse()
+                .Take(6)
+                .Reverse();
 
             return new JsonResult
             {

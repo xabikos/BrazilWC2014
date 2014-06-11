@@ -58,7 +58,7 @@ namespace WorldCup.Controllers
                 select user).Take(numberOfUsers).ToList();
 
             // Array containing the colors of the graph
-            string[] graphColors = new string[10] { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f", "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };
+            string[] graphColors = new string[5] { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };
 
             var usersInfoPerDate = new List<Dictionary<string, object>>();
 
@@ -85,7 +85,7 @@ namespace WorldCup.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Data = new
                 {
-                    users = topUsers.Select((u,i) => new { name = u.FullName, valueField = u.Id, color = graphColors[i] }).ToList(),
+                    users = topUsers.Select((u,i) => new { name = u.FullName, valueField = u.Id, color = graphColors[i%5] }).ToList(),
                     rankings = usersInfoPerDate
                 }
             };

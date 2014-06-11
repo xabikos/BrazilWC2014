@@ -57,6 +57,9 @@ namespace WorldCup.Controllers
                 orderby userPoints descending
                 select user).Take(numberOfUsers).ToList();
 
+            // Array containing the colors of the graph
+            string[] graphColors = new string[10] { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f", "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };
+
             var usersInfoPerDate = new List<Dictionary<string, object>>();
 
             // The date that tournament is finished
@@ -64,7 +67,7 @@ namespace WorldCup.Controllers
             for(int i = -4; i <= 0; i++)
             {
                 var userInfo = new Dictionary<string, object>();
-
+                
                 var date = today.AddDays(i);
                 userInfo.Add("date", date.ToString("M"));
 
@@ -72,7 +75,9 @@ namespace WorldCup.Controllers
                 {
                     userInfo.Add(user.Id, user.GetPointsForDate(date));
                 }
+               
                 usersInfoPerDate.Add(userInfo);
+
             }
 
             return new JsonResult
@@ -80,7 +85,7 @@ namespace WorldCup.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                 Data = new
                 {
-                    users = topUsers.Select(u => new {name = u.FullName, valueField = u.Id}).ToList(),
+                    users = topUsers.Select((u,i) => new { name = u.FullName, valueField = u.Id, color = graphColors[i] }).ToList(),
                     rankings = usersInfoPerDate
                 }
             };

@@ -61,7 +61,7 @@ namespace WorldCup.Controllers
                         : "Please enter an introduction text",
                 UserLatestResults = matches,
                 UserPredictionMatches = predictions,
-                UpcomingMatches = Context.Matches.OrderBy(m => m.Date).Take(5).ToList()
+                UpcomingMatches = Context.Matches.Where(mt => mt.Date > DateTime.UtcNow).OrderBy(m => m.Date).Take(5).ToList()
             };
 
             return View(model);

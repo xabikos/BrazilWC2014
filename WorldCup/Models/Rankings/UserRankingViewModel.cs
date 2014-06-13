@@ -9,5 +9,6 @@ namespace WorldCup.Models.Rankings
         public int MatchPoints { get; set; }
         public int LongRunningPoints { get; set; }
         public int TotalPoints { get { return MatchPoints + LongRunningPoints; } }
+        public string UserName { get; set; }
     }
 }

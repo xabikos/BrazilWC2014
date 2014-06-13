@@ -25,6 +25,7 @@ namespace WorldCup.Controllers
                 select  new UserRankingViewModel
                 {
                     Name = user.FirstName + " " + user.LastName,
+                    UserName = user.Email,
                     MatchPoints = matchPoints,
                     LongRunningPoints = longRunningPoints
                 };
@@ -36,6 +37,7 @@ namespace WorldCup.Controllers
                         {
                             Postion = i + 1,
                             Name = m.Name,
+                            UserName = m.UserName,
                             MatchPoints = m.MatchPoints,
                             LongRunningPoints = m.LongRunningPoints
                         });

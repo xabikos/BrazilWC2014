@@ -15,7 +15,7 @@
 </div>
 
 <div class="row">
-    
+    @{ var userName = User.Identity.Name;}
         <h2>Current ranking</h2>
     @Html.Grid(Model).Named("rankings").Columns(columns =>
     {
@@ -23,8 +23,8 @@
         columns.Add(ur => ur.Name).Titled("Name").SetWidth(45);
         columns.Add(ur => ur.MatchPoints).Titled("Matches Points").SetWidth(15);
         columns.Add(ur => ur.LongRunningPoints).Titled("Long running Points").SetWidth(15);
-        columns.Add(ur => ur.TotalPoints).Titled("Total Points").SetWidth(15);        
-    }).Sortable().WithPaging(10).Filterable()
+        columns.Add(ur => ur.TotalPoints).Titled("Total Points").SetWidth(15);
+    }).Sortable().SetRowCssClasses(ur => ur.UserName == userName ? "warning" : "").WithPaging(10).Filterable()
     
 </div>
 

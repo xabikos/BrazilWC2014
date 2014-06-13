@@ -48,16 +48,18 @@ namespace WorldCup.Controllers
         public JsonResult TopUsersInfo(int numberOfUsers)
         {
             var topUsers = (from user in UserManager.ConfirmedUsers
-                let userPoints = user.MatchPoints.Sum(m => m.Points) 
-                                 + ( user.LongRunningPoints.SecondStagePoints +
-                                       user.LongRunningPoints.QuarterFinalPoints +
-                                       user.LongRunningPoints.SemiFinalPoints +
-                                       user.LongRunningPoints.SmallFinalPoints +
-                                       user.LongRunningPoints.FinalPoints +
-                                       user.LongRunningPoints.WinnerPoints
-                                     )
-                orderby userPoints descending
-                select user).ToList().Take(numberOfUsers);
+                            let matchPoints = user.MatchPoints.Sum(m => m.Points)
+                            let longRunningPoints = user.LongRunningPoints != null
+                                ? (user.LongRunningPoints.SecondStagePoints +
+                                   user.LongRunningPoints.QuarterFinalPoints +
+                                   user.LongRunningPoints.SemiFinalPoints +
+                                   user.LongRunningPoints.SmallFinalPoints +
+                                   user.LongRunningPoints.FinalPoints +
+                                   user.LongRunningPoints.WinnerPoints)
+                                : 0
+                            let totalPoints = matchPoints + longRunningPoints
+                            orderby totalPoints descending
+                            select user).Take(numberOfUsers).ToList();
 
             // Array containing the colors of the graph
             string[] graphColors = new string[5] { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };

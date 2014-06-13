@@ -57,7 +57,7 @@ namespace WorldCup.Controllers
                                        user.LongRunningPoints.WinnerPoints
                                      )
                 orderby userPoints descending
-                select user).Take(numberOfUsers).ToList();
+                select user).ToList().Take(numberOfUsers);
 
             // Array containing the colors of the graph
             string[] graphColors = new string[5] { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };

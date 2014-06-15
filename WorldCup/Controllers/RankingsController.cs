@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using iTextSharp.text.pdf.qrcode;
 using WorldCup.Models.Rankings;
 
 namespace WorldCup.Controllers
@@ -30,18 +31,23 @@ namespace WorldCup.Controllers
                     LongRunningPoints = longRunningPoints
                 };
 
-            model = model.GroupBy(m => m.TotalPoints)
-                .SelectMany(m => m,
-                    (grouping, viewModel) =>
-                        new UserRankingViewModel
-                        {
-                            Postion = grouping.Key,
-                            Name = viewModel.Name,
-                            UserName = viewModel.UserName,
-                            MatchPoints = viewModel.MatchPoints,
-                            LongRunningPoints = viewModel.LongRunningPoints
-                        });
+            //var grouping = model.GroupBy(m => m.TotalPoints);
 
+
+            model = model.GroupBy(m => m.TotalPoints)
+                .SelectMany(
+                    m =>
+                        m.Select(
+                            (viewModel, i) =>
+                                new UserRankingViewModel
+                                {
+                                    Postion = i,
+                                    UserName = viewModel.UserName,
+                                    Name = viewModel.Name,
+                                    MatchPoints = viewModel.MatchPoints,
+                                    LongRunningPoints = viewModel.LongRunningPoints
+                                }));
+            
             //model =
             //    model.GroupBy(m=>m.TotalPoints).Select(
             //        (m, i) =>

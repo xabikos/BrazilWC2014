@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using iTextSharp.text.pdf.qrcode;
 using WorldCup.Models.Rankings;
 
 namespace WorldCup.Controllers
@@ -31,35 +30,19 @@ namespace WorldCup.Controllers
                     LongRunningPoints = longRunningPoints
                 };
 
-            //var grouping = model.GroupBy(m => m.TotalPoints);
-
-
             model = model.GroupBy(m => m.TotalPoints)
-                .SelectMany(
-                    (m, i) =>
-                        m.Select(
-                            viewModel =>
-                                new UserRankingViewModel
-                                {
-                                    Postion = i + 1,
-                                    UserName = viewModel.UserName,
-                                    Name = viewModel.Name,
-                                    MatchPoints = viewModel.MatchPoints,
-                                    LongRunningPoints = viewModel.LongRunningPoints
-                                }));
+                .SelectMany((m, i) =>
+                    m.Select(
+                        viewModel =>
+                            new UserRankingViewModel
+                            {
+                                Postion = i + 1,
+                                UserName = viewModel.UserName,
+                                Name = viewModel.Name,
+                                MatchPoints = viewModel.MatchPoints,
+                                LongRunningPoints = viewModel.LongRunningPoints
+                            }));
             
-            //model =
-            //    model.GroupBy(m=>m.TotalPoints).Select(
-            //        (m, i) =>
-            //            new UserRankingViewModel
-            //            {
-            //                Postion = m.Key,
-            //                Name = m. . Name,
-            //                UserName = m.UserName,
-            //                MatchPoints = m.MatchPoints,
-            //                LongRunningPoints = m.LongRunningPoints
-            //            });
-
             return View(model.ToList().AsQueryable());
         }
 
@@ -80,7 +63,7 @@ namespace WorldCup.Controllers
                             select user).Take(numberOfUsers).ToList();
 
             // Array containing the colors of the graph
-            string[] graphColors = new string[5] { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };
+            string[] graphColors = { "#428bca", "#5cb85c", "#5bc0de", "#f0ad4e", "#d9534f" };
 
             var usersInfoPerDate = new List<Dictionary<string, object>>();
 

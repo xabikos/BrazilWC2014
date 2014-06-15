@@ -30,17 +30,29 @@ namespace WorldCup.Controllers
                     LongRunningPoints = longRunningPoints
                 };
 
-            model =
-                model.Select(
-                    (m, i) =>
+            model = model.GroupBy(m => m.TotalPoints)
+                .SelectMany(m => m,
+                    (grouping, viewModel) =>
                         new UserRankingViewModel
                         {
-                            Postion = i + 1,
-                            Name = m.Name,
-                            UserName = m.UserName,
-                            MatchPoints = m.MatchPoints,
-                            LongRunningPoints = m.LongRunningPoints
+                            Postion = grouping.Key,
+                            Name = viewModel.Name,
+                            UserName = viewModel.UserName,
+                            MatchPoints = viewModel.MatchPoints,
+                            LongRunningPoints = viewModel.LongRunningPoints
                         });
+
+            //model =
+            //    model.GroupBy(m=>m.TotalPoints).Select(
+            //        (m, i) =>
+            //            new UserRankingViewModel
+            //            {
+            //                Postion = m.Key,
+            //                Name = m. . Name,
+            //                UserName = m.UserName,
+            //                MatchPoints = m.MatchPoints,
+            //                LongRunningPoints = m.LongRunningPoints
+            //            });
 
             return View(model.ToList().AsQueryable());
         }

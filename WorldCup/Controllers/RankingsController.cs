@@ -36,12 +36,12 @@ namespace WorldCup.Controllers
 
             model = model.GroupBy(m => m.TotalPoints)
                 .SelectMany(
-                    m =>
+                    (m, i) =>
                         m.Select(
-                            (viewModel, i) =>
+                            viewModel =>
                                 new UserRankingViewModel
                                 {
-                                    Postion = i,
+                                    Postion = i + 1,
                                     UserName = viewModel.UserName,
                                     Name = viewModel.Name,
                                     MatchPoints = viewModel.MatchPoints,

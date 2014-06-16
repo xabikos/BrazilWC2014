@@ -82,6 +82,8 @@ else
         </div>
     </div>
 </div>
+<h3>See what others predicted</h3>
+<div id="winnerContainer" style="height: 400px; width: 100%;"></div>
 &nbsp;
 @Html.Grid(Model.UsersPredictions).Named("usersPredictions").Columns(columns =>
     {
@@ -93,3 +95,27 @@ else
         columns.Add(upi => upi.RedCards).Titled("Red Cards").SetWidth(8);
         columns.Add(upi => upi.MatchPoints).Titled("Points").SetWidth(8);
     }).Sortable().WithPaging(40)
+<script>
+    $(function () {
+        var dataSource = [
+            { team: "Honduras", count: 7 }, // No need for percentages here, counts are good as well
+            { team: "Draw", count: 15 },
+            { team: "Iran", count: 18 }
+        ];
+
+        $("#winnerContainer").dxPieChart({
+            dataSource: dataSource,
+            series: [
+                {
+                    argumentField: "team",
+                    valueField: "count",
+                    label: {
+                        visible: true
+                    }
+                }
+            ],
+            title: "Match winner predictions",
+            palette: ['#428bca', '#5cb85c', '#d9534f']
+        });
+    });
+</script>

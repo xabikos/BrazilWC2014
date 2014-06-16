@@ -283,6 +283,7 @@ namespace WorldCup.Controllers
                 UserManager.ConfirmedUsers.Where(u => u.Id != currentUserId).SelectMany(
                     u => u.MatchPredictions.Where(mp => mp.MatchId == match.Id).Select(mp => new UserPredictionInfo
                     {
+                        UserId = u.Id,
                         UserName = u.FirstName + " " + u.LastName,
                         HalfTimeScore = mp.HomeTeamHalfTimeGoals + " - " + mp.AwayTeamHalfTimeGoals,
                         FullTimeScore = mp.HomeTeamFullTimeGoals + " - " + mp.AwayTeamFullTimeGoals,
@@ -291,7 +292,17 @@ namespace WorldCup.Controllers
                             : mp.Result == MatchResult.Away ? mp.Match.AwayTeam.Name : "Draw",
                         YellowCards = mp.YellowCards,
                         RedCards = mp.RedCards
-                    }).OrderBy(upi => upi.UserName)).ToList();
+                    })).ToList();
+
+            var usersPoints = Context.MatchPoints.Where(mp => mp.MatchId == match.Id).ToList();
+
+            foreach (var userPrediction in model.UsersPredictions)
+            {
+                userPrediction.MatchPoints = usersPoints.Any(up => up.UserId == userPrediction.UserId)
+                    ? usersPoints.Single(up => up.UserId == userPrediction.UserId).Points
+                    : 0;
+            }
+            model.UsersPredictions = model.UsersPredictions.OrderByDescending(up => up.MatchPoints).ToList();
 
             return model;
         }

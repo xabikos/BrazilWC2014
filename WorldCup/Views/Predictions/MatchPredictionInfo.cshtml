@@ -86,9 +86,10 @@ else
 @Html.Grid(Model.UsersPredictions).Named("usersPredictions").Columns(columns =>
     {
         columns.Add(upi=>upi.UserName).Titled("Name").SetWidth(40);
-        columns.Add(upi => upi.HalfTimeScore).Titled("Half Time Score").SetWidth(10);
-        columns.Add(upi => upi.FullTimeScore).Titled("Full Time Score").SetWidth(10);
+        columns.Add(upi => upi.HalfTimeScore).Titled("Half Time Score").SetWidth(8);
+        columns.Add(upi => upi.FullTimeScore).Titled("Full Time Score").SetWidth(8);
         columns.Add(upi => upi.Winner).Titled("Winner").SetWidth(20);
-        columns.Add(upi => upi.YellowCards).Titled("Yellow Cards").SetWidth(10);
-        columns.Add(upi => upi.RedCards).Titled("Red Cards").SetWidth(10);
+        columns.Add(upi => upi.YellowCards).Titled("Yellow Cards").SetWidth(8);
+        columns.Add(upi => upi.RedCards).Titled("Red Cards").SetWidth(8);
+        columns.Add(upi => upi.MatchPoints).Titled("Points").SetWidth(8);
     }).Sortable().WithPaging(40)

@@ -37,7 +37,7 @@
             {
                 <h1>Your latest results</h1>
 
-                Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
+                @Html.Grid(Model.UserLatestResults).Named("userLatestResults").Columns(columns =>
                 {
                     columns.Add()
                         .Encoded(false)
@@ -51,7 +51,7 @@
                         .Titled("Match")
                         .SetWidth(60);
                     columns.Add(ur => ur.Points).Titled("Points").SetWidth(10);
-                }).Selectable(false);
+                }).Selectable(false)
 
                 <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
             }

@@ -25,11 +25,13 @@ namespace WorldCup.Models.Predictions
 
     public class UserPredictionInfo
     {
+        public string UserId { get; set; }
         public string UserName { get; set; }
         public string HalfTimeScore { get; set; }
         public string FullTimeScore { get; set; }
         public string Winner { get; set; }
         public int YellowCards { get; set; }
         public int RedCards { get; set; }
+        public int MatchPoints { get; set; }
     }
 }

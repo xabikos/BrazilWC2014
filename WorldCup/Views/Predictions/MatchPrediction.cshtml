@@ -33,7 +33,7 @@
         <div class="col-xs-3 col-md-offset-1 col-md-2 text-center">@Html.Partial("_TeamFlag", new[] { Model.Match.AwayTeam.Code, Model.Match.AwayTeam.Name })</div>
         <div class="hidden-xs col-md-3"></div>
     </div>
-    
+
     <div class="form-group">
         <label class="col-xs-6 col-md-4 control-label">Half time score</label>
         <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.HomeTeamHalfTimeGoals)</div>
@@ -49,7 +49,7 @@
         <div class="col-xs-3 col-md-2">@Html.BootstrapEditorFor(m => m.AwayTeamFullTimeGoals)</div>
         <div class="col-xs-12 col-md-3"><span class="help-block">@Html.ValidationMessageFor(m => m.HomeTeamFullTimeGoals) @Html.ValidationMessageFor(m => m.AwayTeamFullTimeGoals)</span></div>
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.Result, "Winner", new { @class = "col-xs-6 col-md-4 control-label" })
         <div class="col-xs-6 col-md-5" id="result-buttons">
@@ -57,21 +57,21 @@
         </div>
         <div class="hidden-xs col-md-3"></div>
     </div>
-    
-        <hr class="divider" />
-    
+
+    <hr class="divider" />
+
     <div class="form-group">
         @Html.LabelFor(m => m.YellowCards, "Total yellow cards", new { @class = "col-xs-6 col-md-4 control-label" })
         <div class="col-xs-6 col-md-1 col-md-offset-2 text-center">@Html.BootstrapEditorFor(m => m.YellowCards)</div>
         <div class="col-xs-12 col-md-3 col-md-offset-2"><span class="help-block">@Html.ValidationMessageFor(m => m.YellowCards)</span></div>
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.RedCards, "Total red cards", new { @class = "col-xs-6 col-md-4 control-label" })
         <div class="col-xs-6 col-md-1 col-md-offset-2 text-center">@Html.BootstrapEditorFor(m => m.RedCards)</div>
         <div class="col-xs-12 col-md-3 col-md-offset-2"><span class="help-block">@Html.ValidationMessageFor(m => m.RedCards)</span></div>
     </div>
-    
+
     <hr class="divider" />
 
     <div class="btn-group btn-group-justified visible-xs visible-sm">
@@ -87,21 +87,21 @@
 &nbsp;
 @{
     object previousMatchHtmlAttributes, nextMatchHtmlAttributes;
-    if(Model.MatchId != ViewBag.PreviousMatchId)
+    if (Model.MatchId != ViewBag.PreviousMatchId)
     {
-        previousMatchHtmlAttributes = new {@class = "btn btn-info btn-group"};
+        previousMatchHtmlAttributes = new { @class = "btn btn-info btn-group" };
     }
     else
     {
-        previousMatchHtmlAttributes = new {@class = "btn btn-info btn-group", disabled = "disabled"};
+        previousMatchHtmlAttributes = new { @class = "btn btn-info btn-group", disabled = "disabled" };
     }
-    if(Model.MatchId != ViewBag.NextMatchId)
+    if (Model.MatchId != ViewBag.NextMatchId)
     {
-        nextMatchHtmlAttributes = new {@class = "btn btn-info btn-group"};
+        nextMatchHtmlAttributes = new { @class = "btn btn-info btn-group" };
     }
     else
     {
-        nextMatchHtmlAttributes = new {@class = "btn btn-info btn-group", disabled = "disabled"};
+        nextMatchHtmlAttributes = new { @class = "btn btn-info btn-group", disabled = "disabled" };
     }
 }
 <div class="visible-xs visible-sm">
@@ -122,7 +122,46 @@
         </div>
     </div>
 </div>
+<hr>
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">
+    previous matches from @Model.Match.HomeTeam.Name and @Model.Match.AwayTeam.Name
+</button>
 
+<div id="demo" class="collapse">
+    <!--
+        Select all matches where either home or away team is equal to current home or away team, ordered by match date
+    -->
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th width="10%">Date</th>
+                <th width="30%"></th>
+                <th width="10%" class="text-center">Score</th>
+                <th width="30%"></th>
+                <th width="10%">Yellow cards</th>
+                <th width="10%">Red cards</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>12 June</td>
+                <td class="text-right"><strong>@Model.Match.HomeTeam.Name</strong></td>
+                <td class="text-center">3 - 0</td>
+                <td>Opponent</td>
+                <td>3</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>15 June</td>
+                <td class="text-right">Opponent</td>
+                <td class="text-center">0 - 1</td>
+                <td><strong>@Model.Match.AwayTeam.Name</strong></td>
+                <td>7</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript">
 
     $(function () {

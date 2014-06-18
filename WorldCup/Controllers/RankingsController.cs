@@ -30,20 +30,37 @@ namespace WorldCup.Controllers
                     LongRunningPoints = longRunningPoints
                 };
 
-            model = model.GroupBy(m => m.TotalPoints)
-                .SelectMany((m, i) =>
-                    m.Select(
-                        viewModel =>
-                            new UserRankingViewModel
-                            {
-                                Postion = i + 1,
-                                UserName = viewModel.UserName,
-                                Name = viewModel.Name,
-                                MatchPoints = viewModel.MatchPoints,
-                                LongRunningPoints = viewModel.LongRunningPoints
-                            }));
-            
-            return View(model.ToList().AsQueryable());
+            //model = model.GroupBy(m => m.TotalPoints)
+            //    .SelectMany((m, i) =>
+            //        m.Select(
+            //            viewModel =>
+            //                new UserRankingViewModel
+            //                {
+            //                    Postion = i + 1,
+            //                    UserName = viewModel.UserName,
+            //                    Name = viewModel.Name,
+            //                    MatchPoints = viewModel.MatchPoints,
+            //                    LongRunningPoints = viewModel.LongRunningPoints
+            //                }));
+            model =
+                model.Select(
+                    (m, i) =>
+                        new UserRankingViewModel
+                        {
+                            Postion = i + 1,
+                            Name = m.Name,
+                            UserName = m.UserName,
+                            MatchPoints = m.MatchPoints,
+                            LongRunningPoints = m.LongRunningPoints
+                        }).ToList();
+
+            for(var i=1; i<model.Count(); i++){
+                if(model.ElementAt(i).TotalPoints == model.ElementAt(i-1).TotalPoints){
+                    model.ElementAt(i).Postion = model.ElementAt(i - 1).Postion;
+                }
+            }
+
+            return View(model.AsQueryable());
         }
 
         public JsonResult TopUsersInfo(int numberOfUsers)

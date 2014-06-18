@@ -14,7 +14,7 @@
                 @Model.LogoText<br>
                 <small>for our UNICEF project Brighter Futures</small>
             </h3>
-            <p class="text-right"><span class="label label-danger" id="days-remaining"></span> days remaining</p>
+            <p class="text-right"><span class="label label-danger" id="days-remaining"></span> days until the final</p>
             <p class="text-right"><span class="label label-success" id="amount-raised"></span> currently raised</p>
         </div>
     </div>
@@ -251,8 +251,8 @@
     }
 
     var now = moment();
-    var kickOff = moment([2014, 5, 13]),
-        daysRemaining = kickOff.diff(now, 'days');
+    var finalMatch = moment([2014, 6, 13]),
+        daysRemaining = finalMatch.diff(now, 'days');
 
     $("#days-remaining").text(daysRemaining);
 

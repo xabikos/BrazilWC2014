@@ -56,10 +56,11 @@
                 <p>&nbsp;<br />Check your @Html.ActionLink("personal page", "Index", "UserResults") for an overview.</p>
             }
         }
-
-        <h1>Number of registered users</h1>
-        <p>The number of registered users is listed below.</p>
-        <div id="registeredUsersChart" style="max-width: 700px; height: 300px;"></div>
+        @*
+    <h1>Number of registered users</h1>
+    <p>The number of registered users is listed below.</p>
+    <div id="registeredUsersChart" style="max-width: 700px; height: 300px;"></div>
+        *@
     </div>
     <div class="col-md-6">
         @if (Request.IsAuthenticated)
@@ -169,6 +170,7 @@
                 toastr.error(data.statusText);
             }
         });
+        @*
         $.ajax({
             url: '/Home/RegisteredUsers',
             type: 'GET',
@@ -181,8 +183,9 @@
                 toastr.error(data.statusText);
             }
         });
+            *@
     });
-
+    @*
     var updateRegisteredUsersChart = function (data) {
         $("#registeredUsersChart").dxChart({
             title: {
@@ -203,7 +206,7 @@
             }
         });
     }
-
+    *@
     var updateRaisedMoneyChart = function (data) {
         $("#unicefChart").dxChart({
             tooltip: {

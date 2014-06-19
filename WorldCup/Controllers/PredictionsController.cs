@@ -301,11 +301,12 @@ namespace WorldCup.Controllers
                 : 0;
 
             model.UsersPredictions =
-                UserManager.ConfirmedUsers.Where(u => u.Id != currentUserId).SelectMany(
+                UserManager.ConfirmedUsers.SelectMany(
                     u => u.MatchPredictions.Where(mp => mp.MatchId == match.Id).Select(mp => new UserPredictionInfo
                     {
                         UserId = u.Id,
-                        UserName = u.FirstName + " " + u.LastName,
+                        UserName = u.UserName,
+                        DisplayName = u.FirstName + " " + u.LastName,
                         HalfTimeScore = mp.HomeTeamHalfTimeGoals + " - " + mp.AwayTeamHalfTimeGoals,
                         FullTimeScore = mp.HomeTeamFullTimeGoals + " - " + mp.AwayTeamFullTimeGoals,
                         Winner = mp.Result == MatchResult.Home

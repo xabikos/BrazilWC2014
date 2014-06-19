@@ -19,42 +19,44 @@
             <th class="col-sm-4"></th>
             <th class="col-sm-2">Your prediction</th>
             <th class="col-sm-2">Final result</th>
-            <th class="col-sm-4">@if (!Model.FinalResultsUpdated)
-            {
-                <span>(the results have not been updated yet)</span>
-            }</th>
-        </tr>
-        <tr>
-            <td class="col-sm-4 text-right"><b>Half time score</b></td>
-            <td class="col-sm-2">@Model.UserPredictionInfo.HalfTimeScore</td>
-            <td class="col-sm-2">@Model.HalfTimeScoreResult</td>
-            <td class="col-sm-4"></td>
-        </tr>
-        <tr>
-            <td class="col-sm-4 text-right"><b>Full time score</b></td>
-            <td class="col-sm-2">@Model.UserPredictionInfo.FullTimeScore</td>
-            <td class="col-sm-2">@Model.FullTimeScoreResult</td>
-            <td class="col-sm-4"></td>
-        </tr>
-        <tr>
-            <td class="col-sm-4 text-right"><b>Winner</b></td>
-            <td class="col-sm-2">@Model.UserPredictionInfo.Winner</td>
-            <td class="col-sm-2">@Model.WinnerResult</td>
-            <td class="col-sm-4"></td>
-        </tr>
-        <tr>
-            <td class="col-sm-4 text-right"><b>Yellow cards</b></td>
-            <td class="col-sm-2">@Model.UserPredictionInfo.YellowCards</td>
-            <td class="col-sm-2">@Model.YellowCardsResult</td>
-            <td class="col-sm-4"></td>
-        </tr>
-        <tr>
-            <td class="col-sm-4 text-right"><b>Red cards</b></td>
-            <td class="col-sm-2">@Model.UserPredictionInfo.RedCards</td>
-            <td class="col-sm-2">@Model.RedCardsResult</td>
-            <td class="col-sm-4"></td>
-        </tr>
-    </table>
+            <th class="col-sm-4">
+                @if (!Model.FinalResultsUpdated)
+                {
+                    <span>(the results have not been updated yet)</span>
+                }
+        </th>
+    </tr>
+    <tr>
+        <td class="col-sm-4 text-right"><b>Half time score</b></td>
+        <td class="col-sm-2">@Model.UserPredictionInfo.HalfTimeScore</td>
+        <td class="col-sm-2">@Model.HalfTimeScoreResult</td>
+        <td class="col-sm-4"></td>
+    </tr>
+    <tr>
+        <td class="col-sm-4 text-right"><b>Full time score</b></td>
+        <td class="col-sm-2">@Model.UserPredictionInfo.FullTimeScore</td>
+        <td class="col-sm-2">@Model.FullTimeScoreResult</td>
+        <td class="col-sm-4"></td>
+    </tr>
+    <tr>
+        <td class="col-sm-4 text-right"><b>Winner</b></td>
+        <td class="col-sm-2">@Model.UserPredictionInfo.Winner</td>
+        <td class="col-sm-2">@Model.WinnerResult</td>
+        <td class="col-sm-4"></td>
+    </tr>
+    <tr>
+        <td class="col-sm-4 text-right"><b>Yellow cards</b></td>
+        <td class="col-sm-2">@Model.UserPredictionInfo.YellowCards</td>
+        <td class="col-sm-2">@Model.YellowCardsResult</td>
+        <td class="col-sm-4"></td>
+    </tr>
+    <tr>
+        <td class="col-sm-4 text-right"><b>Red cards</b></td>
+        <td class="col-sm-2">@Model.UserPredictionInfo.RedCards</td>
+        <td class="col-sm-2">@Model.RedCardsResult</td>
+        <td class="col-sm-4"></td>
+    </tr>
+</table>
 }
 else
 {
@@ -86,17 +88,18 @@ else
 <h3>See what others predicted</h3>
 <div id="winnerContainer" style="height: 400px; width: 100%;"></div>
 &nbsp;
-
-@Html.Grid(Model.UsersPredictions).Named("usersPredictions").Columns(columns =>
+@{ var userName = User.Identity.Name;}
+   @Html.Grid(Model.UsersPredictions).Named("usersPredictions").Columns(columns =>
     {
-        columns.Add(upi=>upi.UserName).Titled("Name").SetWidth(40);
+        columns.Add(upi => upi.DisplayName).Titled("Name").SetWidth(40);
         columns.Add(upi => upi.HalfTimeScore).Titled("Half Time Score").SetWidth(8);
         columns.Add(upi => upi.FullTimeScore).Titled("Full Time Score").SetWidth(8);
         columns.Add(upi => upi.Winner).Titled("Winner").SetWidth(20);
         columns.Add(upi => upi.YellowCards).Titled("Yellow Cards").SetWidth(8);
         columns.Add(upi => upi.RedCards).Titled("Red Cards").SetWidth(8);
         columns.Add(upi => upi.MatchPoints).Titled("Points").SetWidth(8);
-    }).Sortable().WithPaging(40)
+    }).Sortable().SetRowCssClasses(upi => upi.UserName == userName ? "warning" : "").WithPaging(40)
+
 <script>
     $(function () {
         var dataSource = [

@@ -31,6 +31,7 @@ namespace WorldCup.Models.Predictions
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
+        public string DisplayName { get; set; }
         public string HalfTimeScore { get; set; }
         public string FullTimeScore { get; set; }
         public string Winner { get; set; }

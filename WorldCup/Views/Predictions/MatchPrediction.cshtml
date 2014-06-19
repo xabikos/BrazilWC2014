@@ -137,7 +137,7 @@
 
             @Html.Grid(gridModel).Named("previousMatches").Columns(columns =>
             {
-                columns.Add(m => m.Date).Titled("Date").SetWidth(10);
+                columns.Add(m => m.Date.ToString("m")).Titled("Date").SetWidth(10);
                 columns.Add(m => m.HomeTeam.Name).Titled("Home Team").SetWidth(30);
                 columns.Add()
                     .Encoded(false)

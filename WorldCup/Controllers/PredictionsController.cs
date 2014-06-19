@@ -238,6 +238,11 @@ namespace WorldCup.Controllers
                 .ToList();
             ViewBag.PreviousMatchId = matchesIds[0] != 0 ? matchesIds[0] : match.Id;
             ViewBag.NextMatchId = matchesIds[1] != 0 ? matchesIds[1] : match.Id;
+            ViewBag.GridModel = Context.Matches.Where(m =>
+                m.Date < match.Date && (
+                    m.HomeTeamId == match.HomeTeamId || m.HomeTeamId == match.AwayTeamId ||
+                    m.AwayTeamId == match.HomeTeamId || m.AwayTeamId == match.AwayTeamId)
+                ).OrderBy(m => m.Date).ToList();
         }
 
         /// <summary>

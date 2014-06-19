@@ -1,5 +1,7 @@
-﻿@using WorldCup.Extensions
-@model WorldCup.Common.Entities.MatchPrediction
+﻿@using GridMvc.Html
+@using WorldCup.Common.Entities
+@using WorldCup.Extensions
+@model MatchPrediction
 
 @{
     ViewBag.Title = string.Format("{0} vs {1} predictions", Model.Match.HomeTeam.Name, Model.Match.AwayTeam.Name);
@@ -127,41 +129,30 @@
     previous matches from @Model.Match.HomeTeam.Name and @Model.Match.AwayTeam.Name
 </button>
 
-<div id="demo" class="collapse">
-    <!--
-        Select all matches where either home or away team is equal to current home or away team, ordered by match date
-    -->
-    <table class="table table-condensed">
-        <thead>
-            <tr>
-                <th width="10%">Date</th>
-                <th width="30%"></th>
-                <th width="10%" class="text-center">Score</th>
-                <th width="30%"></th>
-                <th width="10%">Yellow cards</th>
-                <th width="10%">Red cards</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>12 June</td>
-                <td class="text-right"><strong>@Model.Match.HomeTeam.Name</strong></td>
-                <td class="text-center">3 - 0</td>
-                <td>Opponent</td>
-                <td>3</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>15 June</td>
-                <td class="text-right">Opponent</td>
-                <td class="text-center">0 - 1</td>
-                <td><strong>@Model.Match.AwayTeam.Name</strong></td>
-                <td>7</td>
-                <td>0</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+@{
+    var gridModel = (List<Match>) ViewBag.GridModel;
+    if (gridModel != null)
+    {
+        <div id="demo" class="collapse">
+
+            @Html.Grid(gridModel).Named("previousMatches").Columns(columns =>
+            {
+                columns.Add(m => m.Date).Titled("Date").SetWidth(10);
+                columns.Add(m => m.HomeTeam.Name).Titled("Home Team").SetWidth(30);
+                columns.Add()
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(m => string.Format("{0}-{1}", m.HomeTeamFullTimeGoals, m.AwayTeamFullTimeGoals))
+                    .Titled("Score")
+                    .SetWidth(10);
+                columns.Add(m => m.AwayTeam.Name).Titled("Away Team").SetWidth(30);
+                columns.Add(m => m.YellowCards).Titled("Yellow Cards").SetWidth(10);
+                columns.Add(m => m.RedCards).Titled("Red Cards").SetWidth(10);
+            })
+        </div>
+    }
+}
+
 <script type="text/javascript">
 
     $(function () {

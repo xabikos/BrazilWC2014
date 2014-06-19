@@ -82,9 +82,11 @@ else
         </div>
     </div>
 </div>
+
 <h3>See what others predicted</h3>
 <div id="winnerContainer" style="height: 400px; width: 100%;"></div>
 &nbsp;
+
 @Html.Grid(Model.UsersPredictions).Named("usersPredictions").Columns(columns =>
     {
         columns.Add(upi=>upi.UserName).Titled("Name").SetWidth(40);
@@ -98,9 +100,9 @@ else
 <script>
     $(function () {
         var dataSource = [
-            { team: "Honduras", count: 7 }, // No need for percentages here, counts are good as well
-            { team: "Draw", count: 15 },
-            { team: "Iran", count: 18 }
+            { team: '@Model.HomeTeamName', count: @Model.HomeTeamWinnerCount }, // No need for percentages here, counts are good as well
+            { team: 'Draw', count: @Model.DrawCount },
+            { team: '@Model.AwayTeamName', count: @Model.AwayTeamWinnerCount }
         ];
 
         $("#winnerContainer").dxPieChart({

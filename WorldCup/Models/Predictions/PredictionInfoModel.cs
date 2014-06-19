@@ -20,6 +20,10 @@ namespace WorldCup.Models.Predictions
         public int YellowCardsResult { get; set; }
         public int RedCardsResult { get; set; }
 
+        public int HomeTeamWinnerCount { get; set; }
+        public int DrawCount { get; set; }
+        public int AwayTeamWinnerCount { get; set; }
+
         public IList<UserPredictionInfo> UsersPredictions { get; set; } 
     }
 

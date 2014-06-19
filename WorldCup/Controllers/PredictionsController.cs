@@ -250,6 +250,10 @@ namespace WorldCup.Controllers
         /// </remarks>
         private PredictionInfoModel GetPredictionInfoModel(MatchPrediction matchPrediction, Match match)
         {
+            // Enhancement as all the data here are for read only purposes 
+            Context.Configuration.ProxyCreationEnabled = false;
+            Context.Configuration.AutoDetectChangesEnabled = false;
+
             var model = new PredictionInfoModel();
             // Check if the user has done a prediction for the match
             if (matchPrediction.Match != null)
@@ -278,6 +282,18 @@ namespace WorldCup.Controllers
             model.RedCardsResult = match.RedCards;
 
             var currentUserId = User.Identity.GetUserId();
+
+            var counts = Context.MatchesPredictions.Where(mp => mp.MatchId == match.Id)
+                .GroupBy(mp => mp.Result, (key, values) => new {Result = key, Count = values.Count()});
+            model.HomeTeamWinnerCount = counts.Any(c => c.Result == MatchResult.Home)
+                ? counts.Single(c => c.Result == MatchResult.Home).Count
+                : 0;
+            model.DrawCount = counts.Any(c => c.Result == MatchResult.Draw)
+                ? counts.Single(r => r.Result == MatchResult.Draw).Count
+                : 0;
+            model.AwayTeamWinnerCount = counts.Any(c => c.Result == MatchResult.Away)
+                ? counts.Single(r => r.Result == MatchResult.Away).Count
+                : 0;
 
             model.UsersPredictions =
                 UserManager.ConfirmedUsers.Where(u => u.Id != currentUserId).SelectMany(

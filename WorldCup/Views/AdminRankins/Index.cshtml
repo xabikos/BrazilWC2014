@@ -17,18 +17,13 @@
 <hr />
 <h3>Panic button</h3>
 <p>Okay, we may have exaggerated a little: you can actually undo rankings for a match. Select a match below and reset the results for that particular match. The match status will be reset to 'visible for predictions'. However, you <strong>really</strong> cannot undo this operation.</p>
-<form class="form-horizontal" role="form">
+
+@using (Html.BeginForm("UndoRankingsForMatch", "AdminRankins", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+{
     <div class="form-group">
-        <label for="match" class="col-sm-2 control-label">Match:</label>
-        <div class="col-sm-10">
-            <select name="match" id="match" class="form-control">
-                <option>Choose your match</option>
-                <option value="38">24 June: Costa Rica vs England</option>
-                <option value="37">24 June: Italy vs Uruguay</option>
-                <option value="36">24 June: Croatia vs Mexico</option>
-                <option value="35">24 June: Cameroon vs Brazil</option>
-                <option value="...">all other matches</option>
-            </select>
+        @Html.Label("Match", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-3">
+            @Html.DropDownList("matchId", new SelectList(ViewBag.Matches, "Id", "Match"), "Choose your match", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -36,4 +31,4 @@
             <input type="submit" value="Reset" class="btn btn-danger" />
         </div>
     </div>
-</form>
+}

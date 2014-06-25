@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -15,7 +16,36 @@ namespace WorldCup.Controllers
         // GET: AdminRankins
         public ActionResult Index()
         {
+            PrepareViewBag();
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UndoRankingsForMatch(int matchId)
+        {
+            var matchToUndoRankings = await Context.Matches.FindAsync(matchId);
+
+            if (matchToUndoRankings == null)
+            {
+                PrepareViewBag();
+                return View("Index", model: "There is no match with the provided Id");
+            }
+
+            var matchPointsToRemove = Context.MatchPoints.Where(mp => mp.MatchId == matchToUndoRankings.Id);
+            Context.MatchPoints.RemoveRange(matchPointsToRemove);
+
+            await Context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        private void PrepareViewBag()
+        {
+            ViewBag.Matches =
+                Context.Matches
+                    .Where(m => m.State == MatchState.Finalized)
+                    .OrderBy(m => m.Date).ToList()
+                    .Select(m => new { m.Id, Match = string.Format("{0} - {1}", m.HomeTeam.Name, m.AwayTeam.Name) });
         }
 
         public async Task<ActionResult> UpdateMatchRankings()
@@ -229,12 +259,12 @@ namespace WorldCup.Controllers
                 Context.Parameters.Add(new Parameter
                 {
                     Name = PredefinedParameters.LastUpdateTime,
-                    Value = DateTime.UtcNow.ToString()
+                    Value = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)
                 });
             }
             else
             {
-                parameter.Value = DateTime.UtcNow.ToString();
+                parameter.Value = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
             }
 
             await Context.SaveChangesAsync();

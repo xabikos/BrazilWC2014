@@ -76,6 +76,8 @@ namespace WorldCup.Controllers
 
             await UpdateLastUpdateTime();
 
+            PrepareViewBag();
+
             return View("Index", model: "You successfully update all match rankings");
         }
 
@@ -148,6 +150,8 @@ namespace WorldCup.Controllers
             await Context.SaveChangesAsync();
 
             await UpdateLastUpdateTime();
+
+            PrepareViewBag();
 
             return View("Index", model: "You successfully update long running rankings");
         }
@@ -266,8 +270,6 @@ namespace WorldCup.Controllers
             {
                 parameter.Value = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
             }
-
-            await Context.SaveChangesAsync();
         }
 
     }

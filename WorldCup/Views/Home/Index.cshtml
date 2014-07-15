@@ -14,8 +14,8 @@
                 @Model.LogoText<br>
                 <small>for our UNICEF project Brighter Futures</small>
             </h3>
-            <p class="text-right"><span class="label label-danger" id="days-remaining"></span> days until the final</p>
-            <p class="text-right"><span class="label label-success" id="amount-raised"></span> currently raised</p>
+            @*<p class="text-right"><span class="label label-danger" id="days-remaining"></span> days until the final</p>*@
+            <p class="text-right"><span class="label label-success" id="amount-raised"></span> totally raised</p>
         </div>
     </div>
 </div>
@@ -23,13 +23,13 @@
 <div class="row">
     <div class="col-md-6">
         <h1>Introduction</h1>
-        <p>@Model.IntroductionText Don't forget to check the @Html.ActionLink("rules", "Rules", "Home").</p>
+        <p>@Model.IntroductionText These were the @Html.ActionLink("rules", "Rules", "Home").</p>
 
         @*Show the grid only if tournament has started*@
         @if (DateTime.UtcNow > new DateTime(2014, 6, 12, 20, 0, 0))
         {
-            <h1>Current ranking</h1>
-            <p>After every match the scores will be updated as soon as possible. Check out the top 5 in the chart below.</p>
+            <h1>Final ranking</h1>
+            <p>This is the final top 5:</p>
             <div id="rankingChart" style="max-width: 700px; height: 300px;"></div>
             <p>&nbsp;<br />Check the @Html.ActionLink("rankings", "Index", "Rankings") for a complete overview.</p>
 
@@ -63,6 +63,7 @@
         *@
     </div>
     <div class="col-md-6">
+        @*
         @if (Request.IsAuthenticated)
         {
             <h1>Your predictions</h1>
@@ -136,7 +137,7 @@
         {
             <p>&nbsp;<br />See the whole <a href="/Predictions">match schedule</a> and for your predictions.</p>
         }
-
+         *@
         <h1>Money raised</h1>
         <div id="unicefChart" style="max-width:700px;height: 300px;"></div>
         <p>&nbsp;<br />Check where <a href="http://www.unicef.org.uk/UNICEFs-Work/Our-supporters/Organisations/Corporate-partners/Kantar/" target="_blank">your donation goes to</a>.</p>
@@ -232,7 +233,7 @@
 
         $("#rankingChart").dxChart({
             title: {
-                text: 'Current top 5'
+                text: 'Final top 5'
             },
             legend: {
                 horizontalAlignment: 'center',
@@ -254,6 +255,6 @@
     var finalMatch = moment([2014, 6, 13]),
         daysRemaining = finalMatch.diff(now, 'days');
 
-    $("#days-remaining").text(daysRemaining);
+    @*$("#days-remaining").text(daysRemaining);*@
 
 </script>

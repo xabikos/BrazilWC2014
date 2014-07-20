@@ -85,7 +85,7 @@ namespace WorldCup.Controllers
             var usersInfoPerDate = new List<Dictionary<string, object>>();
 
             // The date that tournament is finished
-            var today = DateTime.Now > new DateTime(2014,7,13) ? new DateTime(2014,7,13) : DateTime.Now;
+            var today = DateTime.Now > new DateTime(2014,7,14) ? new DateTime(2014,7,14) : DateTime.Now;
             for(int i = -4; i <= 0; i++)
             {
                 var userInfo = new Dictionary<string, object>();
